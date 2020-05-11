@@ -1,0 +1,51 @@
+filetype plugin indent on
+set encoding=utf-8
+set nocompatible
+syntax enable
+
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" DOWNLOAD PLUGINS
+call plug#begin('~/.vim/plugged')
+
+Plug 'arcticicestudio/nord-vim'
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+let g:coc_global_extensions = [
+      \ 'coc-tabnine',
+      \ 'coc-cspell-dicts',
+      \ 'coc-spell-checker',
+      \ 'coc-tsserver',
+      \ 'coc-html',
+      \ 'coc-lists',
+      \ 'coc-phpls',
+      \ 'coc-sh',
+      \ 'coc-css',
+      \ 'coc-stylelint',
+      \ 'coc-vimlsp',
+      \ 'coc-json',
+      \ 'coc-eslint',
+      \ 'coc-jest',
+      \ 'coc-solargraph',
+      \ 'coc-yaml',
+      \ 'coc-highlight',
+      \ 'coc-snippets',
+      \ 'coc-docker',
+      \ 'coc-diagnostic',
+      \]
+
+call plug#end()
+
+" TABS
+set tabstop=2
+set shiftwidth=2
+set smarttab
+set expandtab
+set smartindent
+
+" THEMES
+colorscheme nord
