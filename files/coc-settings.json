@@ -13,5 +13,8 @@
   "prettier.trailingComma": "all",
   "prettier.eslintIntegration": true,
   "prettier.stylelintIntegration": true,
-  "prettier.singleQuote": true
+  "prettier.singleQuote": true,
+  "prettier.disableSuccessMessage": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.fileTypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"]
 }
