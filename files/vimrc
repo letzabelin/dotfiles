@@ -90,7 +90,7 @@ set autowrite             "  Automatically save changes before switching buffers
 syntax enable             " Enable syntax highlight
 syntax on                 " Syntax on for wimwiki
 colorscheme nord          " Theme
-inoremap jk <ESC>
+" inoremap jk <ESC>
 let mapleader="\<Space>"  " <Leader> key
 
 " History, Cursor, rules
@@ -149,7 +149,6 @@ set scrolloff=3
 """ Plugins Keymaps
 nmap <C-m> :NERDTreeFind<CR>
 nmap <leader><leader> :NERDTreeToggle<CR>
-" nmap <silent> <leader><leader> :CocCommand explorer --toggle --file-columns=diagnosticError:git:selection:clip:indent:icon:filename;filename;fullpath;size;modified;readonly;created;modified;accessed<CR>
 
 map <Leader> <Plug>(easymotion-prefix)
 
