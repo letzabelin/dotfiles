@@ -8,7 +8,6 @@ call plug#begin('~/.vim/plugged')
 
 " ############# General #############
 Plug 'tpope/vim-commentary'        " Fast comment/uncomment lines (Keys - gcc)
-Plug 'tpope/vim-endwise'           " Complete duo symbols (if do etc...)
 Plug 'tpope/vim-fugitive'          " Git https://github.com/tpope/vim-fugitive :Git diff | :Git commit | :Git add | :GStatus
 Plug 'tpope/vim-git'               " Included are syntax, indent, and filetype plugin files for git, gitconfig etc.
 Plug 'tpope/vim-surround'          " Surrounding parentheses, brackets, quotes, XML tags, and more.
@@ -16,11 +15,11 @@ Plug 'tpope/vim-repeat'            " Repeat.vim remaps . in a way that plugins c
 Plug 'tpope/vim-unimpaired'        " ?????????????????
 Plug 'axvr/zepl.vim'               " Run REPL
 Plug 'cohama/lexima.vim'           " Repeat.vim remaps . in a way that plugins can tap into it.
-Plug 'nathanaelkane/vim-indent-guides'  " Highlight indent lines
-Plug 'luochen1990/rainbow'         " Highlight brackets
 Plug 'vim-airline/vim-airline'     " Status line
 Plug 'arcticicestudio/nord-vim'    " Theme
 Plug 'terryma/vim-multiple-cursors' " Cursors
+" Plug 'nathanaelkane/vim-indent-guides'  " Highlight indent lines
+" Plug 'luochen1990/rainbow'         " Highlight brackets
 Plug 'tpope/vim-sensible'
 
 " ############# Search and navigation #############
@@ -49,6 +48,7 @@ Plug 'chemzqm/vim-jsx-improve', { 'for': 'javascript' }  " Syntax and indent plu
 Plug 'leafgarland/typescript-vim'                        " Syntax file and other settings for TypeScript
 Plug 'peitalin/vim-jsx-typescript'                       " Syntax highlighting for JSX in Typescript.
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'mattn/emmet-vim'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
@@ -90,7 +90,7 @@ set autowrite             "  Automatically save changes before switching buffers
 syntax enable             " Enable syntax highlight
 syntax on                 " Syntax on for wimwiki
 colorscheme nord          " Theme
-" inoremap jk <ESC>
+inoremap jk <ESC>
 let mapleader="\<Space>"  " <Leader> key
 
 " History, Cursor, rules
@@ -336,3 +336,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 vmap <leader>y :w! /tmp/.vim/.vbuf<CR>
 nmap <leader>y :.w! /tmp/.vim/.vbuf<CR>
 nmap <leader>p :r /tmp/.vim/.vbuf<CR>
+
+" Indent and bracket color
+" let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+" let g:indent_guides_enable_on_vim_startup = 1
