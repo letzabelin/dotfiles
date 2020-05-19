@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/locke/.oh-my-zsh"
@@ -13,13 +13,6 @@ plugins=(git)
 # =========== #
 #   Aliases   #
 # =========== #
-alias bi='bundle install'
-alias be='bundle exec ' # note the trailing space to trigger chaining
-alias bu='bundle update'
-alias bo='bundle open'
-alias rs='rails server'
-alias rc='rails console'
-
 alias gst="git status"
 alias gdiff="git diff"
 alias gadd="git add"
