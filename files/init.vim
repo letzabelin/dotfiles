@@ -52,6 +52,11 @@ Plug 'peitalin/vim-jsx-typescript'                       " Syntax highlighting f
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'mattn/emmet-vim'
 
+" ############# Ruby #############
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'tpope/vim-bundler', { 'for': 'ruby' }
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
       \ 'coc-tabnine',
