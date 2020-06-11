@@ -97,7 +97,7 @@ set autoread              " Autoreload buffers
 set autowrite             "  Automatically save changes before switching buffers
 syntax enable             " Enable syntax highlight
 syntax on                 " Syntax on for wimwiki
-colorscheme nord          " Theme
+colorscheme mono_red      " Theme
 inoremap jk <ESC>
 let mapleader="\<Space>"  " <Leader> key
 
