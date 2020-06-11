@@ -15,8 +15,9 @@ Plug 'tpope/vim-repeat'            " Repeat.vim remaps . in a way that plugins c
 Plug 'tpope/vim-unimpaired'        " ?????????????????
 Plug 'axvr/zepl.vim'               " Run REPL
 Plug 'cohama/lexima.vim'           " Repeat.vim remaps . in a way that plugins can tap into it.
-Plug 'vim-airline/vim-airline'     " Status line
-Plug 'arcticicestudio/nord-vim'    " Theme
+" Plug 'vim-airline/vim-airline'     " Status line
+Plug 'itchyny/lightline.vim'
+" Plug 'arcticicestudio/nord-vim'    " Theme
 Plug 'terryma/vim-multiple-cursors' " Cursors
 " Plug 'nathanaelkane/vim-indent-guides'  " Highlight indent lines
 " Plug 'luochen1990/rainbow'         " Highlight brackets
@@ -79,6 +80,7 @@ let g:coc_global_extensions = [
       \ 'coc-git',
       \ 'coc-pairs',
       \ 'coc-prettier',
+      \ 'coc-solargraph'
       \]
 
 call plug#end()
@@ -198,7 +200,8 @@ nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
 " format the entire file
-nnoremap ff :normal! gg=G``<CR>
+" nnoremap ff :normal! gg=G``<CR>
+nmap ff :Prettier<CR>
 
 " set text wrapping toggles
 nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
@@ -235,6 +238,26 @@ command! -bang -nargs=? -complete=dir GFiles
 command! -bang -nargs=? -complete=dir Files
       \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 " }
+
+" Lightline
+let g:lightline = {
+\ 'colorscheme': 'PaperColor',
+\ 'active': {
+\   'left': [['mode', 'paste'], ['filename', 'modified']],
+\   'right': [['lineinfo'], ['percent'], ['readonly'], ['cocstatus'], ['currentfunction']]
+\ },
+\ 'component_function': {
+\   'cocstatus': 'StatusDiagnostic',
+\   'currentfunction': 'CocCurrentFunction'
+\ },
+\ }
+
+" Update and show lightline but only if it's visible (e.g., not in Goyo)
+function! s:MaybeUpdateLightline()
+  if exists('#lightline')
+    call lightline#update()
+  end
+endfunction
 
 """ COC
 
