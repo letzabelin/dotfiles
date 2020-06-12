@@ -203,8 +203,8 @@ nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
 " format the entire file
-" nnoremap ff :normal! gg=G``<CR>
-nmap ff :Prettier<CR>
+nnoremap ff :normal! gg=G``<CR>
+" nmap ff :Prettier<CR>
 
 " set text wrapping toggles
 nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
