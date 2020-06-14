@@ -24,6 +24,7 @@ Plug 'dyng/ctrlsf.vim'             " Searching in file
 " ############# Themes #############
 " Plug 'arcticicestudio/nord-vim'
 " Plug 'rakr/vim-one'
+Plug 'andreypopp/vim-colors-plain'
 
 " ############# Search and navigation #############
 Plug 'easymotion/vim-easymotion'                                   " Fast navigation with <leader>s +letter
@@ -102,6 +103,7 @@ set autoread              " Autoreload buffers
 set autowrite             "  Automatically save changes before switching buffers
 syntax enable             " Enable syntax highlight
 syntax on                 " Syntax on for wimwiki
+set termguicolors
 
 inoremap jk <ESC>
 let mapleader="\<Space>"  " <Leader> key
@@ -113,9 +115,14 @@ let mapleader="\<Space>"  " <Leader> key
 " colorscheme one
 " set background=dark
 
-" mono-red
-colorscheme mono_red
+" nord
+" colorscheme nord
 
+" mono-red
+" colorscheme mono_red
+
+set background=dark " Set to dark for a dark variant
+colorscheme plain
 " alabaster
 " colorscheme alabaster
 
@@ -437,7 +444,3 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 vmap <leader>y :w! /tmp/.vim/.vbuf<CR>
 nmap <leader>y :.w! /tmp/.vim/.vbuf<CR>
 nmap <leader>p :r /tmp/.vim/.vbuf<CR>
-
-" Indent and bracket color
-" let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
-" let g:indent_guides_enable_on_vim_startup = 1
