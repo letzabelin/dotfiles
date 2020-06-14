@@ -15,15 +15,15 @@ Plug 'tpope/vim-repeat'            " Repeat.vim remaps . in a way that plugins c
 Plug 'tpope/vim-unimpaired'        " ?????????????????
 Plug 'axvr/zepl.vim'               " Run REPL
 Plug 'cohama/lexima.vim'           " Repeat.vim remaps . in a way that plugins can tap into it.
-" Plug 'vim-airline/vim-airline'     " Status line
 Plug 'itchyny/lightline.vim'
-" Plug 'arcticicestudio/nord-vim'    " Theme
 Plug 'terryma/vim-multiple-cursors' " Cursors
-" Plug 'nathanaelkane/vim-indent-guides'  " Highlight indent lines
-" Plug 'luochen1990/rainbow'         " Highlight brackets
 Plug 'tpope/vim-sensible'
 Plug 'janko-m/vim-test'
 Plug 'dyng/ctrlsf.vim'             " Searching in file
+
+" ############# Themes #############
+" Plug 'arcticicestudio/nord-vim'
+" Plug 'rakr/vim-one'
 
 " ############# Search and navigation #############
 Plug 'easymotion/vim-easymotion'                                   " Fast navigation with <leader>s +letter
@@ -102,9 +102,24 @@ set autoread              " Autoreload buffers
 set autowrite             "  Automatically save changes before switching buffers
 syntax enable             " Enable syntax highlight
 syntax on                 " Syntax on for wimwiki
-colorscheme mono_red      " Theme
+
 inoremap jk <ESC>
 let mapleader="\<Space>"  " <Leader> key
+
+" ############# THEMES #############
+
+" vim-one
+" let g:airline_theme='one'
+" colorscheme one
+" set background=dark
+
+" mono-red
+colorscheme mono_red
+
+" alabaster
+" colorscheme alabaster
+
+" ############# END THEMES ############# 
 
 " History, Cursor, rules
 set history=50                                                                 " Just remeber last 50 commands
