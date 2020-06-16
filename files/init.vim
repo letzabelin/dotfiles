@@ -23,8 +23,7 @@ Plug 'dyng/ctrlsf.vim'             " Searching in file
 
 " ############# Themes #############
 " Plug 'arcticicestudio/nord-vim'
-" Plug 'rakr/vim-one'
-Plug 'andreypopp/vim-colors-plain'
+Plug 'rakr/vim-one'
 
 " ############# Search and navigation #############
 Plug 'easymotion/vim-easymotion'                                   " Fast navigation with <leader>s +letter
@@ -123,16 +122,12 @@ let mapleader="\<Space>"  " <Leader> key
 " ############# THEMES #############
 
 " vim-one
-" let g:airline_theme='one'
-" colorscheme one
-" set background=dark
+let g:airline_theme='one'
+colorscheme one
+set background=dark
 
 " nord
 " colorscheme nord
-
-" plain
-set background=dark " Set to dark for a dark variant
-colorscheme plain
 
 " alabaster
 " colorscheme alabaster
