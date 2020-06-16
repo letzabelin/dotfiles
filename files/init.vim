@@ -57,6 +57,18 @@ Plug 'peitalin/vim-jsx-typescript'                       " Syntax highlighting f
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'mattn/emmet-vim'
 
+" ############# Clojure #############
+Plug 'wlangstroth/vim-racket', { 'for': 'racket' }       " Support Racket
+Plug 'tpope/vim-fireplace'                               " REPL for clojure (have not setup yet completely)
+Plug 'guns/vim-clojure-static'                           " ??????? for clojure
+Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }  " Syntax highlight for clojure
+Plug 'clojure-vim/vim-cider'                             " Have not setup completely yet
+Plug 'fbeline/kibit-vim'                                 " Static code analyzer for clojure
+Plug 'liquidz/vim-iced', {'for': 'clojure'}
+Plug 'liquidz/vim-iced-coc-source', {'for': 'clojure'}
+Plug 'guns/vim-sexp',    {'for': 'clojure'}
+Plug 'kovisoft/slimv', { 'for': ['clojure', 'scheme', 'racket'] }
+
 " ############# Ruby #############
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
@@ -282,6 +294,19 @@ function! s:MaybeUpdateLightline()
     call lightline#update()
   end
 endfunction
+
+augroup zepl
+    autocmd!
+    autocmd FileType ruby let b:repl_config = { 'cmd': 'bundle exec rails console' }
+    autocmd FileType clojure let b:repl_config = { 'cmd': 'lein repl' }
+augroup END
+
+" ############# Clojure ################
+map <leader>E :%Eval<cr>
+map <leader>e :Eval<cr>
+map <leader>r :Require<cr>
+map <leader>R :Require!<cr>
+
 
 """ COC
 
