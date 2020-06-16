@@ -1,14 +1,14 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/locke/.oh-my-zsh"
 
+ZSH_THEME="theunraveler"
+
+plugins=(git zsh-autosuggestions)
+
 source $ZSH/oh-my-zsh.sh
-
-ZSH_THEME="agnoster"
-
-plugins=(git)
 
 # =========== #
 #   Aliases   #
@@ -38,9 +38,13 @@ DISABLE_LS_COLORS="true"
 DISABLE_AUTO_TITLE="true"
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
+bindkey '^ ' autosuggest-accept
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
 
 export EDITOR=nvim
 export BAT_THEME="GitHub"
 
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

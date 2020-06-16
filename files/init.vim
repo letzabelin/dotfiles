@@ -118,11 +118,10 @@ let mapleader="\<Space>"  " <Leader> key
 " nord
 " colorscheme nord
 
-" mono-red
-" colorscheme mono_red
-
+" plain
 set background=dark " Set to dark for a dark variant
 colorscheme plain
+
 " alabaster
 " colorscheme alabaster
 
