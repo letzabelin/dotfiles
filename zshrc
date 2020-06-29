@@ -6,7 +6,7 @@ export ZSH="/home/locke/.oh-my-zsh"
 
 ZSH_THEME="theunraveler"
 
-plugins=(git zsh-autosuggestions)
+plugins=(git zsh-autosuggestions asdf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -41,10 +41,8 @@ COMPLETION_WAITING_DOTS="true"
 bindkey '^ ' autosuggest-accept
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
 
 export EDITOR=nvim
 export BAT_THEME="GitHub"
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
