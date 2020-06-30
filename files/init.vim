@@ -20,7 +20,7 @@ Plug 'terryma/vim-multiple-cursors' " Cursors
 Plug 'tpope/vim-sensible'
 Plug 'janko-m/vim-test'
 Plug 'dyng/ctrlsf.vim'             " Searching in file
-Plug 'alvan/vim-closetag'
+" Plug 'alvan/vim-closetag'
 
 " ############# Themes #############
 " Plug 'arcticicestudio/nord-vim'
@@ -148,6 +148,9 @@ set statusline=%<%f\ %h%m%r%=\ %{devnotes#statusline()}\ %-14.(%l,%c%V%)\ %P   "
 " Tabs and whitespace
 set wrap                                    " Wrap lines
 set tabstop=2                               " Tabs are always 2 spaces
+set autoindent
+set smartindent
+set smarttab
 set expandtab                               " Expand tabs into spaces
 set shiftwidth=2                            " Reindent with 2 spaces (using <<)
 set showbreak=↪\                            " Set breakline char
@@ -197,6 +200,7 @@ if has('persistent_undo')
   set undodir=/tmp/.vim/backups
   set undofile
 endif
+
 
 """ Plugins Keymaps
 nmap <C-m> :NERDTreeFind<CR>
@@ -286,46 +290,15 @@ let g:lightline = {
 \ }
 
 
-" filenames like *.xml, *.html, *.xhtml, ...
-" These are the file extensions where this plugin is enabled.
-"
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.html.erb'
+" closetag config
+" let g:closetag_filenames = '*.html,*.erb,*.jsx,*.tsx'
 
-" filenames like *.xml, *.xhtml, ...
-" This will make the list of non-closing tags self-closing in the specified files.
-"
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
-
-" filetypes like xml, html, xhtml, ...
-" These are the file types where this plugin is enabled.
-"
-let g:closetag_filetypes = 'html,xhtml,phtml'
-
-" filetypes like xml, xhtml, ...
-" This will make the list of non-closing tags self-closing in the specified files.
-"
-let g:closetag_xhtml_filetypes = 'xhtml,jsx'
-
-" integer value [0|1]
-" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
-"
-let g:closetag_emptyTags_caseSensitive = 1
-
-" dict
-" Disables auto-close if not in a "valid" region (based on filetype)
-"
-let g:closetag_regions = {
-    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
-    \ 'javascript.jsx': 'jsxRegion',
-    \ }
-
-" Shortcut for closing tags, default is '>'
-"
-let g:closetag_shortcut = '>'
-
-" Add > at current position without closing the current tag, default is ''
-"
-let g:closetag_close_shortcut = '<leader>>'
+" emmet settings
+let g:user_emmet_settings = {
+    \  'html' : {
+    \    'indent_blockelement': 1,
+    \  },
+    \}
 
 " Update and show lightline but only if it's visible (e.g., not in Goyo)
 function! s:MaybeUpdateLightline()
