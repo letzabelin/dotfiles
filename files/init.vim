@@ -28,7 +28,7 @@ Plug 'rakr/vim-one'
 
 " ############# Search and navigation #############
 Plug 'easymotion/vim-easymotion'                                   " Fast navigation with <leader>s +letter
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle'}              " Project Tree TODO: Should change to coc-explorer
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }  " Search by project 
 Plug 'junegunn/fzf.vim'                                            " Search
 
@@ -56,18 +56,6 @@ Plug 'leafgarland/typescript-vim'                        " Syntax file and other
 Plug 'peitalin/vim-jsx-typescript'                       " Syntax highlighting for JSX in Typescript.
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'mattn/emmet-vim'
-
-" ############# Clojure #############
-Plug 'wlangstroth/vim-racket', { 'for': 'racket' }       " Support Racket
-Plug 'tpope/vim-fireplace'                               " REPL for clojure (have not setup yet completely)
-Plug 'guns/vim-clojure-static'                           " ??????? for clojure
-Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }  " Syntax highlight for clojure
-Plug 'clojure-vim/vim-cider'                             " Have not setup completely yet
-Plug 'fbeline/kibit-vim'                                 " Static code analyzer for clojure
-Plug 'liquidz/vim-iced', {'for': 'clojure'}
-Plug 'liquidz/vim-iced-coc-source', {'for': 'clojure'}
-Plug 'guns/vim-sexp',    {'for': 'clojure'}
-Plug 'kovisoft/slimv', { 'for': ['clojure', 'scheme', 'racket'] }
 
 " ############# Ruby #############
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
@@ -161,6 +149,7 @@ set hlsearch    " Highlight matches
 set incsearch   " Incremental searching
 set ignorecase  " Searches are case insensitive...
 set smartcase   " ... unless they contain at least one capital letter
+set inccommand=nosplit " live substitute
 
 set noshowmode  " Doesnt show vim mode
 
@@ -212,6 +201,9 @@ map <Leader> <Plug>(easymotion-prefix)
 " Turn off linewise keys. Normally, the `j' and `k' keys move the cursor down one entire line. with line wrapping on, this can cause the cursor to actually skip a few lines on the screen because it's moving from line N to line N+1 in the file. I want this to act more visually -- I want `down' to mean the next line on the screen
 nmap j gj
 nmap k gk
+
+" like multicursor
+nnoremap <Leader>z :%s///g<Left><Left>
 
 " Map ctrl-movement keys to window switching
 map <C-k> <C-w><Up>
@@ -310,15 +302,7 @@ endfunction
 augroup zepl
     autocmd!
     autocmd FileType ruby let b:repl_config = { 'cmd': 'bundle exec rails console' }
-    autocmd FileType clojure let b:repl_config = { 'cmd': 'lein repl' }
 augroup END
-
-" ############# Clojure ################
-map <leader>E :%Eval<cr>
-map <leader>e :Eval<cr>
-map <leader>r :Require<cr>
-map <leader>R :Require!<cr>
-
 
 """ COC
 
