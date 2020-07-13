@@ -2,6 +2,9 @@
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextPrefix": "# ",
   "solargraph.diagnostics": true,
+  "solargraph.autoformat": true,
+  "solargraph.formatting": true,
+  "solargraph.hover": true,
   "cSpellExt.enableDictionaries": ["russian"],
   "cSpell.enabledLanguageIds": [
     "markdown",
@@ -16,5 +19,7 @@
   "prettier.singleQuote": true,
   "prettier.disableSuccessMessage": true,
   "eslint.autoFixOnSave": true,
-  "eslint.fileTypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"]
+  "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "coc.preferences.formatOnSaveFiletypes": ["ruby"]
 }
+
