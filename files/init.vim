@@ -1,6 +1,6 @@
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -21,6 +21,10 @@ Plug 'tpope/vim-sensible'
 Plug 'janko-m/vim-test'
 Plug 'dyng/ctrlsf.vim'             " Searching in file
 " Plug 'alvan/vim-closetag'
+
+" ############# DATABASES #############
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
 
 " ############# Themes #############
 " Plug 'arcticicestudio/nord-vim'
@@ -108,6 +112,7 @@ set termguicolors
 inoremap jk <ESC>
 let mapleader="\<Space>"  " <Leader> key
 
+
 " ############# THEMES #############
 
 " vim-one
@@ -131,7 +136,6 @@ set number                                                                     "
 set showcmd                                                                    " Display incomplete commands
 set cursorline                                                                 " Highlight current cursor line
 set shell=$SHELL                                                               " Default shell
-set statusline=%<%f\ %h%m%r%=\ %{devnotes#statusline()}\ %-14.(%l,%c%V%)\ %P   " Status line format
 
 " Tabs and whitespace
 set wrap                                    " Wrap lines
@@ -180,6 +184,13 @@ set splitbelow
 set cmdheight=2
 set signcolumn=no
 set scrolloff=3
+
+" ############# DATABASES #############
+let g:dbs = {
+      \  'dev': 'postgres://andrew:1234@localhost:5432/learning_ruby_development'
+      \ }
+
+let g:db_ui_auto_execute_table_helpers = 1
 
 " ############# Persistent Undo #############
 " Keep undo history across sessions, by storing in file.
@@ -270,16 +281,16 @@ command! -bang -nargs=? -complete=dir Files
 
 " Lightline
 let g:lightline = {
-\ 'colorscheme': 'PaperColor',
-\ 'active': {
-\   'left': [['mode', 'paste'], ['filename', 'modified']],
-\   'right': [['lineinfo'], ['percent'], ['readonly'], ['cocstatus'], ['currentfunction']]
-\ },
-\ 'component_function': {
-\   'cocstatus': 'StatusDiagnostic',
-\   'currentfunction': 'CocCurrentFunction'
-\ },
-\ }
+      \ 'colorscheme': 'PaperColor',
+      \ 'active': {
+      \   'left': [['mode', 'paste'], ['filename', 'modified']],
+      \   'right': [['lineinfo'], ['percent'], ['readonly'], ['cocstatus'], ['currentfunction']]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'StatusDiagnostic',
+      \   'currentfunction': 'CocCurrentFunction'
+      \ },
+      \ }
 
 
 " closetag config
@@ -287,10 +298,10 @@ let g:lightline = {
 
 " emmet settings
 let g:user_emmet_settings = {
-    \  'html' : {
-    \    'indent_blockelement': 1,
-    \  },
-    \}
+      \  'html' : {
+      \    'indent_blockelement': 1,
+      \  },
+      \}
 
 " Update and show lightline but only if it's visible (e.g., not in Goyo)
 function! s:MaybeUpdateLightline()
@@ -300,8 +311,8 @@ function! s:MaybeUpdateLightline()
 endfunction
 
 augroup zepl
-    autocmd!
-    autocmd FileType ruby let b:repl_config = { 'cmd': 'bundle exec rails console' }
+  autocmd!
+  autocmd FileType ruby let b:repl_config = { 'cmd': 'bundle exec rails console' }
 augroup END
 
 """ COC
