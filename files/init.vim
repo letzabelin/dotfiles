@@ -304,7 +304,8 @@ let g:lightline = {
 "       \}
 
 "Correct indent in tags
-imap <c-k><c-j> <CR><Esc>O<Tab> 
+autocmd FileType html imap <c-k><c-j> <CR><Esc>O
+imap <c-k><c-j> <CR><Esc>O<Tab>
 
 " Update and show lightline but only if it's visible (e.g., not in Goyo)
 function! s:MaybeUpdateLightline()
