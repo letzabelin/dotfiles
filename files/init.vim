@@ -20,6 +20,7 @@ Plug 'terryma/vim-multiple-cursors' " Cursors
 Plug 'tpope/vim-sensible'
 Plug 'janko-m/vim-test'
 Plug 'dyng/ctrlsf.vim'             " Searching in file
+Plug 'AndrewRadev/switch.vim'      " Add switch toggles
 " Plug 'alvan/vim-closetag'
 
 " ############# DATABASES #############
@@ -212,6 +213,9 @@ map <Leader> <Plug>(easymotion-prefix)
 " Turn off linewise keys. Normally, the `j' and `k' keys move the cursor down one entire line. with line wrapping on, this can cause the cursor to actually skip a few lines on the screen because it's moving from line N to line N+1 in the file. I want this to act more visually -- I want `down' to mean the next line on the screen
 nmap j gj
 nmap k gk
+
+" Switch key toggles
+let g:switch_mapping = "-"
 
 " like multicursor
 nnoremap <Leader>z :%s///g<Left><Left>
