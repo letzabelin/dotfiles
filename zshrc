@@ -30,6 +30,10 @@ alias vim="nvim"
 alias v="nvim"
 alias gup='git pull origin master --rebase'
 
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
 CASE_SENSITIVE="true"
 HYPHEN_INSENSITIVE="true"
 DISABLE_AUTO_UPDATE="true"
