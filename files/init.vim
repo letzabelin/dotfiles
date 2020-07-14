@@ -297,11 +297,13 @@ let g:lightline = {
 " let g:closetag_filenames = '*.html,*.erb,*.jsx,*.tsx'
 
 " emmet settings
-let g:user_emmet_settings = {
-      \  'html' : {
-      \    'indent_blockelement': 1,
-      \  },
-      \}
+" let g:user_emmet_settings = {
+"       \  'html' : {
+"       \    'indent_blockelement': 1,
+"       \  },
+"       \}
+
+imap <c-k><c-j> <CR><Esc>O<Tab>      "Correct indent in tags
 
 " Update and show lightline but only if it's visible (e.g., not in Goyo)
 function! s:MaybeUpdateLightline()
