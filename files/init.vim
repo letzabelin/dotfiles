@@ -21,6 +21,8 @@ Plug 'tpope/vim-sensible'
 Plug 'janko-m/vim-test'
 Plug 'dyng/ctrlsf.vim'             " Searching in file
 Plug 'AndrewRadev/switch.vim'      " Add switch toggles
+Plug 'matze/vim-move'              " Move lines or symbols 
+Plug 'AndrewRadev/splitjoin.vim'   " Split or join lines
 " Plug 'alvan/vim-closetag'
 
 " ############# DATABASES #############
