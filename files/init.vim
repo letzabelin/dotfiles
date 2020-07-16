@@ -90,8 +90,7 @@ let g:coc_global_extensions = [
       \ 'coc-diagnostic',
       \ 'coc-git',
       \ 'coc-pairs',
-      \ 'coc-prettier',
-      \ 'coc-solargraph'
+      \ 'coc-prettier'
       \]
 
 call plug#end()
