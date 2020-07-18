@@ -23,14 +23,12 @@ Plug 'dyng/ctrlsf.vim'             " Searching in file
 Plug 'AndrewRadev/switch.vim'      " Add switch toggles
 Plug 'matze/vim-move'              " Move lines or symbols 
 Plug 'AndrewRadev/splitjoin.vim'   " Split or join lines
-" Plug 'alvan/vim-closetag'
 
 " ############# DATABASES #############
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
 
 " ############# Themes #############
-" Plug 'arcticicestudio/nord-vim'
 Plug 'rakr/vim-one'
 
 " ############# Search and navigation #############
@@ -107,6 +105,7 @@ set nowritebackup         " Write file inplace
 set noswapfile            " Don't use swap files
 set autoread              " Autoreload buffers
 set autowrite             "  Automatically save changes before switching buffers
+set noshowmode            " Doesnt show vim mode
 syntax enable             " Enable syntax highlight
 syntax on                 " Syntax on for wimwiki
 set termguicolors
@@ -116,18 +115,20 @@ let mapleader="\<Space>"  " <Leader> key
 
 
 " ############# THEMES #############
-
-" vim-one
-let g:airline_theme='one'
 colorscheme one
 set background=dark
 
-" nord
-" colorscheme nord
-
-" alabaster
-" colorscheme alabaster
-
+let g:lightline = {
+      \ 'colorscheme': 'PaperColor',
+      \ 'active': {
+      \   'left': [['mode', 'paste'], ['filename', 'modified']],
+      \   'right': [['lineinfo'], ['percent'], ['readonly'], ['cocstatus'], ['currentfunction']]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'StatusDiagnostic',
+      \   'currentfunction': 'CocCurrentFunction'
+      \ },
+      \ }
 " ############# END THEMES ############# 
 
 " History, Cursor, rules
@@ -144,6 +145,7 @@ set wrap                                    " Wrap lines
 set tabstop=2                               " Tabs are always 2 spaces
 set autoindent
 set smartindent
+set softtabstop=2
 set smarttab
 set expandtab                               " Expand tabs into spaces
 set shiftwidth=2                            " Reindent with 2 spaces (using <<)
@@ -157,8 +159,6 @@ set ignorecase  " Searches are case insensitive...
 set smartcase   " ... unless they contain at least one capital letter
 set inccommand=nosplit " live substitute
 
-set noshowmode  " Doesnt show vim mode
-
 " Enable hotkeys for Russian layout
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 
@@ -170,21 +170,13 @@ endif
 " Don't redraw while executing macros (good performance config)
 set ttyfast
 set lazyredraw
-set shortmess+=c
 set hidden
 set nofoldenable
 set linebreak
 
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nowb
-
-" Use one space, not two, after punctuation.
-set softtabstop=2
-
-set updatetime=300
 set splitbelow
 set cmdheight=2
-set signcolumn=no
 set scrolloff=3
 
 " ############# DATABASES #############
@@ -203,7 +195,6 @@ if has('persistent_undo')
   set undofile
 endif
 
-
 """ Plugins Keymaps
 nmap <C-m> :NERDTreeFind<CR>
 nmap <leader><leader> :NERDTreeToggle<CR>
@@ -217,9 +208,6 @@ nmap k gk
 
 " Switch key toggles
 let g:switch_mapping = "-"
-
-" like multicursor
-nnoremap <Leader>z :%s///g<Left><Left>
 
 " Map ctrl-movement keys to window switching
 map <C-k> <C-w><Up>
@@ -246,7 +234,6 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
 " format the entire file
 nnoremap ff :normal! gg=G``<CR>
-" nmap ff :Prettier<CR>
 
 " set text wrapping toggles
 nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
@@ -284,30 +271,6 @@ command! -bang -nargs=? -complete=dir Files
       \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 " }
 
-" Lightline
-let g:lightline = {
-      \ 'colorscheme': 'PaperColor',
-      \ 'active': {
-      \   'left': [['mode', 'paste'], ['filename', 'modified']],
-      \   'right': [['lineinfo'], ['percent'], ['readonly'], ['cocstatus'], ['currentfunction']]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'StatusDiagnostic',
-      \   'currentfunction': 'CocCurrentFunction'
-      \ },
-      \ }
-
-
-" closetag config
-" let g:closetag_filenames = '*.html,*.erb,*.jsx,*.tsx'
-
-" emmet settings
-" let g:user_emmet_settings = {
-"       \  'html' : {
-"       \    'indent_blockelement': 1,
-"       \  },
-"       \}
-
 "Correct indent in tags
 autocmd FileType html imap <c-k><c-j> <CR><Esc>O
 imap <c-k><c-j> <CR><Esc>O<Tab>
@@ -339,9 +302,9 @@ set updatetime=300
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
-" Always show the signcolumn, otherwise it would shift the text each time
+" Never show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
-set signcolumn=yes
+set signcolumn=no
 
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
