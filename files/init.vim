@@ -12,7 +12,7 @@ Plug 'tpope/vim-fugitive'          " Git https://github.com/tpope/vim-fugitive :
 Plug 'tpope/vim-git'               " Included are syntax, indent, and filetype plugin files for git, gitconfig etc.
 Plug 'tpope/vim-surround'          " Surrounding parentheses, brackets, quotes, XML tags, and more.
 Plug 'tpope/vim-repeat'            " Repeat.vim remaps . in a way that plugins can tap into it.
-Plug 'tpope/vim-unimpaired'        " ?????????????????
+Plug 'tpope/vim-unimpaired'        " Additional mappings, for example [<space> - add new line before cursor in normal mode
 Plug 'axvr/zepl.vim'               " Run REPL
 Plug 'cohama/lexima.vim'           " Repeat.vim remaps . in a way that plugins can tap into it.
 Plug 'itchyny/lightline.vim'
@@ -206,6 +206,9 @@ map <Leader> <Plug>(easymotion-prefix)
 nmap j gj
 nmap k gk
 
+" do Y to yank till the end of the line
+nmap Y y$
+
 " Switch key toggles
 let g:switch_mapping = "-"
 
@@ -272,7 +275,10 @@ command! -bang -nargs=? -complete=dir Files
 " }
 
 "Correct indent in tags
-autocmd FileType html imap <c-k><c-j> <CR><Esc>O
+augroup indent
+  autocmd FileType html imap <c-k><c-j> <CR><Esc>O
+  autocmd FileType eruby imap <c-k><c-j> <CR><Esc>O
+augroup END
 imap <c-k><c-j> <CR><Esc>O<Tab>
 
 " Update and show lightline but only if it's visible (e.g., not in Goyo)
