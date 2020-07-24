@@ -15,7 +15,7 @@ Plug 'tpope/vim-repeat'            " Repeat.vim remaps . in a way that plugins c
 Plug 'tpope/vim-unimpaired'        " Additional mappings, for example [<space> - add new line before cursor in normal mode
 Plug 'axvr/zepl.vim'               " Run REPL
 Plug 'cohama/lexima.vim'           " Repeat.vim remaps . in a way that plugins can tap into it.
-Plug 'itchyny/lightline.vim'
+Plug 'itchyny/lightline.vim'       " Status line
 Plug 'terryma/vim-multiple-cursors' " Cursors
 Plug 'tpope/vim-sensible'
 Plug 'janko-m/vim-test'
@@ -60,6 +60,8 @@ Plug 'chemzqm/vim-jsx-improve', { 'for': 'javascript' }  " Syntax and indent plu
 Plug 'leafgarland/typescript-vim'                        " Syntax file and other settings for TypeScript
 Plug 'peitalin/vim-jsx-typescript'                       " Syntax highlighting for JSX in Typescript.
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+
+" ############# HTML && CSS #############
 Plug 'mattn/emmet-vim'
 
 " ############# Ruby #############
