@@ -20,9 +20,9 @@ Plug 'terryma/vim-multiple-cursors' " Cursors
 Plug 'tpope/vim-sensible'
 Plug 'janko-m/vim-test'
 Plug 'dyng/ctrlsf.vim'             " Searching in file
-Plug 'AndrewRadev/switch.vim'      " Add switch toggles
-Plug 'matze/vim-move'              " Move lines or symbols 
-Plug 'AndrewRadev/splitjoin.vim'   " Split or join lines
+Plug 'AndrewRadev/switch.vim'      " Add switch toggles, -
+Plug 'matze/vim-move'              " Move lines or symbols, Alt-j
+Plug 'AndrewRadev/splitjoin.vim'   " Split or join lines, gS, gJ
 
 " ############# DATABASES #############
 Plug 'tpope/vim-dadbod'
@@ -152,7 +152,6 @@ set smarttab
 set expandtab                               " Expand tabs into spaces
 set shiftwidth=2                            " Reindent with 2 spaces (using <<)
 set showbreak=↪\                            " Set breakline char
-filetype plugin indent on
 
 " Search
 set hlsearch    " Highlight matches
@@ -293,6 +292,22 @@ endfunction
 augroup zepl
   autocmd!
   autocmd FileType ruby let b:repl_config = { 'cmd': 'bundle exec rails console' }
+augroup END
+
+augroup FileTypeTetect
+  autocmd!
+  " au BufEnter *.markdown,*.mkd,*.md setl wrap tw=79
+  " au BufEnter *.json setl ft=javascript
+  filetype plugin indent on
+  autocmd BufEnter Makefile setlocal ts=4 sw=4 noexpandtab
+
+  " au BufEnter *.js setl ts=2 sw=2 sts=2
+  " au BufEnter *.html setl ts=4 sw=4 sts=4
+  " au BufEnter *.tex setl wrap tw=79 fo=tcqor
+  " au BufEnter *.[ch] setl cindent
+  " au BufEnter *.[ch]pp setl cindent
+  " au BufEnter Makefile setl ts=4 sts=4 sw=4 noet list
+  " au BufEnter *.es6 setf javascript
 augroup END
 
 """ COC
