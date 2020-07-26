@@ -282,6 +282,9 @@ augroup indent
 augroup END
 imap <c-k><c-j> <CR><Esc>O<Tab>
 
+" map emmet leader key
+let g:user_emmet_leader_key=','
+
 " Update and show lightline but only if it's visible (e.g., not in Goyo)
 function! s:MaybeUpdateLightline()
   if exists('#lightline')
@@ -303,10 +306,6 @@ augroup FileTypeTetect
 
   " au BufEnter *.js setl ts=2 sw=2 sts=2
   " au BufEnter *.html setl ts=4 sw=4 sts=4
-  " au BufEnter *.tex setl wrap tw=79 fo=tcqor
-  " au BufEnter *.[ch] setl cindent
-  " au BufEnter *.[ch]pp setl cindent
-  " au BufEnter Makefile setl ts=4 sts=4 sw=4 noet list
   " au BufEnter *.es6 setf javascript
 augroup END
 
