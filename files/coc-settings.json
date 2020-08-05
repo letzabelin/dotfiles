@@ -20,6 +20,26 @@
   "prettier.disableSuccessMessage": true,
   "eslint.autoFixOnSave": true,
   "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
-  "coc.preferences.formatOnSaveFiletypes": ["ruby"]
+  "coc.preferences.formatOnSaveFiletypes": ["ruby"],
+  "explorer.quitOnOpen": true,
+  "explorer.previewAction.onHover": true,
+  "explorer.file.showHiddenFiles": true,
+  "explorer.file.column.git.icon.added": "✚",
+  "explorer.file.column.git.icon.deleted": "✖",
+  "explorer.file.column.git.icon.renamed": "➜",
+  "explorer.file.column.git.icon.unmerged": "═",
+  "explorer.file.column.git.icon.untracked": "?",
+  "explorer.file.column.git.icon.modified": "✹",
+  "explorer.file.column.git.icon.ignored": "☒",
+  "explorer.openAction.for.directory": "expandOrCollapse",
+  "explorer.keyMappings": {
+    "<cr>": [
+      "expandable?",
+      "expandOrCollapse",
+      "open"
+    ],
+    "gj": false,
+    "gk": false
+  }
 }
 

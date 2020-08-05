@@ -33,7 +33,7 @@ Plug 'rakr/vim-one'
 
 " ############# Search and navigation #############
 Plug 'easymotion/vim-easymotion'                                   " Fast navigation with <leader>s +letter
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+" Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }  " Search by project 
 Plug 'junegunn/fzf.vim'                                            " Search
 
@@ -72,6 +72,7 @@ Plug 'tpope/vim-bundler', { 'for': 'ruby' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
       \ 'coc-tabnine',
+      \ 'coc-explorer',
       \ 'coc-cspell-dicts',
       \ 'coc-spell-checker',
       \ 'coc-tsserver',
@@ -197,8 +198,12 @@ if has('persistent_undo')
 endif
 
 """ Plugins Keymaps
-nmap <C-m> :NERDTreeFind<CR>
-nmap <leader><leader> :NERDTreeToggle<CR>
+nmap <leader><leader> :CocCommand explorer --preset default<CR>
+let g:coc_explorer_global_presets = {
+            \   'default': {
+            \     'file.child.template': '[git | 2] [selection | clip | 1] [indent][icon | 1] [diagnosticError & 1][filename omitCenter 1][readonly] [linkIcon & 1][link growRight 1 omitCenter 5][size]'
+            \   }
+            \ }
 
 map <Leader> <Plug>(easymotion-prefix)
 
@@ -282,8 +287,13 @@ augroup indent
 augroup END
 imap <c-k><c-j> <CR><Esc>O<Tab>
 
-" map emmet leader key
+" map emmet leader key & js settings
 let g:user_emmet_leader_key=','
+let g:user_emmet_settings = {
+\  'javascript' : {
+\      'extends' : 'jsx',
+\  },
+\}
 
 " Update and show lightline but only if it's visible (e.g., not in Goyo)
 function! s:MaybeUpdateLightline()
