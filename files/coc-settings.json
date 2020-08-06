@@ -22,7 +22,7 @@
   "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
   "coc.preferences.formatOnSaveFiletypes": ["ruby"],
   "explorer.quitOnOpen": true,
-  "explorer.previewAction.onHover": true,
+  "explorer.previewAction.onHover": false,
   "explorer.file.showHiddenFiles": true,
   "explorer.file.column.git.icon.added": "✚",
   "explorer.file.column.git.icon.deleted": "✖",
