@@ -1,10 +1,11 @@
 nvim-install:
 	mkdir -p ~/.config/nvim
-	ln -s $(PWD)/files/vimrc ~/.config/nvim/init.vim | true
-	ln -s $(PWD)/files/coc-settings.json ~/.config/nvim/coc-settings.json | true
+	ln -s $(PWD)/files/nvim/vimrc ~/.config/nvim/init.vim | true
+	ln -s $(PWD)/files/nvim/coc-settings.json ~/.config/nvim/coc-settings.json | true
 
 tmux-conf:
-	ls -a $(PWD)/files/tmux.conf ~/.tmux.conf | true
+	ls -a $(PWD)/files/tmux/tmux.conf ~/.tmux.conf | true
+	ls -a $(PWD)/files/tmux/ui.conf ~/.tmux_ui.conf | true
 
 deps-npm:
 	npm install -g neovim
