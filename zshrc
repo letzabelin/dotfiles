@@ -5,6 +5,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export ZSH="/home/locke/.oh-my-zsh"
 
 ZSH_THEME="theunraveler"
+# ZSH_THEME="frisk"
 
 plugins=(git zsh-autosuggestions asdf)
 
@@ -36,8 +37,6 @@ alias .....="cd ../../../.."
 
 CASE_SENSITIVE="true"
 HYPHEN_INSENSITIVE="true"
-DISABLE_AUTO_UPDATE="true"
-export UPDATE_ZSH_DAYS=13
 DISABLE_LS_COLORS="true"
 DISABLE_AUTO_TITLE="true"
 ENABLE_CORRECTION="true"

@@ -20,7 +20,7 @@
   "prettier.disableSuccessMessage": true,
   "eslint.autoFixOnSave": true,
   "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
-  "coc.preferences.formatOnSaveFiletypes": ["ruby"],
+  "coc.preferences.formatOnSaveFiletypes": ["ruby", "javascript"],
   "explorer.quitOnOpen": true,
   "explorer.previewAction.onHover": false,
   "explorer.file.showHiddenFiles": true,
@@ -42,4 +42,3 @@
     "gk": false
   }
 }
-

@@ -12,10 +12,8 @@ Plug 'tpope/vim-fugitive'          " Git https://github.com/tpope/vim-fugitive :
 Plug 'tpope/vim-git'               " Included are syntax, indent, and filetype plugin files for git, gitconfig etc.
 Plug 'tpope/vim-surround'          " Surrounding parentheses, brackets, quotes, XML tags, and more.
 Plug 'tpope/vim-repeat'            " Repeat.vim remaps . in a way that plugins can tap into it.
-Plug 'tpope/vim-unimpaired'        " Additional mappings, for example [<space> - add new line before cursor in normal mode
-Plug 'axvr/zepl.vim'               " Run REPL
+Plug 'tpope/vim-unimpaired'        " Additional mappings, for example [<space> - add new line before cursor in normal mode, [b - previous buffer and ]b - next buffer. [os perform :set spell, ]os - :set nospell
 Plug 'cohama/lexima.vim'           " Repeat.vim remaps . in a way that plugins can tap into it.
-Plug 'itchyny/lightline.vim'       " Status line
 Plug 'terryma/vim-multiple-cursors' " Cursors
 Plug 'tpope/vim-sensible'
 Plug 'janko-m/vim-test'
@@ -28,12 +26,12 @@ Plug 'AndrewRadev/splitjoin.vim'   " Split or join lines, gS, gJ
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
 
-" ############# Themes #############
+" ############# Theme #############
 Plug 'rakr/vim-one'
+Plug 'itchyny/lightline.vim'       " Status line
 
 " ############# Search and navigation #############
 Plug 'easymotion/vim-easymotion'                                   " Fast navigation with <leader>s +letter
-" Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }  " Search by project 
 Plug 'junegunn/fzf.vim'                                            " Search
 
@@ -51,6 +49,7 @@ Plug 'stephpy/vim-yaml', { 'for': 'yaml' }               " Highlight YAML
 " ############# Templates #############
 Plug 'tpope/vim-ragtag'                                      " Support differnt tags like <%= %>
 Plug 'othree/html5.vim'                                      " HTML5 + inline SVG omnicomplete function, indent and syntax
+Plug 'AndrewRadev/tagalong.vim'                              " Rename tags
 Plug 'slim-template/vim-slim', { 'for': ['slim', 'slime'] }  " slim syntax highlighting for vim
 Plug 'tpope/vim-haml', { 'for': 'haml' }                     " haml syntax highlighting for vim
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }                 " pug syntax highlighting for vim 
@@ -90,7 +89,6 @@ let g:coc_global_extensions = [
       \ 'coc-snippets',
       \ 'coc-diagnostic',
       \ 'coc-git',
-      \ 'coc-pairs',
       \ 'coc-prettier'
       \]
 
@@ -200,10 +198,10 @@ endif
 """ Plugins Keymaps
 nmap <leader><leader> :CocCommand explorer --preset default<CR>
 let g:coc_explorer_global_presets = {
-            \   'default': {
-            \     'file.child.template': '[git | 2] [selection | clip | 1] [indent][icon | 1] [diagnosticError & 1][filename omitCenter 1][readonly] [linkIcon & 1][link growRight 1 omitCenter 5][size]'
-            \   }
-            \ }
+      \   'default': {
+      \     'file.child.template': '[git | 2] [selection | clip | 1] [indent][icon | 1] [diagnosticError & 1][filename omitCenter 1][readonly] [linkIcon & 1][link growRight 1 omitCenter 5][size]'
+      \   }
+      \ }
 
 map <Leader> <Plug>(easymotion-prefix)
 
@@ -288,12 +286,11 @@ augroup END
 imap <c-k><c-j> <CR><Esc>O<Tab>
 
 " map emmet leader key & js settings
-let g:user_emmet_leader_key=','
 let g:user_emmet_settings = {
-\  'javascript' : {
-\      'extends' : 'jsx',
-\  },
-\}
+      \  'javascript' : {
+      \      'extends' : 'jsx',
+      \  },
+      \}
 
 " Update and show lightline but only if it's visible (e.g., not in Goyo)
 function! s:MaybeUpdateLightline()
@@ -301,11 +298,6 @@ function! s:MaybeUpdateLightline()
     call lightline#update()
   end
 endfunction
-
-augroup zepl
-  autocmd!
-  autocmd FileType ruby let b:repl_config = { 'cmd': 'bundle exec rails console' }
-augroup END
 
 augroup FileTypeTetect
   autocmd!
