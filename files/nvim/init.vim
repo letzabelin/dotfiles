@@ -114,7 +114,6 @@ set termguicolors
 inoremap jk <ESC>
 let mapleader="\<Space>"  " <Leader> key
 
-
 " ############# THEMES #############
 colorscheme one
 set background=dark
@@ -123,11 +122,12 @@ let g:lightline = {
       \ 'colorscheme': 'PaperColor',
       \ 'active': {
       \   'left': [['mode', 'paste'], ['filename', 'modified']],
-      \   'right': [['lineinfo'], ['percent'], ['readonly'], ['cocstatus'], ['currentfunction']]
+      \   'right': [['lineinfo'], ['percent'], ['gitbranch'], ['readonly'], ['cocstatus'], ['currentfunction']]
       \ },
       \ 'component_function': {
       \   'cocstatus': 'StatusDiagnostic',
-      \   'currentfunction': 'CocCurrentFunction'
+      \   'currentfunction': 'CocCurrentFunction',
+      \   'gitbranch': 'FugitiveHead'
       \ },
       \ }
 " ############# END THEMES ############# 
@@ -173,7 +173,6 @@ set lazyredraw
 set hidden
 set nofoldenable
 set linebreak
-
 set nowb
 set splitbelow
 set cmdheight=2
