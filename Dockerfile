@@ -23,10 +23,9 @@ RUN apk add --no-cache build-base \
     tidyhtml \
     the_silver_searcher \
 
+WORKDIR ~/.asdf
 RUN git clone https://github.com/asdf-vm/asdf.git ~/.asdf \
-      && cd ~/.asdf \
       && git checkout "$(git describe --abbrev=0 --tags)" \
-      && cd -- \
 
 RUN asdf plugin-add nodejs \
       && bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring' \
@@ -59,6 +58,9 @@ RUN curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 COPY files/nvim/init.vim /root/.config/nvim/init.vim
+
+ENV PATH $HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
+
 COPY entrypoint.sh /usr/local/bin/
 
 RUN nvim -i NONE -c PlugInstall -c quitall
