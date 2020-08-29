@@ -13,3 +13,7 @@ deps-npm:
 	npx install-peerdeps -g eslint-config-airbnb
 	npm install -g stylelint stylelint-config-recommended stylelint-config-standard
 	npm i -g livedown
+
+deps-gem:
+	gem install solargraph rubocop neovim
+	gem install rubocop-rspec rubocop-rails rubocop-performance
