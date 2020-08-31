@@ -175,7 +175,6 @@ set nofoldenable
 set linebreak
 set nowb
 set splitbelow
-set cmdheight=2
 set scrolloff=3
 
 " ############# DATABASES #############
