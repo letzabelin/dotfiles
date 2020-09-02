@@ -247,6 +247,13 @@ nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 nmap <silent> // :nohlsearch<CR>
 noremap <leader>hl :set hlsearch! hlsearch?<CR>
 
+" Copy to system clipboard
+vmap <C-c> "+y
+" Paste from system clipboard
+imap <C-v> "+p
+nmap <C-v> "+p
+vmap <C-v> "+p
+
 " FZF {
 nnoremap <leader>b :Buffers<CR>
 nnoremap <Leader>o :GFiles .<CR>
