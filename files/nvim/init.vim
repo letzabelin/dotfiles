@@ -208,6 +208,10 @@ map <Leader> <Plug>(easymotion-prefix)
 nmap j gj
 nmap k gk
 
+" scroll page horizontally centres
+nmap <C-u> <C-u>zz
+nmap <C-d> <C-d>zz
+
 " do Y to yank till the end of the line
 nmap Y y$
 
