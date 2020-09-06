@@ -254,7 +254,6 @@ noremap <leader>hl :set hlsearch! hlsearch?<CR>
 " Copy to system clipboard
 vmap <C-c> "+y
 " Paste from system clipboard
-imap <C-v> "+p
 nmap <C-v> "+p
 vmap <C-v> "+p
 
