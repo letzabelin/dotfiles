@@ -22,6 +22,9 @@ RUN apk add --no-cache build-base \
     neovim \
     tidyhtml \
     the_silver_searcher \
+    ctop \
+
+RUN wget https://github.com/bcicen/ctop/releases/download/v0.7.1/ctop-0.7.1-linux-amd64  -O /usr/local/bin/ctop && chmod +x /usr/local/bin/ctop
 
 WORKDIR ~/.asdf
 RUN git clone https://github.com/asdf-vm/asdf.git ~/.asdf \
