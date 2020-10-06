@@ -56,13 +56,12 @@ Plug 'tpope/vim-haml', { 'for': 'haml' }                     " haml syntax highl
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }                 " pug syntax highlighting for vim 
 
 " ############# Javascript && Typescript #############
-Plug 'chemzqm/vim-jsx-improve', { 'for': 'javascript' }  " Syntax and indent plugin for React jsx
-Plug 'leafgarland/typescript-vim'                        " Syntax file and other settings for TypeScript
-Plug 'peitalin/vim-jsx-typescript'                       " Syntax highlighting for JSX in Typescript.
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
 
 " ############# HTML && CSS #############
 Plug 'mattn/emmet-vim'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " ############# Ruby #############
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
