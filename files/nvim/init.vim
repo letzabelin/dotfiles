@@ -256,10 +256,10 @@ nmap <silent> // :nohlsearch<CR>
 noremap <leader>hl :set hlsearch! hlsearch?<CR>
 
 " Copy to system clipboard
-vmap <C-c> "+y
+vmap <leader><C-c> "+y
 " Paste from system clipboard
-nmap <C-v> "+p
-vmap <C-v> "+p
+nmap <leader><C-v> "+p
+vmap <leader><C-v> "+p
 
 " FZF {
 nnoremap <leader>b :Buffers<CR>
