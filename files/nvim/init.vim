@@ -29,6 +29,7 @@ Plug 'kristijanhusak/vim-dadbod-ui'
 " ############# Theme #############
 Plug 'rakr/vim-one'
 Plug 'itchyny/lightline.vim'       " Status line
+" Plug 'cormacrelf/vim-colors-github'
 
 " ############# Search and navigation #############
 Plug 'easymotion/vim-easymotion'                                   " Fast navigation with <leader>s +letter
@@ -117,6 +118,8 @@ let mapleader="\<Space>"  " <Leader> key
 " ############# THEMES #############
 colorscheme one
 set background=dark
+" let g:github_colors_soft = 1
+" colorscheme github
 
 let g:lightline = {
       \ 'colorscheme': 'PaperColor',
