@@ -179,6 +179,8 @@ set nowb
 set splitbelow
 set scrolloff=3
 
+filetype plugin indent on
+
 " ############# DATABASES #############
 let g:dbs = {
       \  'dev': 'postgres://andrew:1234@localhost:5432/learning_ruby_development'
@@ -195,7 +197,7 @@ if has('persistent_undo')
   set undofile
 endif
 
-""" Plugins Keymaps
+" ############# KEYMAPS #############
 nmap <leader><leader> :CocCommand explorer --preset default<CR>
 let g:coc_explorer_global_presets = {
       \   'default': {
@@ -310,7 +312,6 @@ augroup FileTypeTetect
   autocmd!
   " au BufEnter *.markdown,*.mkd,*.md setl wrap tw=79
   " au BufEnter *.json setl ft=javascript
-  filetype plugin indent on
   autocmd BufEnter Makefile setlocal ts=4 sw=4 noexpandtab
 
   " au BufEnter *.js setl ts=2 sw=2 sts=2
