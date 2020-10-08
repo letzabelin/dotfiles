@@ -56,8 +56,8 @@ Plug 'tpope/vim-haml', { 'for': 'haml' }                     " haml syntax highl
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }                 " pug syntax highlighting for vim 
 
 " ############# Javascript && Typescript #############
-Plug 'pangloss/vim-javascript'
-Plug 'maxmellon/vim-jsx-pretty'
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'maxmellon/vim-jsx-pretty', { 'for': 'javascript' }
 
 " ############# HTML && CSS #############
 Plug 'mattn/emmet-vim'
