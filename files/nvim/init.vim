@@ -7,29 +7,28 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " ############# General #############
-Plug 'tpope/vim-commentary'        " Fast comment/uncomment lines (Keys - gcc)
-Plug 'tpope/vim-fugitive'          " Git https://github.com/tpope/vim-fugitive :Git diff | :Git commit | :Git add | :GStatus
-Plug 'tpope/vim-git'               " Included are syntax, indent, and filetype plugin files for git, gitconfig etc.
-Plug 'tpope/vim-surround'          " Surrounding parentheses, brackets, quotes, XML tags, and more.
-Plug 'tpope/vim-repeat'            " Repeat.vim remaps . in a way that plugins can tap into it.
-Plug 'tpope/vim-unimpaired'        " Additional mappings, for example [<space> - add new line before cursor in normal mode, [b - previous buffer and ]b - next buffer. [os perform :set spell, ]os - :set nospell
-Plug 'cohama/lexima.vim'           " Repeat.vim remaps . in a way that plugins can tap into it.
-Plug 'terryma/vim-multiple-cursors' " Cursors
-Plug 'tpope/vim-sensible'
-Plug 'janko-m/vim-test'
-Plug 'dyng/ctrlsf.vim'             " Searching in file
-Plug 'AndrewRadev/switch.vim'      " Add switch toggles, -
-Plug 'matze/vim-move'              " Move lines or symbols, Alt-j
-Plug 'AndrewRadev/splitjoin.vim'   " Split or join lines, gS, gJ
+Plug 'tpope/vim-commentary'                                        " Fast comment/uncomment lines, gcc
+Plug 'tpope/vim-fugitive'                                          " :Git diff | :Git commit | :Git add | :GStatus
+Plug 'tpope/vim-git'                                               " Syntax, indent, and filetype plugin files for git, gitconfig etc.
+Plug 'tpope/vim-surround'                                          " Surrounding parentheses, brackets, quotes, XML tags, and more.
+Plug 'tpope/vim-repeat'                                            " Repeat.vim remaps . in a way that plugins can tap into it.
+Plug 'tpope/vim-unimpaired'                                        " Additional mappings, [<space> - add new line before cursor, [b - prev buffer and ]b - next buffer
+Plug 'cohama/lexima.vim'                                           " Repeat.vim remaps . in a way that plugins can tap into it.
+Plug 'terryma/vim-multiple-cursors'                                " Multiple Cursors like in IDE
+Plug 'tpope/vim-sensible'                                          " Default additional configs
+Plug 'janko-m/vim-test'                                            " Testing with hotkeys
+Plug 'dyng/ctrlsf.vim'                                             " Searching in file
+Plug 'AndrewRadev/switch.vim'                                      " Add switch toggles, -
+Plug 'matze/vim-move'                                              " Move lines or symbols, Alt-j
+Plug 'AndrewRadev/splitjoin.vim'                                   " Split or join lines, gS, gJ
 
 " ############# DATABASES #############
-Plug 'tpope/vim-dadbod'
-Plug 'kristijanhusak/vim-dadbod-ui'
+Plug 'tpope/vim-dadbod'                                            " Database for vim
+Plug 'kristijanhusak/vim-dadbod-ui'                                " Interactive db in buffer
 
 " ############# Theme #############
-Plug 'rakr/vim-one'
-Plug 'itchyny/lightline.vim'       " Status line
-" Plug 'cormacrelf/vim-colors-github'
+Plug 'rakr/vim-one'                                                " Color theme
+Plug 'itchyny/lightline.vim'                                       " Status line
 
 " ############# Search and navigation #############
 Plug 'easymotion/vim-easymotion'                                   " Fast navigation with <leader>s +letter
@@ -37,27 +36,27 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }  " Search by p
 Plug 'junegunn/fzf.vim'                                            " Search
 
 " ############# DevOps #############
-Plug 'hashivim/vim-terraform', { 'for': 'terraform' }    " Highlight and commands for terraform
-Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }  " Highlight Dockerfile
-Plug 'chr4/nginx.vim'                                    " Syntax highlight nginx files
+Plug 'hashivim/vim-terraform', { 'for': 'terraform' }              " Highlight and commands for terraform
+Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }            " Highlight Dockerfile
+Plug 'chr4/nginx.vim'                                              " Syntax highlight nginx files
 
 " ############# JSON | Markdown | Yaml #############
-Plug 'elzr/vim-json'                                     " Highlighting of keywords vs values, JSON-specific
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }    " Syntax highlighting, matching rules etc. for Markdown
-Plug 'shime/vim-livedown', { 'for': 'markdown' }         " Vim Livedown plugin (need livedown from npm)
-Plug 'stephpy/vim-yaml', { 'for': 'yaml' }               " Highlight YAML
+Plug 'elzr/vim-json'                                               " Highlighting of keywords vs values, JSON-specific
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }              " Syntax highlighting, matching rules etc. for Markdown
+Plug 'shime/vim-livedown', { 'for': 'markdown' }                   " Vim Livedown plugin (need livedown from npm)
+Plug 'stephpy/vim-yaml', { 'for': 'yaml' }                         " Highlight YAML
 
 " ############# Templates #############
-Plug 'tpope/vim-ragtag'                                      " Support differnt tags like <%= %>
-Plug 'othree/html5.vim'                                      " HTML5 + inline SVG omnicomplete function, indent and syntax
-Plug 'AndrewRadev/tagalong.vim'                              " Rename tags
-Plug 'slim-template/vim-slim', { 'for': ['slim', 'slime'] }  " slim syntax highlighting for vim
-Plug 'tpope/vim-haml', { 'for': 'haml' }                     " haml syntax highlighting for vim
-Plug 'digitaltoad/vim-pug', { 'for': 'pug' }                 " pug syntax highlighting for vim 
+Plug 'tpope/vim-ragtag'                                            " Support differnt tags like <%= %>
+Plug 'othree/html5.vim'                                            " HTML5 + inline SVG omnicomplete function, indent and syntax
+Plug 'AndrewRadev/tagalong.vim'                                    " Rename tags
+Plug 'slim-template/vim-slim', { 'for': ['slim', 'slime'] }        " slim syntax highlighting for vim
+Plug 'tpope/vim-haml', { 'for': 'haml' }                           " haml syntax highlighting for vim
+Plug 'digitaltoad/vim-pug', { 'for': 'pug' }                       " pug syntax highlighting for vim 
 
 " ############# Javascript && Typescript #############
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'maxmellon/vim-jsx-pretty', { 'for': 'javascript' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }            " Syntax highlighting and indent for javascript
+Plug 'maxmellon/vim-jsx-pretty', { 'for': 'javascript' }           " Syntax highlighting and indent for jsx, ts, tsx
 
 " ############# HTML && CSS #############
 Plug 'mattn/emmet-vim'
@@ -95,30 +94,28 @@ let g:coc_global_extensions = [
 call plug#end()
 " General
 
-set nocompatible          " Vim behavior, not Vi
-scriptencoding utf-8      " Use UTF-8 encoding
-set encoding=utf8
-set fileencoding=utf-8    " Use UTF-8 encoding
-set langmenu=en_US.UTF-8  " Use UTF-8 encoding
-set encoding=utf-8        " Use UTF-8 encoding
-set nobackup              " Don't backup
-set nowritebackup         " Write file inplace
-set noswapfile            " Don't use swap files
-set autoread              " Autoreload buffers
-set autowrite             "  Automatically save changes before switching buffers
-set noshowmode            " Doesnt show vim mode
-syntax enable             " Enable syntax highlight
-syntax on                 " Syntax on for wimwiki
-set termguicolors
+set nocompatible                                                    " Vim behavior, not Vi
+scriptencoding utf-8                                                " Use UTF-8 encoding
+set encoding=utf8                                                   " Use UTF-8 encoding
+set fileencoding=utf-8                                              " Use UTF-8 encoding
+set langmenu=en_US.UTF-8                                            " Use UTF-8 encoding
+set encoding=utf-8                                                  " Use UTF-8 encoding
+set nobackup                                                        " Don't backup
+set nowritebackup                                                   " Write file inplace
+set noswapfile                                                      " Don't use swap files
+set autoread                                                        " Autoreload buffers
+set autowrite                                                       " Automatically save changes before switching buffers
+set noshowmode                                                      " Doesnt show vim mode
+syntax enable                                                       " Enable syntax highlight
+syntax on                                                           " Syntax on for wimwiki
+set termguicolors                                                   " Better colors
 
 inoremap jk <ESC>
-let mapleader="\<Space>"  " <Leader> key
+let mapleader="\<Space>"                                            " <Leader> key
 
 " ############# THEMES #############
 colorscheme one
 set background=dark
-" let g:github_colors_soft = 1
-" colorscheme github
 
 let g:lightline = {
       \ 'colorscheme': 'PaperColor',
@@ -135,31 +132,31 @@ let g:lightline = {
 " ############# END THEMES ############# 
 
 " History, Cursor, rules
-set history=50                                                                 " Just remeber last 50 commands
-set laststatus=2                                                               " Always display status line
-set ruler                                                                      " Show the cursor position all the time
-set number                                                                     " Show line numbers
-set showcmd                                                                    " Display incomplete commands
-set cursorline                                                                 " Highlight current cursor line
-set shell=$SHELL                                                               " Default shell
+set history=50                                                      " Just remeber last 50 commands
+set laststatus=2                                                    " Always display status line
+set ruler                                                           " Show the cursor position all the time
+set number                                                          " Show line numbers
+set showcmd                                                         " Display incomplete commands
+set cursorline                                                      " Highlight current cursor line
+set shell=$SHELL                                                    " Default shell
 
 " Tabs and whitespace
-set wrap                                    " Wrap lines
-set tabstop=2                               " Tabs are always 2 spaces
+set wrap                                                            " Wrap lines
+set tabstop=2                                                       " Tabs are always 2 spaces
 set autoindent
 set smartindent
 set softtabstop=2
 set smarttab
-set expandtab                               " Expand tabs into spaces
-set shiftwidth=2                            " Reindent with 2 spaces (using <<)
-set showbreak=↪\                            " Set breakline char
+set expandtab                                                       " Expand tabs into spaces
+set shiftwidth=2                                                    " Reindent with 2 spaces (using <<)
+set showbreak=↪\                                                    " Set breakline char
 
 " Search
-set hlsearch    " Highlight matches
-set incsearch   " Incremental searching
-set ignorecase  " Searches are case insensitive...
-set smartcase   " ... unless they contain at least one capital letter
-set inccommand=nosplit " live substitute
+set hlsearch                                                        " Highlight matches
+set incsearch                                                       " Incremental searching
+set ignorecase                                                      " Searches are case insensitive...
+set smartcase                                                       " ... unless they contain at least one capital letter
+set inccommand=nosplit                                              " live substitute
 
 " Enable hotkeys for Russian layout
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
