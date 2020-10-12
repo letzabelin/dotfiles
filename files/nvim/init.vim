@@ -266,6 +266,9 @@ nnoremap <leader>aa :Ag<CR>
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>gs :Gstatus<CR>
 
+" Window or Popup
+" let g:fzf_layout = { 'down': '40%' }
+
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
