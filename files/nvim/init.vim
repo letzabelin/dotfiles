@@ -13,7 +13,7 @@ Plug 'tpope/vim-git'                                               " Syntax, ind
 Plug 'tpope/vim-surround'                                          " Surrounding parentheses, brackets, quotes, XML tags, and more.
 Plug 'tpope/vim-repeat'                                            " Repeat.vim remaps . in a way that plugins can tap into it.
 Plug 'tpope/vim-unimpaired'                                        " Additional mappings, [<space> - add new line before cursor, [b - prev buffer and ]b - next buffer
-Plug 'cohama/lexima.vim'                                           " Repeat.vim remaps . in a way that plugins can tap into it.
+Plug 'cohama/lexima.vim'                                           " Auto close parentheses and repeat by .
 Plug 'terryma/vim-multiple-cursors'                                " Multiple Cursors like in IDE
 Plug 'tpope/vim-sensible'                                          " Default additional configs
 Plug 'janko-m/vim-test'                                            " Testing with hotkeys
