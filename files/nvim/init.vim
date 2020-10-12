@@ -93,8 +93,8 @@ let g:coc_global_extensions = [
       \]
 
 call plug#end()
-" General
 
+" General
 set nocompatible                                                    " Vim behavior, not Vi
 scriptencoding utf-8                                                " Use UTF-8 encoding
 set encoding=utf8                                                   " Use UTF-8 encoding
@@ -114,7 +114,7 @@ set termguicolors                                                   " Better col
 inoremap jk <ESC>
 let mapleader="\<Space>"                                            " <Leader> key
 
-" ############# THEMES #############
+" Themes
 colorscheme one
 set background=dark
 
@@ -130,7 +130,6 @@ let g:lightline = {
       \   'gitbranch': 'FugitiveHead'
       \ },
       \ }
-" ############# END THEMES ############# 
 
 " History, Cursor, rules
 set history=50                                                      " Just remeber last 50 commands
@@ -179,7 +178,7 @@ set scrolloff=3
 
 filetype plugin indent on
 
-" ############# DATABASES #############
+" Databases
 let g:dbs = {
       \  'dev': 'postgres://andrew:1234@localhost:5432/learning_ruby_development'
       \ }
@@ -195,7 +194,7 @@ if has('persistent_undo')
   set undofile
 endif
 
-" ############# KEYMAPS #############
+" Keymaps
 nmap <leader><leader> :CocCommand explorer --preset default<CR>
 let g:coc_explorer_global_presets = {
       \   'default': {
@@ -292,7 +291,7 @@ augroup indent
 augroup END
 imap <c-k><c-j> <CR><Esc>O<Tab>
 
-" map emmet leader key & js settings
+" js settings for emmet
 let g:user_emmet_settings = {
       \  'javascript' : {
       \      'extends' : 'jsx',
