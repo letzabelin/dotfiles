@@ -34,6 +34,7 @@ Plug 'itchyny/lightline.vim'                                       " Status line
 Plug 'easymotion/vim-easymotion'                                   " Fast navigation with <leader>s +letter
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }  " Search by project 
 Plug 'junegunn/fzf.vim'                                            " Search
+Plug 'pechorin/any-jump.vim'
 
 " ############# DevOps #############
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }              " Highlight and commands for terraform
@@ -367,11 +368,8 @@ endif
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" GoTo code navigation with AnyJump
+nmap go :AnyJump<CR>
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
