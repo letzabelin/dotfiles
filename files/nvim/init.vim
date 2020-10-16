@@ -21,6 +21,7 @@ Plug 'dyng/ctrlsf.vim'                                             " Searching i
 Plug 'AndrewRadev/switch.vim'                                      " Add switch toggles, -
 Plug 'matze/vim-move'                                              " Move lines or symbols, Alt-j
 Plug 'AndrewRadev/splitjoin.vim'                                   " Split or join lines, gS, gJ
+Plug 'tpope/vim-abolish'                                           " Abbreviations
 
 " ############# DATABASES #############
 Plug 'tpope/vim-dadbod'                                            " Database for vim
@@ -34,7 +35,9 @@ Plug 'itchyny/lightline.vim'                                       " Status line
 Plug 'easymotion/vim-easymotion'                                   " Fast navigation with <leader>s +letter
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }  " Search by project 
 Plug 'junegunn/fzf.vim'                                            " Search
-Plug 'pechorin/any-jump.vim'
+Plug 'pechorin/any-jump.vim'                                       " Jump to definitions & etc
+Plug 'chaoren/vim-wordmotion'                                      " More useful word motions <leader>w|b|e
+Plug 'farmergreg/vim-lastplace'                                    " Reopen files at your last edit position
 
 " ############# DevOps #############
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }              " Highlight and commands for terraform
@@ -203,6 +206,19 @@ let g:coc_explorer_global_presets = {
       \ }
 
 map <Leader> <Plug>(easymotion-prefix)
+
+" Wordmotion
+let g:wordmotion_prefix = ','
+
+function! InitAbbreviations()
+  Abolish! -cmdline co{snt,tsn,tns,nts} co{nst}
+  Abolish! -cmdline fun{cton, ctino, ctoin} fun{ction}
+  Abolish! -cmdline ret{utn,nurn} ret{urn}
+  Abolish! -cmdline aw{ati,tai,tia} aw{ait}
+  Abolish! -cmdline len{ght} len{gth}
+  Abolish! -cmdline tr{eu} tr{ue}
+endfunction
+autocmd VimEnter * call InitAbbreviations()
 
 """ Basics Keymaps
 " Turn off linewise keys. Normally, the `j' and `k' keys move the cursor down one entire line. with line wrapping on, this can cause the cursor to actually skip a few lines on the screen because it's moving from line N to line N+1 in the file. I want this to act more visually -- I want `down' to mean the next line on the screen
