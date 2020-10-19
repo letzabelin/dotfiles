@@ -207,16 +207,19 @@ let g:coc_explorer_global_presets = {
 
 map <Leader> <Plug>(easymotion-prefix)
 
+" Move between vim-tabs
+nmap <a-m> :tabNext<CR>
+
 " Wordmotion
 let g:wordmotion_prefix = ','
 
 function! InitAbbreviations()
   Abolish! -cmdline co{snt,tsn,tns,nts} co{nst}
-  Abolish! -cmdline fun{cton, ctino, ctoin} fun{ction}
   Abolish! -cmdline ret{utn,nurn} ret{urn}
   Abolish! -cmdline aw{ati,tai,tia} aw{ait}
   Abolish! -cmdline len{ght} len{gth}
   Abolish! -cmdline tr{eu} tr{ue}
+  Abolish! -cmdline fun{citon} fun{ction}
 endfunction
 autocmd VimEnter * call InitAbbreviations()
 
