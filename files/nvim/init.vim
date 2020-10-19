@@ -251,6 +251,13 @@ nmap <silent> t<C-s> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
 
+" For scrolling in test
+tmap <C-o> <C-\><C-n>
+
+" Jest config
+let g:test#javascript#runner = "jest"
+let g:test#javascript#jest#executable = 'npx -n --experimental-vm-modules -n --no-warnings jest --colors'
+
 " Search in files with ctrlsf
 nmap     <C-F>f <Plug>CtrlSFPrompt
 vmap     <C-F>f <Plug>CtrlSFVwordPath
