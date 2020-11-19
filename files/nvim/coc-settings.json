@@ -21,6 +21,7 @@
   "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
   "coc.preferences.formatOnSaveFiletypes": ["ruby"],
   "explorer.quitOnOpen": true,
+  "explorer.icon.enableNerdfont": true,
   "explorer.previewAction.onHover": false,
   "explorer.file.showHiddenFiles": true,
   "explorer.git.icon.status.added": "✚",
