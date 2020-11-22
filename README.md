@@ -8,3 +8,7 @@
 ## ASDF
 * Nodejs
 * Ruby
+* Java
+* Kotlin
+* Elixir
+* Clojure

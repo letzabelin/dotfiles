@@ -36,6 +36,12 @@
     "<cr>": ["expandable?", "expand", "open"],
     "gj": false,
     "gk": false
+  },
+  "languageserver": {
+    "kotlin": {
+      "command": "~/lsp/kotlin/server/bin/kotlin-language-server",
+      "filetypes": ["kotlin"]
+    }
   }
 }
 

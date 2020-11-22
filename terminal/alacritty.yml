@@ -10,21 +10,21 @@ shell:
   args:
     - -l
     - -c
-    - "/usr/bin/tmux attach -t 'meow' || /usr/bin/tmux new -s 'meow'"
+    - "/usr/bin/tmux attach -t 'zabelin' || /usr/bin/tmux new -s 'zabelin'"
 
 key_bindings:
-  # remove the line below!
-  - { key: W, mods: Control|Alt, action: Quit }
+  - { key: V, mods: Control, action: Paste }
+  - { key: C, mods: Control, action: Copy }
 
 font:
   normal:
-    family: JetBrainsMono Nerd Font Mono
+    family: JetBrainsMono Nerd Font
     style: Regular
   bold:
-    family: JetBrainsMono Nerd Font Mono
+    family: JetBrainsMono Nerd Font
     style: Bold
   italic:
-    family: JetBrainsMono Nerd Font Mono
+    family: JetBrainsMono Nerd Font
     style: Italic
   size: 12
   glyph_offset:
@@ -34,9 +34,7 @@ font:
 colors:
   # Default colors
   primary:
-    # hard contrast: background = '#1d2021'
-    background: '#282828'
-    # soft contrast: background = '#32302f'
+    background: '#282c33'
     foreground: '#ebdbb2'
 
   # Normal colors
