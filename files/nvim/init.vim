@@ -22,13 +22,16 @@ Plug 'AndrewRadev/switch.vim'                                      " Add switch 
 Plug 'matze/vim-move'                                              " Move lines or symbols, Alt-j
 Plug 'AndrewRadev/splitjoin.vim'                                   " Split or join lines, gS, gJ
 Plug 'tpope/vim-abolish'                                           " Abbreviations
+Plug 'nathanaelkane/vim-indent-guides'                             " Highlight indent lines
 
 " ############# DATABASES #############
 Plug 'tpope/vim-dadbod'                                            " Database for vim
 Plug 'kristijanhusak/vim-dadbod-ui'                                " Interactive db in buffer
 
 " ############# Theme #############
-Plug 'rakr/vim-one'                                                " Color theme
+" Plug 'rakr/vim-one'                                                " Color theme
+" Plug 'equt/paper.vim'
+Plug 'nanotech/jellybeans.vim'
 Plug 'itchyny/lightline.vim'                                       " Status line
 
 " ############# Search and navigation #############
@@ -61,6 +64,9 @@ Plug 'digitaltoad/vim-pug', { 'for': 'pug' }                       " pug syntax 
 " ############# Javascript && Typescript #############
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }            " Syntax highlighting and indent for javascript
 Plug 'maxmellon/vim-jsx-pretty', { 'for': 'javascript' }           " Syntax highlighting and indent for jsx, ts, tsx
+
+" ############# Kotlin #############
+Plug 'udalov/kotlin-vim'
 
 " ############# HTML && CSS #############
 Plug 'mattn/emmet-vim'
@@ -118,7 +124,8 @@ inoremap jk <ESC>
 let mapleader="\<Space>"                                            " <Leader> key
 
 " Themes
-colorscheme one
+colorscheme jellybeans
+" colorscheme one
 set background=dark
 
 let g:lightline = {
@@ -138,7 +145,7 @@ let g:lightline = {
 set history=50                                                      " Just remeber last 50 commands
 set laststatus=2                                                    " Always display status line
 set ruler                                                           " Show the cursor position all the time
-set number                                                          " Show line numbers
+set number relativenumber                                           " Show line numbers 
 set showcmd                                                         " Display incomplete commands
 set cursorline                                                      " Highlight current cursor line
 set shell=$SHELL                                                    " Default shell
@@ -153,6 +160,9 @@ set smarttab
 set expandtab                                                       " Expand tabs into spaces
 set shiftwidth=2                                                    " Reindent with 2 spaces (using <<)
 set showbreak=↪\                                                    " Set breakline char
+set list                                                            " Show invisible chars
+set listchars=""                                                    " Reset listchars
+set list listchars=tab:»·,trail:·,space:·                           " Set listchars for tabs and trailing spaces
 
 " Search
 set hlsearch                                                        " Highlight matches
@@ -483,3 +493,8 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 vmap <leader>y :w! /tmp/.vim/.vbuf<CR>
 nmap <leader>y :.w! /tmp/.vim/.vbuf<CR>
 nmap <leader>p :r /tmp/.vim/.vbuf<CR>
+
+let g:indent_guides_start_level = 2
+set ts=2 sw=2 et
+
+let g:indent_guides_enable_on_vim_startup = 1
