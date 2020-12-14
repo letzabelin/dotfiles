@@ -10,7 +10,7 @@ shell:
   args:
     - -l
     - -c
-    - "/usr/bin/tmux attach -t 'zabelin' || /usr/bin/tmux new -s 'zabelin'"
+    - "/usr/bin/tmux attach -t '</>' || /usr/bin/tmux new -s '</>'"
 
 key_bindings:
   - { key: V, mods: Control, action: Paste }
