@@ -46,6 +46,6 @@ bindkey '^ ' autosuggest-accept
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export EDITOR=nvim
-export BAT_THEME="GitHub"
+export BAT_THEME="OneHalfDark"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
