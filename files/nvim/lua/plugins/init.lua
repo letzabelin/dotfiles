@@ -57,7 +57,7 @@ return require('packer').startup(function()
     config = require('plugins.tree')
   }
   use { 'sainnhe/edge',
-    config = require('ui'),
+    config = require('plugins/ui'),
     as = 'colorscheme',
   }
 
