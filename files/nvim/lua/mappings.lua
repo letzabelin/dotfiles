@@ -25,3 +25,21 @@ vim.api.nvim_set_keymap('', '<C-h>', '<C-w><Left>', {})
 
 -- Format the entire file
 vim.api.nvim_set_keymap('n', 'ff', [[:normal! gg=G``<CR>]], {})
+
+-- Nohlsearch
+vim.api.nvim_set_keymap('n', '//', ':nohl<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>hl', ':set hlsearch! hlsearch?<CR>', { noremap = true })
+
+-- Copy to system clipboard
+vim.api.nvim_set_keymap('v', '<leader>c', [["+y]], {})
+
+-- Indent
+local indent_groups = vim.api.nvim_exec([[
+augroup indent
+  autocmd FileType html imap <c-k><c-j> <CR><Esc>O
+  autocmd FileType eruby imap <c-k><c-j> <CR><Esc>O
+augroup END
+]], true)
+
+vim.api.nvim_set_keymap('i', '<C-k><C-j>', '<CR><ESC>O<Tab>', {})
+

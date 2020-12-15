@@ -48,6 +48,8 @@ return require('packer').startup(function()
   use 'janko-m/vim-test'                                            -- Testing with hotkeys
   use 'tpope/vim-fugitive'                                          -- :Git diff | :Git commit | :Git add | :GStatus
   use 'numtostr/FTerm.nvim'                                         -- Terminal in NVIM
+  use 'andymass/vim-matchup'                                        -- Additional functional for %
+  use 'dstein64/vim-startuptime'                                    -- Viewing nvim startup event timing information.
 
 -- ##################################################
 -- #################----THEMES----###################
