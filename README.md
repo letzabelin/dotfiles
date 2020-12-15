@@ -4,6 +4,7 @@
 * alacritty
 * tmux
 * ctop
+* bat for preview highlighting
 
 ## ASDF
 * Nodejs

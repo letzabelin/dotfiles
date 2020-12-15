@@ -1,14 +1,7 @@
 -- Configuration folder
 local configuration_folder = vim.fn.expand('~') .. '/.config/nvim/'
 
--- If have not vimp
-if not pcall(require, 'vimp') then
-  vim.cmd [[ echom 'Cannot load `vimp`' ]]
-  return
-end
-
 -- General
-
 -- Line numbers
 do local number = true
   vim.o.number = number
@@ -20,20 +13,22 @@ do local relativenumber = true
   vim.wo.relativenumber = relativenumber
 end
 
-vim.o.encoding                      = "utf8"                        -- Use UTF-8 encoding
 vim.o.encoding                      = "utf-8"                       -- Use UTF-8 encoding
 vim.o.fileencoding                  = "utf-8"                       -- Use UTF-8 encoding
 vim.o.langmenu                      = "en_US.UTF-8"                 -- Use UTF-8 encoding
 vim.o.backup                        = false                         -- Don't backup
 vim.o.writebackup                   = false                         -- Write file inplace
-vim.o.swapfile                      = false                         -- Don't use swap files
+do local swapfile                   = false                         -- Don't use swap files
+  vim.o.swapfile                    = swapfile
+  vim.bo.swapfile                   = swapfile
+end
 vim.o.autoread                      = true                          -- Autoreload buffers
 vim.o.autowrite                     = true                          -- Automatically save changes before switching buffers
 vim.o.showmode                      = false                         -- Doesnt show vim mode
 vim.o.termguicolors                 = true                          -- Better colors
 vim.cmd [[ syntax enable ]]                                         -- Enable syntax highlight
 vim.cmd [[syntax on ]]                                              -- Syntax on for wimwiki
--- vim.cmd [[ scriptencoding utf-8 ]]                                  -- Use UTF-8 encoding
+-- vim.execute(scriptencoding utf-8)                                  -- Use UTF-8 encoding
 
 -- History, Cursor, rules
 vim.o.history                       = 50                            -- Just remeber last 50 commands
@@ -41,25 +36,42 @@ vim.o.laststatus                    = 2                             -- Always di
 vim.o.ruler                         = true                          -- Show the cursor position all the time
 vim.o.showcmd                       = true                          -- Display incomplete commands
 vim.o.cursorline                    = true                          -- Highlight current cursor line
-vim.o.shell                         = '$SHELL'                      -- Default shell
+vim.o.shell                         = '/bin/zsh'                    -- Default shell
 
 -- Tabs and whitespace
 do local wrap                       = true                          -- Wrap lines
   vim.o.wrap                        = true
   vim.wo.wrap                       = true
 end
-vim.o.tabstop                       = 2                             -- Tabs are always 2 spaces
-vim.o.autoindent                    = true
+do local tabstop                    = 2                             -- Tabs are always 2 spaces
+  vim.o.tabstop                     = tabstop
+  vim.bo.tabstop                    = tabstop
+end
+do local autoindent                 = true
+  vim.o.autoindent                  = autoindent
+  vim.bo.autoindent                 = autoindent
+end
 vim.o.smartindent                   = true
-vim.o.softtabstop                   = 2
+do local softtabstop                = 2
+  vim.o.softtabstop                 = softtabstop
+  vim.bo.softtabstop                = softtabstop
+end
 vim.o.smarttab                      = true
-vim.o.expandtab                     = true                          -- Expand tabs into spaces
-vim.o.shiftwidth                    = 2                             -- Reindent with 2 spaces (using <<)
+do local expandtab                  = true                          -- Expand tabs into spaces
+  vim.o.expandtab                   = expandtab
+  vim.bo.expandtab                  = expandtab
+end
+do local shiftwidth                 = vim.o.tabstop                 -- Reindent with 2 spaces (using <<)
+  vim.o.shiftwidth                  = shiftwidth
+  vim.bo.shiftwidth                 = shiftwidth
+end
 vim.o.showbreak                     = '↪ '                          -- Set breakline char
-vim.o.list                          = true                          -- Show invisible chars
+do local list                       = true
+  vim.o.list                        = true
+  vim.wo.list                       = true                          -- Show invisible chars
+end
 vim.o.listchars                     = ""                            -- Reset listchars
--- vim.o.listchars=tab:»·,trail:·,space:·                           -- Set listchars for tabs and trailing spaces
-vim.o.listchars = 'tab:░░,trail:·,space:·,extends:»,precedes:«,nbsp:⣿'
+vim.o.listchars                     = 'tab:»»,trail:·,space:·'
 
 -- Search
 vim.o.hlsearch                      = true                          -- Highlight matches
@@ -76,7 +88,10 @@ vim.o.mouse                         = 'a'                           -- Mouse sup
 vim.o.lazyredraw                    = true                          -- The screen will not be redrawn while executing macros, registers and other commands that have not been typed.
 vim.o.hidden                        = true                          -- TextEdit might fail if hidden is not set.
 vim.o.foldenable                    = false
-vim.o.linebreak                     = true
+do local linebreak                  = true
+  vim.o.linebreak                   = linebreak
+  vim.wo.linebreak                  = linebreak
+end
 vim.o.wb                            = false
 vim.o.splitbelow                    = true
 vim.o.scrolloff                     = 3
@@ -94,14 +109,14 @@ end
 
 -- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 -- delays and poor user experience.
-vim.o.updatetime                     = 300
+vim.o.updatetime                    = 300
 
 -- Don't pass messages to |ins-completion-menu|.
-vim.o.shortmess                      = vim.o.shortmess .. 's'
+vim.o.shortmess                     = vim.o.shortmess .. 's'
 
 -- Never show the signcolumn, otherwise it would shift the text each time
 -- diagnostics appear/become resolved.
-do local signcolumn                  = 'no'
-  vim.o.signcolumn                   = 'no'
-  vim.wo.signcolumn                  = 'no'
+do local signcolumn                 = 'no'
+  vim.o.signcolumn                  = 'no'
+  vim.wo.signcolumn                 = 'no'
 end

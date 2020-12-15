@@ -6,8 +6,8 @@
 -- Base configuration
 require('config')
 -- Keymaps
-require('keymappings')
+require('mappings')
 -- Plugins
-require('plugins')
+require('plugins.init')
 -- Plugins keymaps
-require('plugins_keymaps')
+require('plugins.mappings')
