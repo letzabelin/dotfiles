@@ -7,6 +7,7 @@
 * ctop
 * bat for preview highlighting
 * ag
+* luafmt
 
 ## ASDF
 * Nodejs
