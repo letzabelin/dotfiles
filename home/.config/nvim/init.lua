@@ -4,7 +4,7 @@
 -- Created by: Andrew Zabelin [github.com/letzabelin]
 
 -- Base configuration
-require('config')
+require('settings')
 -- Keymaps
 require('mappings')
 -- Plugins
