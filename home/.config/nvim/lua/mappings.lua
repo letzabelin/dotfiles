@@ -31,7 +31,7 @@ vim.api.nvim_set_keymap('n', '//', ':nohl<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>hl', ':set hlsearch! hlsearch?<CR>', { noremap = true })
 
 -- Copy to system clipboard
-vim.api.nvim_set_keymap('v', '<leader>c', [["+y]], {})
+vim.api.nvim_set_keymap('v', '<leader>c', '"+y', {})
 
 -- Indent
 local indent_groups = vim.api.nvim_exec([[
@@ -43,3 +43,5 @@ augroup END
 
 vim.api.nvim_set_keymap('i', '<C-k><C-j>', '<CR><ESC>O<Tab>', {})
 
+-- Set text wrapping toggles
+vim.api.nvim_set_keymap('n', '<leader>tw', ':set invwrap<CR>:set wrap?<CR>', { silent = true })

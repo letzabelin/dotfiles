@@ -39,7 +39,6 @@ return require('packer').startup(function()
   use 'matze/vim-move'                                              -- Move lines or symbols, Alt-j
   use 'AndrewRadev/splitjoin.vim'                                   -- Split or join lines, gS, gJ
   use 'tpope/vim-abolish'                                           -- Abbreviations
-  use 'nathanaelkane/vim-indent-guides'                             -- Highlight indent lines
   use 'AndrewRadev/switch.vim'                                      -- Add switch toggles, -
   use 'dyng/ctrlsf.vim'                                             -- Searching in file
   use 'tpope/vim-sensible'                                          -- Default additional configs
@@ -55,6 +54,8 @@ return require('packer').startup(function()
 -- #################----THEMES----###################
 -- ##################################################
   use 'kyazdani42/nvim-web-devicons'                                -- Icons
+  use 'luochen1990/rainbow'                                         -- Brackets
+  use 'itchyny/lightline.vim'                                       -- Status line
   use { 'kyazdani42/nvim-tree.lua',                                 -- Explorer Tree
     config = require('plugins.tree')
   }
@@ -62,6 +63,14 @@ return require('packer').startup(function()
     config = require('plugins/ui'),
     as = 'colorscheme',
   }
+
+-- ##################################################
+-- #################------DB------###################
+-- ##################################################
+  use 'tpope/vim-dadbod'                                            -- Database for vim
+  use 'kristijanhusak/vim-dadbod-ui'                                -- Interactive db in buffer
+  use 'kristijanhusak/vim-dadbod-completion'                        -- Completiton for DB
+
 
 -- ##################################################
 -- #################----SEARCH----###################
@@ -76,6 +85,7 @@ return require('packer').startup(function()
     end
   }
   use 'junegunn/fzf.vim'                                            -- Base search
+  use 'gfanto/fzf-lsp.nvim'                                         -- Lsp support for fzf
 
 -- ##################################################
 -- #################-----LSP-----####################
@@ -84,5 +94,13 @@ return require('packer').startup(function()
     'nvim-treesitter/nvim-treesitter',
     config = require('plugins.treesitter_config'),
     run = ':TSUpdate'
+  }
+  use 'neovim/nvim-lspconfig'                                       -- Base config for language servers
+  use 'nvim-lua/lsp-status.nvim'                                    -- Status line
+  use 'nvim-lua/completion-nvim'                                    -- Completition support
+  use 'mhartington/formatter.nvim'                                  -- Format files
+  use 'steelsojka/completion-buffers'                               -- Buffer completition
+  use { 'aca/completion-tabnine',
+    run = './install.sh'
   }
 end)

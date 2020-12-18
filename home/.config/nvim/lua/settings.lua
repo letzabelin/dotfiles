@@ -10,7 +10,7 @@ do local number                          = true                          -- Numb
   set_window.number                      = number
 end
 
-do local relativenumber                  = true                           -- Show the line number relative to the line with the cursor in front of each line.
+do local relativenumber                  = true                          -- Show the line number relative to the line with the cursor in front of each line.
   set_global.relativenumber              = relativenumber
   set_window.relativenumber              = relativenumber
 end
@@ -71,7 +71,7 @@ do local expandtab                       = true                          -- Expa
 end
 
 do local shiftwidth                      = vim.o.tabstop                 -- Reindent with 2 spaces (using <<)
-  set_global.shiftwidth                  shiftwidth
+  set_global.shiftwidth                  = shiftwidth
   set_buffer.shiftwidth                  = shiftwidth
 end
 
@@ -127,7 +127,7 @@ end
 set_global.updatetime                    = 100
 
 -- Don't pass messages to |ins-completion-menu|.
-set_global.shortmess                     = vim.o.shortmess .. 's'
+set_global.shortmess                     = vim.o.shortmess .. 'c'
 
 -- Never show the signcolumn, otherwise it would shift the text each time
 -- diagnostics appear/become resolved

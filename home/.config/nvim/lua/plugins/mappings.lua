@@ -4,24 +4,50 @@ vim.api.nvim_set_keymap('n', '<leader>', '<Plug>(easymotion-prefix)', {})
 -- Word-motion prefix
 vim.g.wordmotion_prefix = ','
 
--- Intent guides
-vim.g.indent_guides_start_level = 2
-vim.g.indent_guides_enable_on_vim_startup = 1
+-- Databases
+vim.g.db_ui_auto_execute_table_helpers = 1
+vim.g.dbs = {
+  dev = 'postgres://andrew:1234@localhost:5432/learning_ruby_development'
+}
+
+-- Matchup
+vim.g.matchup_matchparen_offscreen = {}
+
+-- Status line
+vim.cmd [[
+  function! LspStatus() abort
+    if luaeval('#vim.lsp.buf_get_clients() > 0')
+      return '[' . luaeval("require('lsp-status').status()") . ']'
+    endif
+
+    return ''
+  endfunction
+]]
+
+vim.g.lightline = {
+  colorscheme = 'wombat',
+  active = {
+    left = {{'mode', 'paste'}, {'filename', 'modified'}},
+    right = {{'lineinfo'}, {'percent'}, {'gitbranch'}, {'readonly'}, {'LspStatus'}}
+  },
+  component_function = {
+    gitbranch = 'FugitiveHead',
+    LspStatus = 'LspStatus'
+  }
+}
 
 -- Abbreviations
-vim.api.nvim_exec(
-[[
-function! InitAbbreviations()
-Abolish! -cmdline co{snt,tsn,tns,nts} co{nst}
-Abolish! -cmdline ret{utn,nurn} ret{urn}
-Abolish! -cmdline aw{ati,tai,tia} aw{ait}
-Abolish! -cmdline len{ght} len{gth}
-Abolish! -cmdline tr{eu} tr{ue}
-Abolish! -cmdline fun{citon} fun{ction}
-endfunction
-autocmd VimEnter * call InitAbbreviations()
-]],
-true
+vim.api.nvim_exec([[
+  function! InitAbbreviations()
+    Abolish! -cmdline co{snt,tsn,tns,nts} co{nst}
+    Abolish! -cmdline ret{utn,nurn} ret{urn}
+    Abolish! -cmdline aw{ati,tai,tia} aw{ait}
+    Abolish! -cmdline len{ght} len{gth}
+    Abolish! -cmdline tr{eu} tr{ue}
+    Abolish! -cmdline fun{citon} fun{ction}
+  endfunction
+  autocmd VimEnter * call InitAbbreviations()
+]],true
 )
 
 -- Switch key toggles
@@ -58,6 +84,12 @@ require('FTerm').setup({
 vim.api.nvim_set_keymap('n', '<A-i>', ':FTermToggle<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('t', '<A-i>', '<C-\\><C-n>:FTermToggle<CR>', { noremap = true, silent = true })
 
+-- Rainbow Brackets
+vim.g.rainbow_active = 1
+
+-- AnyJump code definition
+vim.api.nvim_set_keymap('n', 'go', ':AnyJump<CR>', {})
+
 -- FZF
 vim.api.nvim_set_keymap('n', '<leader>b', [[:Buffers<CR>]], { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>o', [[:GFiles .<CR>]], { noremap = true })
@@ -66,16 +98,10 @@ vim.api.nvim_set_keymap('n', '<leader>aa', [[:Ag<CR>]], { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>ff', [[:Files<CR>]], { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>gs', [[:Gstatus<CR>]], { noremap = true })
 
--- Mapping selecting mappings
--- nmap <leader><tab> <plug>(fzf-maps-n)
--- xmap <leader><tab> <plug>(fzf-maps-x)
--- omap <leader><tab> <plug>(fzf-maps-o)
-
--- " Insert mode completion
--- imap <c-x><c-k> <plug>(fzf-complete-word)
--- imap <c-x><c-f> <plug>(fzf-complete-path)
--- imap <c-x><c-j> <plug>(fzf-complete-file-ag)
--- imap <c-x><c-l> <plug>(fzf-complete-line)
+-- Selecting mappings
+vim.api.nvim_set_keymap('n', '<leader><tab>', '<plug>(fzf-maps-n)', {})
+vim.api.nvim_set_keymap('x', '<leader><tab>', '<plug>(fzf-maps-x)', {})
+vim.api.nvim_set_keymap('o', '<leader><tab>', '<plug>(fzf-maps-o)', {})
 
 -- command! -bang -nargs=? -complete=dir GFiles
 --       \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)
