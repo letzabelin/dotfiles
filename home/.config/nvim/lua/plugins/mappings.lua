@@ -36,6 +36,14 @@ vim.g.lightline = {
   }
 }
 
+-- JS settings for emmet
+vim.g.user_emmet_settings = {
+  javascript = {
+    extends = 'jsx',
+  },
+}
+
+
 -- Abbreviations
 vim.api.nvim_exec([[
   function! InitAbbreviations()

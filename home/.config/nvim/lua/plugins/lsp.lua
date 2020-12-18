@@ -18,7 +18,8 @@ vim.g.completion_items_priority = {
   Struct = 8,
   Keyword = 8,
   Treesitter = 8,
-  TabNine = 8, -- vim-vsnip = 7,
+  TabNine = 8,
+  -- vim-vsnip = 7,
   Buffers = 1,
   File = 2,
 }
@@ -70,7 +71,7 @@ lsp_status.config {
 }
 
 -- Setup basic lsp servers
-for _, server in pairs({"vimls", "jsonls", "bashls"}) do
+for _, server in pairs({"vimls", "jsonls", "bashls", "html"}) do
   lsp_config[server].setup {
     capabilities = lsp_status.capabilities,
     on_attach = general_on_attach

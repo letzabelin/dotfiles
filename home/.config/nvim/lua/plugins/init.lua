@@ -88,6 +88,13 @@ return require('packer').startup(function()
   use 'gfanto/fzf-lsp.nvim'                                         -- Lsp support for fzf
 
 -- ##################################################
+-- #################--TEMPLATES--####################
+-- ##################################################
+  use 'tpope/vim-ragtag'                                            -- Support differnt tags like <%= %>
+  use 'AndrewRadev/tagalong.vim'                                    -- Rename tags
+  use 'mattn/emmet-vim'
+
+-- ##################################################
 -- #################-----LSP-----####################
 -- ##################################################
   use {                                                             -- LSP
