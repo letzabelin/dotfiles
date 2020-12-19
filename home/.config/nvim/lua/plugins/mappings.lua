@@ -17,9 +17,8 @@ vim.g.matchup_matchparen_offscreen = {}
 vim.cmd [[
   function! LspStatus() abort
     if luaeval('#vim.lsp.buf_get_clients() > 0')
-      return '[' . luaeval("require('lsp-status').status()") . ']'
+        return '[' . luaeval("require('lsp-status').status()") . ']'
     endif
-
     return ''
   endfunction
 ]]
@@ -94,6 +93,12 @@ vim.api.nvim_set_keymap('t', '<A-i>', '<C-\\><C-n>:FTermToggle<CR>', { noremap =
 
 -- Rainbow Brackets
 vim.g.rainbow_active = 1
+vim.g.rainbow_conf = {
+  separately = {
+    html = 0,
+    css = 0,
+  }
+}
 
 -- AnyJump code definition
 vim.api.nvim_set_keymap('n', 'go', ':AnyJump<CR>', {})
