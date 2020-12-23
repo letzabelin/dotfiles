@@ -1,7 +1,7 @@
 nvim-install:
 	mkdir -p ~/.config/nvim
-	ln -s $(PWD)/files/nvim/vimrc ~/.config/nvim/init.vim | true
-	ln -s $(PWD)/files/nvim/coc-settings.json ~/.config/nvim/coc-settings.json | true
+	cp $(PWD)/home/.config/nvim/lua ~/.config/nvim | true
+	ln -s $(PWD)/home/.config/nvim/init.lua ~/.config/nvim/init.lua | true
 
 tmux-conf:
 	ls -a $(PWD)/files/tmux/tmux.conf ~/.tmux.conf | true
@@ -10,10 +10,10 @@ tmux-conf:
 	ls -a $(PWD)/files/tmux/ui.conf ~/.tmux_plugins.conf | true
 
 deps-npm:
-	npm install -g neovim
-	npm install -g prettier eslint babel-eslint eslint-plugin-import eslint-plugin-node
+	npm i -g neovim
+	npm i -g prettier eslint babel-eslint eslint-plugin-import eslint-plugin-node
 	npx install-peerdeps -g eslint-config-airbnb
-	npm install -g stylelint stylelint-config-recommended stylelint-config-standard
+	npm i -g stylelint stylelint-config-recommended stylelint-config-standard
 	npm i -g livedown
 
 deps-gem:
