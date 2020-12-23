@@ -17,6 +17,9 @@ return function()
       enable = true,
       use_languagetree = true
     },
+    indent = {
+      enable = true
+    }
   }
 
   require('nvim-treesitter.highlight')

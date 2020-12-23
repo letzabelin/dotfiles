@@ -39,7 +39,10 @@ set_global.history                       = 50                            -- Just
 set_global.laststatus                    = 2                             -- Always display status line
 set_global.ruler                         = true                          -- Show the cursor position all the time
 set_global.showcmd                       = false                         -- Don't display incomplete commands
-set_global.cursorline                    = true                          -- Highlight current cursor line
+do local cursorline                      = true                          -- Highlight current cursor line
+  set_global.cursorline                  = cursorline
+  set_window.cursorline                  = cursorline
+end
 set_global.shell                         = '/bin/zsh'                    -- Default shell
 set_global.completeopt                   = 'menuone,noinsert,noselect'   -- Better completion experience
 
@@ -81,7 +84,10 @@ do local list                            = true                          -- Show
 end
 
 set_global.showbreak                     = '↪ '                          -- Set breakline char
-set_global.smartindent                   = true                          -- Autoindenting when starting a new line
+do local smartindent                     = true                          -- Autoindenting when starting a new line
+  set_global.smartindent                 = smartindent
+  set_buffer.smartindent                 = smartindent
+end
 set_global.smarttab                      = true                          -- <Tab> in front of a line inserts blanks according to 'shiftwidth'
 set_global.listchars                     = ""                            -- Reset listchars
 set_global.listchars                     = 'tab:»»,trail:·,space:·'      -- Custom listchars
@@ -132,6 +138,6 @@ set_global.shortmess                     = vim.o.shortmess .. 'c'
 -- Never show the signcolumn, otherwise it would shift the text each time
 -- diagnostics appear/become resolved
 do local signcolumn                      = 'no'
-  set_global.signcolumn                  = 'no'
-  set_window.signcolumn                  = 'no'
+  set_global.signcolumn                  = signcolumn
+  set_window.signcolumn                  = signcolumn
 end

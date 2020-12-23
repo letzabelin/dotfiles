@@ -1,7 +1,12 @@
-local M = {}
+local fn = vim.fn
+local api = vim.api
+local cmd = vim.cmd
+local U = {}
 
-M.map = function(mod, shortсut, action, options or {})
-  vim.api.nvim_set_keymap(mod, shortcut, action, options)
+-- Key mapping
+function U.map(mode, shortcut, action, opts)
+  opts = opts or {}
+  fn.nvim_set_keymap(mode, shortcut, action, opts)
 end
 
-return M
+return U

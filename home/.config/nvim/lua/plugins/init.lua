@@ -25,7 +25,7 @@ if not packer_exists then
   return
 end
 
-vim.cmd [[ autocmd BufWritePost plugins.lua PackerCompile ]]
+vim.cmd [[autocmd BufWritePost init.lua PackerCompile]]
 
 return require('packer').startup(function()
 -- ##################################################
@@ -56,13 +56,8 @@ return require('packer').startup(function()
   use 'kyazdani42/nvim-web-devicons'                                -- Icons
   use 'luochen1990/rainbow'                                         -- Brackets
   use 'itchyny/lightline.vim'                                       -- Status line
-  use { 'kyazdani42/nvim-tree.lua',                                 -- Explorer Tree
-    config = require('plugins.tree')
-  }
-  use { 'sainnhe/edge',
-    config = require('plugins/ui'),
-    as = 'colorscheme',
-  }
+  use 'kyazdani42/nvim-tree.lua'                                    -- Explorer Tree
+  use 'morhetz/gruvbox'
 
 -- ##################################################
 -- #################------DB------###################
@@ -70,7 +65,6 @@ return require('packer').startup(function()
   use 'tpope/vim-dadbod'                                            -- Database for vim
   use 'kristijanhusak/vim-dadbod-ui'                                -- Interactive db in buffer
   use 'kristijanhusak/vim-dadbod-completion'                        -- Completiton for DB
-
 
 -- ##################################################
 -- #################----SEARCH----###################
@@ -99,7 +93,6 @@ return require('packer').startup(function()
 -- ##################################################
   use {                                                             -- LSP
     'nvim-treesitter/nvim-treesitter',
-    config = require('plugins.treesitter_config'),
     run = ':TSUpdate'
   }
   use 'neovim/nvim-lspconfig'                                       -- Base config for language servers

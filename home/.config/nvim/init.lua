@@ -9,5 +9,5 @@ require('settings')
 require('mappings')
 -- Plugins
 require('plugins.init')
--- Plugins keymaps
+-- -- Plugins keymaps
 require('plugins.mappings')

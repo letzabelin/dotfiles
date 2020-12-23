@@ -1,17 +1,24 @@
+local map = require('utils').map
+local api = vim.api
+local global = vim.g
+local noremapOpts = { noremap = true }
+local silentOpts = { silent = true }
+local unionOpts = vim.tbl_extend('keep', noremapOpts, silentOpts)
+
 -- Easy-motion key
-vim.api.nvim_set_keymap('n', '<leader>', '<Plug>(easymotion-prefix)', {})
+map('n', '<leader>', [[<Plug>(easymotion-prefix)]])
 
 -- Word-motion prefix
-vim.g.wordmotion_prefix = ','
+global.wordmotion_prefix = ','
 
 -- Databases
-vim.g.db_ui_auto_execute_table_helpers = 1
-vim.g.dbs = {
+global.db_ui_auto_execute_table_helpers = 1
+global.dbs = {
   dev = 'postgres://andrew:1234@localhost:5432/learning_ruby_development'
 }
 
 -- Matchup
-vim.g.matchup_matchparen_offscreen = {}
+global.matchup_matchparen_offscreen = { method = 'popup' }
 
 -- Status line
 vim.cmd [[
@@ -23,7 +30,7 @@ vim.cmd [[
   endfunction
 ]]
 
-vim.g.lightline = {
+global.lightline = {
   colorscheme = 'wombat',
   active = {
     left = {{'mode', 'paste'}, {'filename', 'modified'}},
@@ -36,12 +43,11 @@ vim.g.lightline = {
 }
 
 -- JS settings for emmet
-vim.g.user_emmet_settings = {
+global.user_emmet_settings = {
   javascript = {
     extends = 'jsx',
   },
 }
-
 
 -- Abbreviations
 vim.api.nvim_exec([[
@@ -54,46 +60,45 @@ vim.api.nvim_exec([[
     Abolish! -cmdline fun{citon} fun{ction}
   endfunction
   autocmd VimEnter * call InitAbbreviations()
-]],true
-)
+]], true)
 
 -- Switch key toggles
-vim.g.switch_mapping = "-"
+global.switch_mapping = "-"
 
 -- Testing with vim-test
-vim.api.nvim_set_keymap('n', '<leader>t', [[:TestNearest<CR>]], { silent = true })
-vim.api.nvim_set_keymap('n', 't<C-f>', [[:TestFile<CR>]], { silent = true })
-vim.api.nvim_set_keymap('n', 't<C-s>', [[:TestSuite<CR>]], { silent = true })
-vim.api.nvim_set_keymap('n', 't<C-l>', [[:TestLast<CR>]], { silent = true })
-vim.api.nvim_set_keymap('n', 't<C-g>', [[:TestVisit<CR>]], { silent = true })
+map('n', '<leader>t', [[:TestNearest<CR>]], silentOpts)
+map('n', 't<C-f>',    [[:TestFile<CR>]],    silentOpts)
+map('n', 't<C-s>',    [[:TestSuite<CR>]],   silentOpts)
+map('n', 't<C-l>',    [[:TestLast<CR>]],    silentOpts)
+map('n', 't<C-g>',    [[:TestVisit<CR>]],   silentOpts)
 
 -- For scrolling in test
-vim.api.nvim_set_keymap('t', '<C-o>', '<C-\\><C-n>', {})
+map('t', '<C-o>', '<C-\\><C-n>')
 
 -- Jest config
 vim.cmd [[let g:test#javascript#runner = "jest"]]
 vim.cmd [[let g:test#javascript#jest#executable = 'npx -n --experimental-vm-modules -n --no-warnings jest --colors']]
 
 -- Search in files with ctrlsf
-vim.api.nvim_set_keymap('n', '<C-f>f', '<Plug>CtrlSFPrompt', {})
-vim.api.nvim_set_keymap('v', '<C-f>f', '<Plug>CtrlSFVwordPath', {})
-vim.api.nvim_set_keymap('v', '<C-f>F', '<Plug>CtrlSFVwordExec', {})
-vim.api.nvim_set_keymap('n', '<C-f>n', '<Plug>CtrlSFCwordPath', {})
-vim.api.nvim_set_keymap('n', '<C-f>p', '<Plug>CtrlSFPwordPath', {})
-vim.api.nvim_set_keymap('n', '<C-f>o', ':CtrlSFOpen<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-f>t', ':CtrlSFToggle<CR>', { noremap = true })
-vim.api.nvim_set_keymap('i', '<C-f>t', ':CtrlSFToggle<CR>', { noremap = true })
+map('n', '<C-f>f', [[<Plug>CtrlSFPrompt]])
+map('v', '<C-f>f', [[<Plug>CtrlSFVwordPath]])
+map('v', '<C-f>F', [[<Plug>CtrlSFVwordExec]])
+map('n', '<C-f>n', [[<Plug>CtrlSFCwordPath]])
+map('n', '<C-f>p', [[<Plug>CtrlSFPwordPath]])
+map('n', '<C-f>o', [[:CtrlSFOpen<CR>]],   noremapOpts)
+map('n', '<C-f>t', [[:CtrlSFToggle<CR>]], noremapOpts)
+map('i', '<C-f>t', [[:CtrlSFToggle<CR>]], noremapOpts)
 
 -- FTerm
 require('FTerm').setup({
   dimensions = { height = 0.8, width = 0.8, row = 0.5, col = 0.5 }
 })
-vim.api.nvim_set_keymap('n', '<A-i>', ':FTermToggle<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('t', '<A-i>', '<C-\\><C-n>:FTermToggle<CR>', { noremap = true, silent = true })
+map('n', '<A-i>', [[:FTermToggle<CR>]],           unionOpts)
+map('t', '<A-i>', [[<C-\><C-n>:FTermToggle<CR>]], unionOpts)
 
 -- Rainbow Brackets
-vim.g.rainbow_active = 1
-vim.g.rainbow_conf = {
+global.rainbow_active = 1
+global.rainbow_conf = {
   separately = {
     html = 0,
     css = 0,
@@ -101,23 +106,33 @@ vim.g.rainbow_conf = {
 }
 
 -- AnyJump code definition
-vim.api.nvim_set_keymap('n', 'go', ':AnyJump<CR>', {})
+map('n', 'go', [[:AnyJump<CR>]], {})
 
 -- FZF
-vim.api.nvim_set_keymap('n', '<leader>b', [[:Buffers<CR>]], { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>o', [[:GFiles .<CR>]], { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>fc', [[:Commits<CR>]], { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>aa', [[:Ag<CR>]], { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>ff', [[:Files<CR>]], { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>gs', [[:Gstatus<CR>]], { noremap = true })
+map('n', '<leader>b',  [[:Buffers<CR>]],  noremapOpts)
+map('n', '<leader>o',  [[:GFiles .<CR>]], noremapOpts)
+map('n', '<leader>fc', [[:Commits<CR>]],  noremapOpts)
+map('n', '<leader>aa', [[:Ag<CR>]],       noremapOpts)
+map('n', '<leader>ff', [[:Files<CR>]],    noremapOpts)
+map('n', '<leader>gs', [[:Gstatus<CR>]],  noremapOpts)
 
 -- Selecting mappings
-vim.api.nvim_set_keymap('n', '<leader><tab>', '<plug>(fzf-maps-n)', {})
-vim.api.nvim_set_keymap('x', '<leader><tab>', '<plug>(fzf-maps-x)', {})
-vim.api.nvim_set_keymap('o', '<leader><tab>', '<plug>(fzf-maps-o)', {})
+map('n', '<leader><tab>', [[<plug>(fzf-maps-n)]])
+map('x', '<leader><tab>', [[<plug>(fzf-maps-x)]])
+map('o', '<leader><tab>', [[<plug>(fzf-maps-o)]])
 
--- command! -bang -nargs=? -complete=dir GFiles
---       \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)
+-- -- command! -bang -nargs=? -complete=dir GFiles
+-- --       \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)
 
--- command! -bang -nargs=? -complete=dir Files
---       \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+-- -- command! -bang -nargs=? -complete=dir Files
+-- --       \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+-- TODO: Next settings is temporary, cause 'config' option in Packer.nvim has a bug
+-- Theme
+require('plugins.ui')()
+-- Tree
+require('plugins.tree')()
+-- Treesitter
+require('plugins.treesitter')()
+-- LSP
+require('plugins.lsp')()
