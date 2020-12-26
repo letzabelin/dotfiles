@@ -121,8 +121,8 @@ map('n', '<leader><tab>', [[<plug>(fzf-maps-n)]])
 map('x', '<leader><tab>', [[<plug>(fzf-maps-x)]])
 map('o', '<leader><tab>', [[<plug>(fzf-maps-o)]])
 
--- -- command! -bang -nargs=? -complete=dir GFiles
--- --       \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)
+-- command! -bang -nargs=? -complete=dir GFiles
+--       \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)
 
--- -- command! -bang -nargs=? -complete=dir Files
--- --       \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+-- command! -bang -nargs=? -complete=dir Files
+--       \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)

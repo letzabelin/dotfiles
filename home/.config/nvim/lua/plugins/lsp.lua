@@ -3,13 +3,14 @@ local lsp_completion = require('completion')
 local lsp_status = require('lsp-status')
 
 vim.g.completion_chain_complete_list = {
-  default = { { complete_items = { 'lsp', 'tabnine', 'buffers' } } },
+  default = { { complete_items = { 'lsp', 'tabnine', 'UltiSnips', 'buffers' } } },
   sql = { { complete_items = { 'vim-dadbod-completion' } } },
 }
 
 vim.g.completion_items_priority = {
   Field = 10,
   Method = 10,
+  UltiSnips = 10,
   Function = 9,
   Variables = 9,
   Constant = 9,
@@ -19,7 +20,6 @@ vim.g.completion_items_priority = {
   Keyword = 8,
   Treesitter = 8,
   TabNine = 8,
-  UltiSnips = 7,
   Buffers = 1,
   File = 2,
 }
@@ -32,6 +32,7 @@ vim.g.completion_trigger_character = {'.', '::'}
 vim.g.completion_enable_snippet = 'UltiSnips'
 vim.g.completion_tabnine_priority = 5
 vim.g.completion_tabnine_sort_by_details = 1
+vim.g.completion_confirm_key = "<C-;>"
 
 vim.g.completion_customize_lsp_label = {
   Function= ' [function]',
@@ -42,7 +43,7 @@ vim.g.completion_customize_lsp_label = {
   Keyword= ' [key]',
   Variable= ' [variable]',
   Folder= ' [folder]',
-  Snippet= ' [snippet]',
+  UltiSnips= ' [snippet]',
   Operator= ' [operator]',
   Module= ' [module]',
   Text= 'ﮜ[text]',
@@ -56,7 +57,7 @@ local general_on_attach = function(client, bufnr)
   lsp_completion.on_attach(client, bufnr)
   lsp_status.on_attach(client, bufnr)
 
-  vim.api.nvim_set_keymap('i', '<C-k>', "<cmd>lua vim.lsp.buf.signature_help()<cr>", mappingOptions)
+  vim.api.nvim_set_keymap('i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', mappingOptions)
   vim.api.nvim_set_keymap('n', 'K',     '<cmd>lua vim.lsp.buf.hover()<CR>',          mappingOptions)
   vim.api.nvim_set_keymap('n', "'i",    '<cmd>Implementations<CR>',                  mappingOptions)
   vim.api.nvim_set_keymap('n', "'re",   '<cmd>lua vim.lsp.buf.references()<CR>',     mappingOptions)
@@ -111,14 +112,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   {
     underline = false,
     virtual_text = false,
-    signs = function(bufnr, client_id)
-      local ok, result = pcall(vim.api.nvim_buf_get_var, bufnr, 'show_signs')
-      if not ok then
-        return true
-      end
-
-      return result
-    end,
+    signs = false,
     update_in_insert = true
   }
 )
