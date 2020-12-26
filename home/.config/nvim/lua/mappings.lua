@@ -49,3 +49,10 @@ map('i', '<C-k><C-j>', '<CR><ESC>O<Tab>')
 
 -- Set text wrapping toggles
 map('n', '<leader>tw', ':set invwrap<CR>:set wrap?<CR>', { silent = true })
+
+-- Ultisnips
+global.UltiSnipsSnippetDirectories = { '~/.config/nvim/ultisnips', 'ultisnips' }
+global.UltiSnipsExpandTrigger = "<tab>"
+global.UltiSnipsJumpForwardTrigger = "<tab>"
+global.UltiSnipsJumpBackwardTrigger = "<s-tab>"
+global.UltiSnipsEditSplit = "vertical"

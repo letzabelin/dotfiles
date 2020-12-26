@@ -49,6 +49,7 @@ return require('packer').startup(function()
   use 'numtostr/FTerm.nvim'                                         -- Terminal in NVIM
   use 'andymass/vim-matchup'                                        -- Additional functional for %
   use 'dstein64/vim-startuptime'                                    -- Viewing nvim startup event timing information.
+  use 'SirVer/ultisnips'                                            -- Snippets
 
 -- ##################################################
 -- #################----THEMES----###################
@@ -56,8 +57,10 @@ return require('packer').startup(function()
   use 'kyazdani42/nvim-web-devicons'                                -- Icons
   use 'luochen1990/rainbow'                                         -- Brackets
   use 'itchyny/lightline.vim'                                       -- Status line
-  use 'kyazdani42/nvim-tree.lua'                                    -- Explorer Tree
-  use 'morhetz/gruvbox'
+  use { 'kyazdani42/nvim-tree.lua',                                 -- Explorer Tree
+    config = require('plugins.tree')
+  }
+  use { 'morhetz/gruvbox', config = require('plugins.ui') }
 
 -- ##################################################
 -- #################------DB------###################
@@ -93,6 +96,7 @@ return require('packer').startup(function()
 -- ##################################################
   use {                                                             -- LSP
     'nvim-treesitter/nvim-treesitter',
+    config = require('plugins.treesitter'),
     run = ':TSUpdate'
   }
   use 'neovim/nvim-lspconfig'                                       -- Base config for language servers

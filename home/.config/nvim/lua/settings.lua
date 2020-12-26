@@ -5,6 +5,8 @@ local set_buffer                         = vim.bo
 local set_window                         = vim.wo
 
 -- General
+vim.cmd [[ filetype plugin indent on ]]
+
 do local number                          = true                          -- Numbers on left side
   set_global.number                      = number
   set_window.number                      = number
@@ -117,8 +119,6 @@ do local linebreak                       = true                          -- Wrap
   set_window.linebreak                   = linebreak
 end
 
-vim.cmd [[ filetype plugin indent on ]]
-
 -- ############# Persistent Undo #############
 -- Keep undo history across sessions, by storing in file
 -- Only works all the time
@@ -127,6 +127,9 @@ do local undofile                        = true
   set_global.undofile                    = undofile
   set_buffer.undofile                    = undofile
 end
+
+-- write path when save file if needed
+vim.cmd("autocmd BufNewFile * :exe ': !mkdir -p ' . escape(fnamemodify(bufname('%'),':p:h'),'#% \\')")
 
 -- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 -- delays and poor user experience

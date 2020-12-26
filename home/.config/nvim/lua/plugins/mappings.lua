@@ -126,13 +126,3 @@ map('o', '<leader><tab>', [[<plug>(fzf-maps-o)]])
 
 -- -- command! -bang -nargs=? -complete=dir Files
 -- --       \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-
--- TODO: Next settings is temporary, cause 'config' option in Packer.nvim has a bug
--- Theme
-require('plugins.ui')()
--- Tree
-require('plugins.tree')()
--- Treesitter
-require('plugins.treesitter')()
--- LSP
-require('plugins.lsp')()
