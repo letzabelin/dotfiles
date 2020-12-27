@@ -1,0 +1,150 @@
+{
+  "import": {
+    "prefix": "imp",
+    "body": "import ${2:moduleName} from '${1:module}';$0",
+    "description": "Imports entire module"
+  },
+  "importDestructing": {
+    "prefix": "imd",
+    "body": "import { $2 } from '${1:module}';$0",
+    "description": "Imports only a portion of the module"
+  },
+  "importEverything": {
+    "prefix": "ime",
+    "body": "import * as ${2:alias} from '${1:module}';$0",
+    "description": "Imports everything as alias from the module"
+  },
+  "importAs": {
+    "prefix": "ima",
+    "body": "import { ${2:originalName} as ${3:alias} } from '${1:module}';$0",
+    "description": "Imports a specific portion of the module by assigning a local alias"
+  },
+  "requireToConst": {
+    "prefix": "req",
+    "body": "const ${1:packageName} = require('${1:package}');$0",
+    "description": "Require a package to const"
+  },
+  "exportNamedVariable": {
+    "prefix": "env",
+    "body": "export const ${1:exportVariable} = ${2:localVariable};\n",
+    "description": "Export named variable"
+  },
+  "exportNamedFunction": {
+    "prefix": "enf",
+    "body": "export const ${1:functionName} = (${2:params}) => {\n\t$0\n};\n",
+    "description": "Export named function"
+  },
+  "exportDefaultFunction": {
+    "prefix": "edf",
+    "body": "export default function ${1:${TM_FILENAME_BASE}}(${2:params}) {\n\t$0\n};\n",
+    "description": "Export default function"
+  },
+  "exportClass": {
+    "prefix": "ecl",
+    "body": "export default class ${1:className} {\n\t$0\n};\n",
+    "description": "Export default class"
+  },
+  "exportClassExtends": {
+    "prefix": "ece",
+    "body": "export default class ${1:className} extends ${2:baseclassName} {\n\t$0\n};\n",
+    "description": "Export default class which extends a base one"
+  },
+
+  "constructor": {
+    "prefix": "con",
+    "body": "constructor(${1:params}) {\n\t${0}\n}",
+    "description": "Add default constructor in a class"
+  },
+
+  "arrayLoop": {
+    "prefix": "arl",
+    "body": "${1:array}.${2:method}(${3:currentItem} => ${0});",
+    "description": "Creates a forEach statement"
+  },
+  "for": {
+    "prefix": "for",
+    "body": "for (let ${1:i} = 0; ${2:$1} < ${3:to}; ${4:$1} += 1 ) {\n\t${5:someCode}\n}${0}"
+  },
+  "forOf": {
+    "prefix": "fof",
+    "body": "for (const ${1:item} of ${2:object}) {\n\t${0}\n}",
+    "description": "Iterating over property names of iterable objects"
+  },
+  "forIn": {
+    "prefix": "fin",
+    "body": "for (const ${1:item} in ${2:object}) {\n\t${0}\n}",
+    "description": "Iterating over property values of iterable objects"
+  },
+  "anonymousFunction": {
+    "prefix": "anfn",
+    "body": "(${1:params}) => {\n\t${2}\n}",
+    "description": "Creates an anonymous function"
+  },
+  "namedFunction": {
+    "prefix": "nfn",
+    "body": "const ${1:name} = (${2:params}) => {\n\t${3}\n}",
+    "description": "Creates a named function"
+  },
+  "destructingObject": {
+    "prefix": "dob",
+    "body": "const {${2:propertyName}} = ${1:objectToDestruct};",
+    "description": "Creates and assigns a local variable using object destructing"
+  },
+  "destructingArray": {
+    "prefix": "dar",
+    "body": "const [${2:propertyName}] = ${1:arrayToDestruct};",
+    "description": "Creates and assigns a local variable using array destructing"
+  },
+  "thenCatch": {
+    "prefix": "thenc",
+    "body": ".then((${1:result}) => {\n\t${2}\n}).catch((${3:err}) => {\n\t${4}\n});",
+    "description": "Add the .then and .catch methods to handle promises"
+  },
+  "condition": {
+    "prefix": "if",
+    "body": "if (${1:condition}) {\n\t${2:someCode}\n}${0}",
+    "description": "Condition"
+  },
+  "conditionWithElse": {
+    "prefix": "ife",
+    "body": "if (${1:condition}) {\n\t${2:someCode}\n} else {\n\t${3:someCode}\n}${0}"
+  },
+
+  "Describe": {
+    "prefix": "desc",
+    "body": "describe('${1:test_name}', () => {\n\t${0}\n});",
+    "description": "Put describe"
+  },
+  "It": {
+    "prefix": "it",
+    "body": "it('${1:test_name}', async () => {\n\t${0}\n});",
+    "description": "Put describe"
+  },
+  "BeforeEach": {
+    "prefix": "be",
+    "body": "beforeEach(async () => {\n\t${0}\n});",
+    "description": "Put beforeEach"
+  },
+  "AfterEach": {
+    "prefix": "ae",
+    "body": "afterEach(async () => {\n\t${0}\n});",
+    "description": "Put afterEach"
+  },
+
+  "consoleLog": {
+    "prefix": "clg",
+    "body": "console.log(${1:object});",
+    "description": "Displays a message in the console"
+  },
+
+  "JSONParse": {
+    "prefix": "jsonp",
+    "body": "JSON.parse(${0:string})",
+    "description": "JSON parse"
+  },
+  "JSONStringify": {
+    "prefix": "jsons",
+    "body": "JSON.stringify(${0:object})",
+    "description": "JSON stringify"
+  }
+}

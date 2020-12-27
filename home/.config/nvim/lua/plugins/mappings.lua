@@ -108,12 +108,14 @@ global.rainbow_conf = {
 -- AnyJump code definition
 map('n', 'go', [[:AnyJump<CR>]], {})
 
--- Ultisnips
-global.UltiSnipsSnippetDirectories = { '~/.config/nvim/ultisnips', 'ultisnips' }
-global.UltiSnipsExpandTrigger = "<tab>"
-global.UltiSnipsJumpForwardTrigger = "<tab>"
-global.UltiSnipsJumpBackwardTrigger = "<s-tab>"
-global.UltiSnipsEditSplit = "vertical"
+-- Snippets
+global.vsnip_snippet_dir = '~/.config/nvim/snippets'
+global.vsnip_namespace   = ''
+
+map('i', '<tab>', [[vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<tab>']], { expr = true })
+map('s', '<tab>', [[vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<tab>']], { expr = true })
+map('i', '<s-tab>', [[vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<s-tab>']], { expr = true })
+map('s', '<s-tab>', [[vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<s-tab>']], { expr = true })
 
 -- FZF
 map('n', '<leader>b',  [[:Buffers<CR>]],  noremapOpts)

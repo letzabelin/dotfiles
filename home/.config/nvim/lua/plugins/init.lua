@@ -49,7 +49,8 @@ return require('packer').startup(function()
   use 'numtostr/FTerm.nvim'                                         -- Terminal in NVIM
   use 'andymass/vim-matchup'                                        -- Additional functional for %
   use 'dstein64/vim-startuptime'                                    -- Viewing nvim startup event timing information.
-  use 'SirVer/ultisnips'                                            -- Snippets
+  use 'hrsh7th/vim-vsnip'                                           -- Snippets
+  use 'hrsh7th/vim-vsnip-integ'                                     -- Snippets integration
 
 -- ##################################################
 -- #################----THEMES----###################
@@ -89,7 +90,7 @@ return require('packer').startup(function()
 -- ##################################################
   use 'tpope/vim-ragtag'                                            -- Support differnt tags like <%= %>
   use 'AndrewRadev/tagalong.vim'                                    -- Rename tags
-  use 'mattn/emmet-vim'
+  use { 'mattn/emmet-vim', ft = {'javascriptreact', 'typescriptreact', 'html'} }
 
 -- ##################################################
 -- #################-----LSP-----####################
