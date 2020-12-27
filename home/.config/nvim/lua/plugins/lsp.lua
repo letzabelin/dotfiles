@@ -10,7 +10,7 @@ vim.g.completion_chain_complete_list = {
 vim.g.completion_items_priority = {
   Field = 10,
   Method = 10,
-  UltiSnips = 10,
+  UltiSnips = 9,
   Function = 9,
   Variables = 9,
   Constant = 9,
@@ -32,7 +32,8 @@ vim.g.completion_trigger_character = {'.', '::'}
 vim.g.completion_enable_snippet = 'UltiSnips'
 vim.g.completion_tabnine_priority = 5
 vim.g.completion_tabnine_sort_by_details = 1
-vim.g.completion_confirm_key = "<C-;>"
+vim.g.completion_confirm_key = ''
+vim.api.nvim_set_keymap('i', '<cr>', [[pumvisible() ? complete_info()["selected"] != "-1" ? "\<Plug>(completion_confirm_completion)" : "\<C-e>\<cr>" : "\<cr>"]], { expr = true })
 
 vim.g.completion_customize_lsp_label = {
   Function= ' [function]',
@@ -146,7 +147,7 @@ require("formatter").setup {
 lsp_config.diagnosticls.setup {
   capabilities = lsp_status.capabilities,
   on_attach = general_on_attach,
-  filetypes = {"javascript", "typescript"},
+  filetypes = {"javascript", "javascriptreact", "typescript", "typescriptreact"},
   init_options = {
     filetypes = {javascript = "eslint", typescript = "eslint"},
     linters = {
@@ -181,7 +182,7 @@ lsp_config.diagnosticls.setup {
 }
 
 -- Define line number hl for lines with Lsp errors
-vim.fn.sign_define("LspDiagnosticsSignError", {numhl = "LspDiagnosticsSignError"})
-vim.fn.sign_define("LspDiagnosticsSignWarning", {numhl = "LspDiagnosticsSignWarning"})
-vim.fn.sign_define("LspDiagnosticsSignInformation", {numhl = "LspDiagnosticsSignInformation"})
-vim.fn.sign_define("LspDiagnosticsSignHint", {numhl = "LspDiagnosticsSignHint"})
+vim.fn.sign_define("LspDiagnosticsSignError",       { numhl = "LspDiagnosticsSignError" })
+vim.fn.sign_define("LspDiagnosticsSignWarning",     { numhl = "LspDiagnosticsSignWarning" })
+vim.fn.sign_define("LspDiagnosticsSignInformation", { numhl = "LspDiagnosticsSignInformation" })
+vim.fn.sign_define("LspDiagnosticsSignHint",        { numhl = "LspDiagnosticsSignHint" })
