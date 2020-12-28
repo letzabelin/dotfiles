@@ -51,7 +51,7 @@ return require('packer').startup(function()
   use 'dstein64/vim-startuptime'                                    -- Viewing nvim startup event timing information.
   use 'hrsh7th/vim-vsnip'                                           -- Snippets
   use 'hrsh7th/vim-vsnip-integ'                                     -- Snippets integration
-  use { 'romgrk/barbar.nvim',
+  use { 'romgrk/barbar.nvim',                                       -- Tabs
     config = require('plugins.barbar')
   }
 
@@ -60,14 +60,13 @@ return require('packer').startup(function()
 -- ##################################################
   use 'kyazdani42/nvim-web-devicons'                                -- Icons
   use 'luochen1990/rainbow'                                         -- Brackets
-  use { 'glepnir/galaxyline.nvim',
+  use { 'glepnir/galaxyline.nvim',                                  -- Status Line
     config = require('plugins.galaxy-line')
   }
-  -- use 'itchyny/lightline.vim'                                       -- Status line
   use { 'kyazdani42/nvim-tree.lua',                                 -- Explorer Tree
     config = require('plugins.tree')
   }
-  use { 'morhetz/gruvbox', config = require('plugins.ui') }
+  use { 'morhetz/gruvbox', config = require('plugins.ui') }         -- Colorscheme
 
 -- ##################################################
 -- #################------DB------###################
@@ -96,7 +95,7 @@ return require('packer').startup(function()
 -- ##################################################
   use 'tpope/vim-ragtag'                                            -- Support differnt tags like <%= %>
   use 'AndrewRadev/tagalong.vim'                                    -- Rename tags
-  use { 'mattn/emmet-vim', ft = {'javascriptreact', 'typescriptreact', 'html'} }
+  use 'mattn/emmet-vim'                                             -- HTML shortcuts
 
 -- ##################################################
 -- #################-----LSP-----####################

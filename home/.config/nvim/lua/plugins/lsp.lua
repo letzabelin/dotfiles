@@ -4,9 +4,6 @@ local lsp_completion = require("completion")
 local general_on_attach = function(client, bufnr)
   if client.resolved_capabilities.completion then
     lsp_completion.on_attach(client, bufnr)
-  -- map("i", "<c-n>", "<Plug>(completion_trigger)", false)
-  -- map("i", "<c-j>", "<Plug>(completion_next_source)", false)
-  -- map("i", "<c-k>", "<Plug>(completion_prev_source)", false)
   end
   local mappingOptions = {noremap = true, silent = true}
   if client.resolved_capabilities.hover then
@@ -46,11 +43,10 @@ for _, server in pairs({"vimls", "jsonls", "bashls", "html"}) do
   }
 end
 
--- Tsserver, stop messing with prettier da fuck!
+-- Tsserver
 lsp_config.tsserver.setup {
   on_attach = function(client, bufnr)
     general_on_attach(client, bufnr)
-    -- client.resolved_capabilities.document_formatting = false
   end
 }
 
@@ -67,45 +63,43 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
 )
 
 -- Setup diagnostic linters and formatters
-lsp_config.diagnosticls.setup(
-  {
-    on_attach = general_on_attach,
-    filetypes = {"javascript", "typescript", "javascriptreact", "typescriptreact"},
-    init_options = {
-      filetypes = {javascript = "eslint", typescript = "eslint"},
-      linters = {
-        eslint = {
-          command = "./node_modules/.bin/eslint",
-          rootPatterns = {".git"},
-          debounce = 100,
-          args = {
-            "--stdin",
-            "--stdin-filename",
-            "%filepath",
-            "--format",
-            "json"
-          },
-          sourceName = "eslint",
-          parseJson = {
-            errorsRoot = "[0].messages",
-            line = "line",
-            column = "column",
-            endLine = "endLine",
-            endColumn = "endColumn",
-            message = "${message} [${ruleId}]",
-            security = "severity"
-          },
-          securities = {
-            [2] = "error",
-            [1] = "warning"
-          }
+lsp_config.diagnosticls.setup({
+  on_attach = general_on_attach,
+  filetypes = {"javascript", "typescript", "javascriptreact", "typescriptreact"},
+  init_options = {
+    filetypes = {javascript = "eslint", typescript = "eslint"},
+    linters = {
+      eslint = {
+        command = "./node_modules/.bin/eslint",
+        rootPatterns = {".git"},
+        debounce = 100,
+        args = {
+          "--stdin",
+          "--stdin-filename",
+          "%filepath",
+          "--format",
+          "json"
+        },
+        sourceName = "eslint",
+        parseJson = {
+          errorsRoot = "[0].messages",
+          line = "line",
+          column = "column",
+          endLine = "endLine",
+          endColumn = "endColumn",
+          message = "${message} [${ruleId}]",
+          security = "severity"
+        },
+        securities = {
+          [2] = "error",
+          [1] = "warning"
         }
       }
     }
   }
-)
+})
 
--- define line number hl for lines with Lsp errors
+-- Define line number hl for lines with Lsp errors
 vim.fn.sign_define("LspDiagnosticsSignError", {numhl = "LspDiagnosticsSignError"})
 vim.fn.sign_define("LspDiagnosticsSignWarning", {numhl = "LspDiagnosticsSignWarning"})
 vim.fn.sign_define("LspDiagnosticsSignInformation", {numhl = "LspDiagnosticsSignInformation"})
