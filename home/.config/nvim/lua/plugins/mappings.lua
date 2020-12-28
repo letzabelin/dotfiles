@@ -21,26 +21,26 @@ global.dbs = {
 global.matchup_matchparen_offscreen = { method = 'popup' }
 
 -- Status line
-vim.cmd [[
-  function! LspStatus() abort
-    if luaeval('#vim.lsp.buf_get_clients() > 0')
-        return '[' . luaeval("require('lsp-status').status()") . ']'
-    endif
-    return ''
-  endfunction
-]]
+-- vim.cmd [[
+--   function! LspStatus() abort
+--     if luaeval('#vim.lsp.buf_get_clients() > 0')
+--         return '[' . luaeval("require('lsp-status').status()") . ']'
+--     endif
+--     return ''
+--   endfunction
+-- ]]
 
-global.lightline = {
-  colorscheme = 'wombat',
-  active = {
-    left = {{'mode', 'paste'}, {'filename', 'modified'}},
-    right = {{'lineinfo'}, {'percent'}, {'gitbranch'}, {'readonly'}, {'LspStatus'}}
-  },
-  component_function = {
-    gitbranch = 'FugitiveHead',
-    LspStatus = 'LspStatus'
-  }
-}
+-- global.lightline = {
+--   colorscheme = 'wombat',
+--   active = {
+--     left = {{'mode', 'paste'}, {'filename', 'modified'}},
+--     right = {{'lineinfo'}, {'percent'}, {'gitbranch'}, {'readonly'}, {'LspStatus'}}
+--   },
+--   component_function = {
+--     gitbranch = 'FugitiveHead',
+--     LspStatus = 'LspStatus'
+--   }
+-- }
 
 -- JS settings for emmet
 global.user_emmet_settings = {
@@ -112,10 +112,17 @@ map('n', 'go', [[:AnyJump<CR>]], {})
 global.vsnip_snippet_dir = '~/.config/nvim/snippets'
 global.vsnip_namespace   = ''
 
-map('i', '<tab>', [[vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<tab>']], { expr = true })
-map('s', '<tab>', [[vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<tab>']], { expr = true })
-map('i', '<s-tab>', [[vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<s-tab>']], { expr = true })
-map('s', '<s-tab>', [[vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<s-tab>']], { expr = true })
+map('i', '<tab>',   [[vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<tab>']], { expr = true })
+map('s', '<tab>',   [[vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<tab>']], { expr = true })
+map('i', '<s-tab>', [[vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<s-tab>']],    { expr = true })
+map('s', '<s-tab>', [[vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<s-tab>']],    { expr = true })
+
+vim.api.nvim_exec([[
+  let g:vsnip_filetypes = {}
+  let g:vsnip_filetypes.typescript = ['javascript']
+  let g:vsnip_filetypes.javascriptreact = ['javascript', 'javascriptreact']
+  let g:vsnip_filetypes.typescriptreact = ['javascriptreact', 'typescript']
+]], true)
 
 -- FZF
 map('n', '<leader>b',  [[:Buffers<CR>]],  noremapOpts)
@@ -130,8 +137,6 @@ map('n', '<leader><tab>', [[<plug>(fzf-maps-n)]])
 map('x', '<leader><tab>', [[<plug>(fzf-maps-x)]])
 map('o', '<leader><tab>', [[<plug>(fzf-maps-o)]])
 
--- command! -bang -nargs=? -complete=dir GFiles
---       \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)
-
--- command! -bang -nargs=? -complete=dir Files
---       \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+-- Preview
+vim.cmd[[command! -bang -nargs=? -complete=dir GFiles call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)]]
+vim.cmd[[command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)]]

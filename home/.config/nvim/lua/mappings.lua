@@ -7,9 +7,6 @@ global.mapleader = " "
 -- Map jk for ESC
 map('i', 'jk', '<ESC>', { noremap = true })
 
--- Move between vim-tabs
-map('n', '<a-m>', ':tabNext<CR>')
-
 -- Turn off linewise keys. Normally, the `j' and `k' keys move the cursor down one entire line. with line wrapping on, this can cause the cursor to actually skip a few lines on the screen because it's moving from line N to line N+1 in the file. I want this to act more visually -- I want `down' to mean the next line on the screen
 map('n', 'j', 'gj')
 map('n', 'k', 'gk')

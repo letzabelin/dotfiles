@@ -51,13 +51,19 @@ return require('packer').startup(function()
   use 'dstein64/vim-startuptime'                                    -- Viewing nvim startup event timing information.
   use 'hrsh7th/vim-vsnip'                                           -- Snippets
   use 'hrsh7th/vim-vsnip-integ'                                     -- Snippets integration
+  use { 'romgrk/barbar.nvim',
+    config = require('plugins.barbar')
+  }
 
 -- ##################################################
 -- #################----THEMES----###################
 -- ##################################################
   use 'kyazdani42/nvim-web-devicons'                                -- Icons
   use 'luochen1990/rainbow'                                         -- Brackets
-  use 'itchyny/lightline.vim'                                       -- Status line
+  use { 'glepnir/galaxyline.nvim',
+    config = require('plugins.galaxy-line')
+  }
+  -- use 'itchyny/lightline.vim'                                       -- Status line
   use { 'kyazdani42/nvim-tree.lua',                                 -- Explorer Tree
     config = require('plugins.tree')
   }
@@ -102,8 +108,12 @@ return require('packer').startup(function()
   }
   use 'neovim/nvim-lspconfig'                                       -- Base config for language servers
   use 'nvim-lua/lsp-status.nvim'                                    -- Status line
-  use 'nvim-lua/completion-nvim'                                    -- Completition support
-  use 'mhartington/formatter.nvim'                                  -- Format files
+  use { 'nvim-lua/completion-nvim',                                 -- Completition support
+    config = require('plugins.completion')
+  }
+  use { 'mhartington/formatter.nvim',                               -- Format files
+    config = require('plugins.formatters')
+  }
   use 'steelsojka/completion-buffers'                               -- Buffer completition
   use { 'aca/completion-tabnine',
     run = './install.sh'
