@@ -24,5 +24,5 @@ return function()
      }
   })
 
-  vim.api.nvim_command("autocmd BufWritePost *.ts,*.js,*.lua FormatWrite")
+  vim.api.nvim_command("autocmd BufWritePost *.ts,*.js FormatWrite")
 end

@@ -1,5 +1,5 @@
-local lsp_config = require('lspconfig')
-local lsp_completion = require('completion')
+local lsp_config = require("lspconfig")
+local lsp_completion = require("completion")
 
 local general_on_attach = function(client, bufnr)
   if client.resolved_capabilities.completion then
@@ -55,7 +55,8 @@ lsp_config.tsserver.setup {
 }
 
 -- Setup errors ui
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+vim.lsp.handlers["textDocument/publishDiagnostics"] =
+  vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics,
   {
     underline = true,
@@ -69,9 +70,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 lsp_config.diagnosticls.setup(
   {
     on_attach = general_on_attach,
-    filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
+    filetypes = {"javascript", "typescript", "javascriptreact", "typescriptreact"},
     init_options = {
-      filetypes = { javascript = "eslint", typescript = "eslint" },
+      filetypes = {javascript = "eslint", typescript = "eslint"},
       linters = {
         eslint = {
           command = "./node_modules/.bin/eslint",
