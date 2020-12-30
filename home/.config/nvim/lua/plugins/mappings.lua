@@ -20,28 +20,6 @@ global.dbs = {
 -- Matchup
 global.matchup_matchparen_offscreen = { method = 'popup' }
 
--- Status line
--- vim.cmd [[
---   function! LspStatus() abort
---     if luaeval('#vim.lsp.buf_get_clients() > 0')
---         return '[' . luaeval("require('lsp-status').status()") . ']'
---     endif
---     return ''
---   endfunction
--- ]]
-
--- global.lightline = {
---   colorscheme = 'wombat',
---   active = {
---     left = {{'mode', 'paste'}, {'filename', 'modified'}},
---     right = {{'lineinfo'}, {'percent'}, {'gitbranch'}, {'readonly'}, {'LspStatus'}}
---   },
---   component_function = {
---     gitbranch = 'FugitiveHead',
---     LspStatus = 'LspStatus'
---   }
--- }
-
 -- JS settings for emmet
 global.user_emmet_settings = {
   javascript = {
