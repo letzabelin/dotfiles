@@ -50,6 +50,18 @@ lsp_config.tsserver.setup {
   end
 }
 
+-- Solargraph
+lsp_config.solargraph.setup {
+  settings = {
+    solargraph = {
+      commandPath = "~/.asdf/shims/solargraph",
+      diagnotics = true,
+      completion = true
+    }
+  },
+  on_attach = general_on_attach
+}
+
 -- Setup errors ui
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
   vim.lsp.with(
