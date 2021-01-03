@@ -1,6 +1,9 @@
 local lsp_config = require("lspconfig")
 local lsp_completion = require("completion")
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 local general_on_attach = function(client, bufnr)
   if client.resolved_capabilities.completion then
     lsp_completion.on_attach(client, bufnr)
@@ -37,8 +40,9 @@ local general_on_attach = function(client, bufnr)
 end
 
 -- Setup basic lsp servers
-for _, server in pairs({"vimls", "jsonls", "bashls", "html"}) do
+for _, server in pairs({"vimls", "jsonls", "bashls", "html", "cssls"}) do
   lsp_config[server].setup {
+    capabilities = capabilities,
     on_attach = general_on_attach
   }
 end
@@ -51,16 +55,11 @@ lsp_config.tsserver.setup {
 }
 
 -- Solargraph
-lsp_config.solargraph.setup {
-  settings = {
-    solargraph = {
-      commandPath = "~/.asdf/shims/solargraph",
-      diagnotics = true,
-      completion = true
-    }
-  },
-  on_attach = general_on_attach
-}
+lsp_config.solargraph.setup({
+  on_attach = function(client, bufnr)
+    general_on_attach(client, bufnr)
+  end
+})
 
 -- Setup errors ui
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
@@ -69,7 +68,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
   {
     underline = true,
     virtual_text = false,
-    signs = true,
+    signs = false,
     update_in_insert = true
   }
 )
