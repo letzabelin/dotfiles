@@ -144,3 +144,6 @@ do local signcolumn                      = 'no'
   set_global.signcolumn                  = signcolumn
   set_window.signcolumn                  = signcolumn
 end
+
+-- Highlight on yank
+vim.cmd([[au TextYankPost * silent! lua vim.highlight.on_yank()]])

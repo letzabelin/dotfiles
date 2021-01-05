@@ -21,17 +21,6 @@ return function()
     File = 2,
   }
 
-  vim.g.completion_sorting = "length"
-  vim.g.completion_matching_strategy_list = { "exact", "substring", "fuzzy", "all" }
-  vim.g.completion_matching_smart_case = 1
-  vim.g.completion_auto_change_source = 1
-  vim.g.completion_trigger_character = {".", "::"}
-  vim.g.completion_enable_snippet = "vim-vsnip"
-  vim.g.completion_tabnine_priority = 5
-  vim.g.completion_tabnine_sort_by_details = 1
-  vim.g.completion_confirm_key = ""
-  vim.api.nvim_set_keymap("i", "<cr>", [[pumvisible() ? complete_info()["selected"] != "-1" ? "\<Plug>(completion_confirm_completion)" : "\<C-e>\<cr>" : "\<cr>"]], { expr = true })
-
   vim.g.completion_customize_lsp_label = {
     Function = " [function]",
     Method = " [method]",
@@ -48,4 +37,15 @@ return function()
     Class = " [class]",
     Interface = " [interface]"
   }
+
+  vim.g.completion_sorting = "length"
+  vim.g.completion_matching_strategy_list = { "exact", "substring", "fuzzy", "all" }
+  vim.g.completion_matching_smart_case = 1
+  vim.g.completion_auto_change_source = 1
+  vim.g.completion_trigger_character = {".", "::"}
+  vim.g.completion_enable_snippet = "vim-vsnip"
+  vim.g.completion_tabnine_sort_by_details = 1
+
+  vim.g.completion_confirm_key = ""
+  vim.api.nvim_set_keymap("i", "<cr>", [[pumvisible() ? complete_info()["selected"] != "-1" ? "\<Plug>(completion_confirm_completion)" : "\<C-e>\<cr>" : "\<cr>"]], { expr = true })
 end

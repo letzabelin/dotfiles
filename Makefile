@@ -15,6 +15,11 @@ deps-npm:
 	npx install-peerdeps -g eslint-config-airbnb
 	npm i -g stylelint stylelint-config-recommended stylelint-config-standard
 	npm i -g livedown
+	npm i -g lua-fmt
+	npm i -g typescript typescript-language-server
+	npm i -g bash-language-server
+	npm i -g vscode-json-languageserver
+	npm i -g vscode-css-languageserver-bin
 
 deps-gem:
 	gem install solargraph rubocop neovim
