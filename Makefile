@@ -1,6 +1,7 @@
 nvim-install:
 	mkdir -p ~/.config/nvim
 	cp $(PWD)/home/.config/nvim/lua ~/.config/nvim | true
+	cp $(PWD)/home/.config/nvim/snippets ~/.config/nvim | true
 	ln -s $(PWD)/home/.config/nvim/init.lua ~/.config/nvim/init.lua | true
 
 tmux-conf:
