@@ -3,9 +3,9 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/locke/.oh-my-zsh"
+export TERM="screen-256color"
 
 ZSH_THEME="theunraveler"
-# ZSH_THEME="frisk"
 
 plugins=(git zsh-autosuggestions asdf)
 
