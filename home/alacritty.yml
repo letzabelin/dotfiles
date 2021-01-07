@@ -5,16 +5,20 @@ env:
   LC_ALL: en_US.UTF-8
   LANG: en_US.UTF-8
 
+window:
+  startup_mode: Maximized
+
 shell:
   program: /bin/zsh
   args:
     - -l
     - -c
-    - "/usr/bin/tmux attach -t '</>' || /usr/bin/tmux new -s '</>'"
+    - "~/.asdf/shims/tmux new-session -A -s '</>'"
 
 key_bindings:
   - { key: V, mods: Control, action: Paste }
   - { key: C, mods: Control, action: Copy }
+  - { key: D, mods: Control, chars: "\x01\x64" }
 
 font:
   normal:
