@@ -147,3 +147,7 @@ end
 
 -- Highlight on yank
 vim.cmd([[au TextYankPost * silent! lua vim.highlight.on_yank()]])
+
+-- Auto save files when focus is lost
+vim.cmd([[au FocusLost * :wa]])
+vim.cmd([[au FocusLost * silent! wa]])
