@@ -1,6 +1,7 @@
 local lsp_config = require("lspconfig")
 local lsp_completion = require("completion")
 local map = require("utils").map
+local util = require "lspconfig/util"
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -53,6 +54,7 @@ lsp_config.jsonls.setup {
 
 -- Tsserver
 lsp_config.tsserver.setup {
+  root_dir = util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git", vim.fn.getcwd()),
   on_attach = function(client, bufnr)
     general_on_attach(client, bufnr)
   end

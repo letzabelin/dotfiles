@@ -83,6 +83,7 @@ return require('packer').startup({
     use 'tpope/vim-ragtag'                                            -- Support differnt tags like <%= %>
     use 'AndrewRadev/tagalong.vim'                                    -- Rename tags
     use 'mattn/emmet-vim'                                             -- HTML shortcuts
+    use 'shime/vim-livedown'                                          -- Preview markdown files
 
     -- ##################################################
     -- #################-----LSP-----####################
