@@ -9,7 +9,7 @@ require("settings")
 require("mappings")
 -- Plugins
 require("plugins")
--- Plugins keymaps
+-- Plugins configuration
 require("plugins.configuration")
 -- LSP
 require("plugins.lsp")
