@@ -1,14 +1,17 @@
 nvim-install:
 	mkdir -p ~/.config/nvim
-	cp $(PWD)/home/.config/nvim/lua ~/.config/nvim | true
-	cp $(PWD)/home/.config/nvim/snippets ~/.config/nvim | true
-	ln -s $(PWD)/home/.config/nvim/init.lua ~/.config/nvim/init.lua | true
+	cp -r $(PWD)/home/.config/nvim/lua ~/.config/nvim | true
+	cp -r $(PWD)/home/.config/nvim/snippets ~/.config/nvim | true
+	cp $(PWD)/home/.config/nvim/init.lua ~/.config/nvim/init.lua | true
 
 tmux-conf:
-	ls -a $(PWD)/files/tmux/tmux.conf ~/.tmux.conf | true
-	ls -a $(PWD)/files/tmux/ui.conf ~/.tmux_ui.conf | true
-	ls -a $(PWD)/files/tmux/ui.conf ~/.tmux_settings.conf | true
-	ls -a $(PWD)/files/tmux/ui.conf ~/.tmux_plugins.conf | true
+	cp $(PWD)/files/tmux/tmux.conf ~/.tmux.conf | true
+	cp $(PWD)/files/tmux/ui.conf ~/.tmux_ui.conf | true
+	cp $(PWD)/files/tmux/ui.conf ~/.tmux_settings.conf | true
+	cp $(PWD)/files/tmux/ui.conf ~/.tmux_plugins.conf | true
+
+kitty-conf:
+	cp -r $(PWD)/home/.config/kitty ~/.config
 
 deps-npm:
 	npm i -g neovim

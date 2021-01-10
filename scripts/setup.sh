@@ -21,6 +21,12 @@ function main() {
   then
     langs
   fi
+
+  read -p "Install kitty? Y/N" -n 1 -r
+  if [[ $REPLY =~ ^[Yy]$ ]]
+  then
+    kitty
+  fi
 }
 
 function managers() {
@@ -31,6 +37,16 @@ function managers() {
   cd $HOME/.asdf || exit
   git checkout "$(git describe --abbrev=0 --tags)"
   cd -- || exit
+}
+
+function kitty() {
+  echo "+-------------------------------+"
+  echo "|        Installing kitty       |"
+  echo "+-------------------------------+"
+  curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+  ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/
+  cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications
+  ~/.local/share/applications/kitty.desktop
 }
 
 function langs() {
