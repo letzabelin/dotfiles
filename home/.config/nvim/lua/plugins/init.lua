@@ -36,7 +36,7 @@ return require('packer').startup({
       config = require('plugins.completion')
     }
     use { 'aca/completion-tabnine',
-      run = "version=3.1.9 ./install.sh"
+      run = './install.sh'
     }
 
     -- ##################################################
@@ -45,6 +45,7 @@ return require('packer').startup({
     use 'kyazdani42/nvim-web-devicons'                                -- Icons
     use 'luochen1990/rainbow'                                         -- Brackets
     use { 'morhetz/gruvbox', config = require('plugins.ui') }         -- Colorscheme
+    -- use { 'arcticicestudio/nord-vim', config = require('plugins.ui') }
     use { 'glepnir/galaxyline.nvim',                                  -- Status Line
       config = require('plugins.galaxy-line')
     }

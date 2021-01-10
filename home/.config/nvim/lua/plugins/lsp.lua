@@ -17,16 +17,16 @@ local general_on_attach = function(client, bufnr)
   vim.api.nvim_set_keymap("n", "'i", "<cmd>Implementations<CR>", mappingOptions)
   vim.api.nvim_set_keymap("n", "'a", "<cmd>CodeActions<cr>", mappingOptions)
   vim.api.nvim_set_keymap(
-      "n",
-      "[d",
-      "<cmd>lua vim.lsp.diagnostic.goto_prev({ popup_opts = { show_header = false } })<CR>",
-      mappingOptions
+  "n",
+  "[d",
+  "<cmd>lua vim.lsp.diagnostic.goto_prev({ popup_opts = { show_header = false } })<CR>",
+  mappingOptions
   )
   vim.api.nvim_set_keymap(
-      "n",
-      "]d",
-      "<cmd>lua vim.lsp.diagnostic.goto_next({ popup_opts = { show_header = false } })<CR>",
-      mappingOptions
+  "n",
+  "]d",
+  "<cmd>lua vim.lsp.diagnostic.goto_next({ popup_opts = { show_header = false } })<CR>",
+  mappingOptions
   )
   vim.api.nvim_set_keymap("n", "'d", "<cmd>Diagnostics<CR>", mappingOptions)
   vim.api.nvim_command("autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({ show_header = false })")
@@ -78,14 +78,14 @@ lsp_config.solargraph.setup {
 
 -- Setup errors ui
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
-  vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics,
-  {
-    underline = true,
-    virtual_text = false,
-    signs = true,
-    update_in_insert = true
-  }
+vim.lsp.with(
+vim.lsp.diagnostic.on_publish_diagnostics,
+{
+  underline = true,
+  virtual_text = false,
+  signs = true,
+  update_in_insert = true
+}
 )
 
 -- Write only if diffs there
@@ -109,30 +109,30 @@ lsp_config.diagnosticls.setup({
   filetypes = {"javascript", "typescript", "javascriptreact", "typescriptreact", "ruby"},
   init_options = {
     filetypes = {javascript = "eslint", typescript = "eslint", ruby = "rubocop"},
-    rubocop = {
-      command = 'bundle',
-      sourceName = 'rubocop',
-      args = {
-        'exec',
-        'rubocop',
-        '--format',
-        'json',
-        '--force-exclusion',
-        '%filepath'
-      },
-      parseJson = {
-        errorsRoot = 'files[0].offenses',
-        line = 'location.line',
-        column = 'location.column',
-        message = '[${cop_name}]\n${message}',
-        security = 'severity'
-      },
-      securities = {
-        fatal = 'error',
-        warning = 'warning'
-      }
-    },
     linters = {
+      rubocop = {
+        command = 'bundle',
+        sourceName = 'rubocop',
+        args = {
+          'exec',
+          'rubocop',
+          '--format',
+          'json',
+          '--force-exclusion',
+          '%filepath'
+        },
+        parseJson = {
+          errorsRoot = 'files[0].offenses',
+          line = 'location.line',
+          column = 'location.column',
+          message = '[${cop_name}]\n${message}',
+          security = 'severity'
+        },
+        securities = {
+          fatal = 'error',
+          warning = 'warning'
+        }
+      },
       eslint = {
         command = "./node_modules/.bin/eslint",
         rootPatterns = {".git"},

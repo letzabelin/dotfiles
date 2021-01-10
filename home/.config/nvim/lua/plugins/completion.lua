@@ -1,6 +1,6 @@
 return function()
   vim.g.completion_chain_complete_list = {
-    default = { { complete_items = { "lsp", "tabnine", "vim-vsnip", "buffers" } } },
+    default = { { complete_items = { "tabnine", "lsp", "vim-vsnip", "buffers" } } },
     sql = { { complete_items = { "vim-dadbod-completion" } } },
   }
 
@@ -16,9 +16,9 @@ return function()
     Keyword = 8,
     Treesitter = 8,
     TabNine = 8,
-    ["vim-vsnip"] = 7,
-    Buffers = 1,
     File = 2,
+    Buffers = 1,
+    ["vim-vsnip"] = 1,
   }
 
   vim.g.completion_customize_lsp_label = {
@@ -44,6 +44,7 @@ return function()
   vim.g.completion_auto_change_source = 1
   vim.g.completion_trigger_character = {".", "::"}
   vim.g.completion_enable_snippet = "vim-vsnip"
+  vim.g.completion_tabnine_priority = 5
   vim.g.completion_tabnine_sort_by_details = 1
 
   vim.g.completion_confirm_key = ""

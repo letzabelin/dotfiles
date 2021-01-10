@@ -4,10 +4,12 @@
 -- Created by: Andrew Zabelin [github.com/letzabelin]
 
 -- Base configuration
-require('settings')
+require("settings")
 -- Keymaps
-require('mappings')
+require("mappings")
 -- Plugins
-require('plugins.init')
--- -- Plugins keymaps
-require('plugins.mappings')
+require("plugins")
+-- Plugins keymaps
+require("plugins.configuration")
+-- LSP
+require("plugins.lsp")
