@@ -2,7 +2,7 @@
 * neovim nightly
 * zsh(oh-my-zsh)
 * asdf
-* alacritty
+* kitty
 * tmux
 * ctop
 * bat for preview highlighting

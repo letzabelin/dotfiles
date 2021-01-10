@@ -13,7 +13,7 @@ shell:
   args:
     - -l
     - -c
-    - "~/.asdf/shims/tmux new-session -A -s '</>'"
+    - "~/.asdf/shims/tmux new-session -A -s '<>'"
 
 key_bindings:
   - { key: V, mods: Control, action: Paste }
