@@ -17,7 +17,7 @@ return require('packer').startup({
     use 'AndrewRadev/switch.vim'                                      -- Add switch toggles, -
     use 'tpope/vim-sensible'                                          -- Default additional configs
     use 'cohama/lexima.vim'                                           -- Auto close parentheses and repeat by .
-    use 'terryma/vim-multiple-cursors'                                -- Multiple Cursors like in IDE
+    use 'mg979/vim-visual-multi'                                      -- Multiple Cursors like in IDE
     use 'janko-m/vim-test'                                            -- Testing with hotkeys
     use 'tpope/vim-fugitive'                                          -- :Git diff | :Git commit | :Git add | :GStatus
     use 'numtostr/FTerm.nvim'                                         -- Terminal in NVIM

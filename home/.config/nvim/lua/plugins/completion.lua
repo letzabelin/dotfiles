@@ -1,9 +1,4 @@
 return function()
-  vim.g.completion_chain_complete_list = {
-    default = { { complete_items = { "tabnine", "lsp", "vim-vsnip", "buffers" } } },
-    sql = { { complete_items = { "vim-dadbod-completion" } } },
-  }
-
   vim.g.completion_items_priority = {
     Field = 10,
     Method = 10,
@@ -35,7 +30,8 @@ return function()
     Module = " [module]",
     Text = "ﮜ[text]",
     Class = " [class]",
-    Interface = " [interface]"
+    Interface = " [interface]",
+    File = " [file]"
   }
 
   vim.g.completion_sorting = "length"
@@ -46,6 +42,9 @@ return function()
   vim.g.completion_enable_snippet = "vim-vsnip"
   vim.g.completion_tabnine_priority = 5
   vim.g.completion_tabnine_sort_by_details = 1
+  vim.g.completion_timer_cycle = 50
+  vim.g.completion_trigger_keyword_length = 2
+  vim.g.completion_enable_auto_signature = 1
 
   vim.g.completion_confirm_key = ""
   vim.api.nvim_set_keymap("i", "<cr>", [[pumvisible() ? complete_info()["selected"] != "-1" ? "\<Plug>(completion_confirm_completion)" : "\<C-e>\<cr>" : "\<cr>"]], { expr = true })
