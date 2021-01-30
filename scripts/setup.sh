@@ -76,6 +76,13 @@ function langs() {
   asdf install ruby 2.7.0
   asdf global ruby 2.7.0
 
+  echo "+-------------------------------+"
+  echo "|       Installing Python       |"
+  echo "+-------------------------------+"
+  asdf plugin-add python
+  asdf install python 3.9.0
+  asdf global python 3.9.0
+
   echo "+------------------------------+"
   echo "|        Installing Lua        |"
   echo "+------------------------------+"
