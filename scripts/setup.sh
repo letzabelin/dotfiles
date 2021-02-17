@@ -69,6 +69,14 @@ function langs() {
   asdf global java adoptopenjdk-large_heap-8.0.265+1.openj9-0.21.0
   . ~/.asdf/plugins/java/set-java-home.zsh
 
+
+  echo "+-------------------------------+"
+  echo "|      Installing Clojure       |"
+  echo "+-------------------------------+"
+  asdf plugin-add clojure https://github.com/asdf-community/asdf-clojure.git
+  asdf install clojure 1.10.2.774
+  asdf global clojure 1.10.2.774
+
   echo "+-------------------------------+"
   echo "|        Installing Ruby        |"
   echo "+-------------------------------+"

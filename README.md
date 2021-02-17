@@ -7,6 +7,7 @@
 * ctop
 * bat for preview highlighting
 * ag
+* rlwrap (for clojure)
 
 ## ASDF
 * Nodejs
