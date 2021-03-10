@@ -1,10 +1,6 @@
 return function()
-  vim.o.background =  'dark'
-  vim.g.gruvbox_number_column='bg0'
-  vim.cmd [[ colorscheme gruvbox ]]
-
-  -- For nvim-tree signcolumn
-  vim.cmd[[ hi SignColumn guibg=#282828 ]]
+  vim.g.nvcode_termcolors = 256
+  vim.cmd [[ colorscheme nvcode ]]
 
   -- For operators highlighting
   vim.cmd [[ hi! link Operator GruvboxFg1 ]]

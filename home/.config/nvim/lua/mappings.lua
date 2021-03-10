@@ -1,4 +1,3 @@
-local map = require('utils').map
 local api = vim.api
 local global = vim.g
 

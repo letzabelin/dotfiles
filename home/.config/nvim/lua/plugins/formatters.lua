@@ -12,6 +12,8 @@ return function()
     filetype = {
       typescript = { prettierFormatter },
       javascript = { prettierFormatter },
+      javascriptreact = { prettierFormatter },
+      typescriptreact = { prettierFormatter },
       lua = {
         function()
           return {
@@ -24,5 +26,5 @@ return function()
      }
   })
 
-  vim.api.nvim_command("autocmd BufWritePost *.ts,*.js FormatWrite")
+  vim.api.nvim_command("autocmd BufWritePost *.ts,*.tsx,*.js,*.jsx FormatWrite")
 end

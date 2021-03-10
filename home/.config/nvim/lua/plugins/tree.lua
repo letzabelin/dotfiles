@@ -1,5 +1,4 @@
 return function()
-  local map = require('utils').map
   local global = vim.g
 
   global.nvim_tree_side = 'left'

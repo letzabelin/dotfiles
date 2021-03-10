@@ -4,7 +4,7 @@ return function()
   gl.short_line_list = { "NvimTree", "dbui" }
 
   local colors = {
-    bg = "#49443e",
+    bg = "#49464e",
     yellow = "#fabd2f",
     cyan = "#008080",
     darkblue = "#081633",
@@ -45,7 +45,7 @@ return function()
     ViMode = {
       provider = function()
         local mode_color = {
-          n = colors.purple, 
+          n = colors.purple,
           i = colors.green,
           v = colors.blue,
           [''] = colors.blue,
@@ -59,9 +59,9 @@ return function()
           R = colors.red,
           Rv = colors.red,
           cv = colors.red,
-          ce=colors.red, 
+          ce=colors.red,
           r = colors.cyan,
-          rm = colors.cyan, 
+          rm = colors.cyan,
           ['r?'] = colors.cyan,
           ['!']  = colors.red,
           t = colors.red
@@ -105,25 +105,25 @@ return function()
     }
   }
 
-  -- gls.left[3] ={
-  --   FileIcon = {
-  --     provider = 'FileIcon',
-  --     condition = buffer_not_empty,
-  --     highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color,colors.bg},
-  --   },
-  -- }
+  gls.left[5] ={
+    FileIcon = {
+      provider = 'FileIcon',
+      condition = buffer_not_empty,
+      highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color,colors.bg},
+    },
+  }
 
-  -- gls.left[4] = {
-  --   FileName = {
-  --     provider = 'FileName',
-  --     condition = buffer_not_empty,
-  --     separator = ' ',
-  --     separator_highlight = { colors.purple, colors.bg },
-  --     highlight = { colors.grey, colors.bg }
-  --   }
-  -- }
+  gls.left[6] = {
+    FileName = {
+      provider = 'FileName',
+      condition = buffer_not_empty,
+      separator = ' ',
+      separator_highlight = { colors.purple, colors.bg },
+      highlight = { colors.grey, colors.bg }
+    }
+  }
 
-  gls.left[5] = {
+  gls.left[7] = {
     LeftEnd = {
       provider = function() return ' ' end,
       separator = ' ',

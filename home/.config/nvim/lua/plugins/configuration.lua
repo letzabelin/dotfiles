@@ -1,4 +1,3 @@
-local map = require('utils').map
 local api = vim.api
 local global = vim.g
 local noremapOpts = { noremap = true }
@@ -26,19 +25,6 @@ global.user_emmet_settings = {
     extends = 'jsx',
   },
 }
-
--- Abbreviations
-vim.api.nvim_exec([[
-  function! InitAbbreviations()
-    Abolish! -cmdline co{snt,tsn,tns,nts} co{nst}
-    Abolish! -cmdline ret{utn,nurn} ret{urn}
-    Abolish! -cmdline aw{ati,tai,tia} aw{ait}
-    Abolish! -cmdline len{ght} len{gth}
-    Abolish! -cmdline tr{eu} tr{ue}
-    Abolish! -cmdline fun{citon} fun{ction}
-  endfunction
-  autocmd VimEnter * call InitAbbreviations()
-]], true)
 
 -- Switch key toggles
 global.switch_mapping = "-"
