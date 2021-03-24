@@ -23,6 +23,7 @@ deps-npm:
 	npm i -g typescript typescript-language-server
 	npm i -g bash-language-server
 	npm i -g vscode-json-languageserver
+	npm i -g yaml-language-server
 	npm i -g vscode-css-languageserver-bin
 
 deps-gem:

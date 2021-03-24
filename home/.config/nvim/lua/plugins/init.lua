@@ -93,11 +93,7 @@ local fuzzy_finder = {
     "junegunn/fzf.vim",
     requires = {{"junegunn/fzf", run = "./install --all"}}
   },
-  {
-    'nvim-telescope/telescope.nvim',
-    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
-    config = require("plugins.nvim-telescope")
-  }
+  "gfanto/fzf-lsp.nvim",
 }
 
 local coding = {

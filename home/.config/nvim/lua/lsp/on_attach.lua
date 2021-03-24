@@ -1,9 +1,3 @@
-_G._show_diagnostics = function(opts)
-  opts = opts or {}
-  vim.lsp.diagnostic.set_loclist({open_loclist = false})
-  require "telescope.builtin".loclist(opts)
-end
-
 return function(client, bufnr)
   local options = {noremap = true, silent = true}
   if client.resolved_capabilities.completion then
@@ -13,7 +7,7 @@ return function(client, bufnr)
     map("n", "K", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", options)
   end
   if client.resolved_capabilities.find_references then
-    map("n", "'re", "<cmd>lua require'telescope.builtin'.lsp_references()<CR>", options)
+    map("n", "'re", "<cmd>References<cr>", options)
   end
   if client.resolved_capabilities.goto_definition then
     map("n", "'d", "<cmd>lua vim.lsp.buf.definition()<CR>", options)
@@ -45,7 +39,7 @@ return function(client, bufnr)
   end
   )
 
-  map("n", "'D", "<cmd>lua _show_diagnostics()<CR>", options)
+  map("n", "'D", "<cmd>Diagnostics<CR>", options)
   map("n", "[d", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", options)
   map("n", "]d", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>", options)
 
