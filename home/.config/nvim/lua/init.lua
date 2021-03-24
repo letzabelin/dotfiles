@@ -9,4 +9,4 @@ require("plugins")
 -- Plugins configuration
 require("plugins.configuration")
 -- LSP
-require("plugins.lsp")
+require("lsp")

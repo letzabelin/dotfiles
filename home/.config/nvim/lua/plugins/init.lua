@@ -1,3 +1,13 @@
+local ensurePackerInstalled = function()
+  local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
+  if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+    execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
+    execute "packadd packer.nvim"
+  end
+  vim.cmd("packadd packer.nvim")
+end
+ensurePackerInstalled()
+
 vim.cmd [[packadd packer.nvim]]
 vim.cmd [[ autocmd BufWritePost **/nvim/lua/plugins/*.lua PackerCompile ]]
 
@@ -51,7 +61,14 @@ local core = {
 
 local git = {
   -- :Git diff | :Git commit | :Git add | :GStatus
-  "tpope/vim-fugitive"
+  "tpope/vim-fugitive",
+  {
+    'lewis6991/gitsigns.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    },
+    config = require("plugins.gitsigns")
+  }
 }
 
 local session = {
@@ -72,8 +89,15 @@ local filetree = {
 }
 
 local fuzzy_finder = {
-  "junegunn/fzf.vim",
-  requires = {{"junegunn/fzf", run = "./install --all"}}
+  {
+    "junegunn/fzf.vim",
+    requires = {{"junegunn/fzf", run = "./install --all"}}
+  },
+  {
+    'nvim-telescope/telescope.nvim',
+    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
+    config = require("plugins.nvim-telescope")
+  }
 }
 
 local coding = {
@@ -118,16 +142,10 @@ local lsp = {
   {"glepnir/lspsaga.nvim", config = require("plugins.lspsaga-nvim")},
   -- pretty references/codeaction
   {"RishabhRD/nvim-lsputils", requires = {"RishabhRD/popfix"}, config = require("plugins.nvim-lsputils")},
-  -- {
-  --   "aca/completion-tabnine",
-  --   run = './install.sh'
-  -- },
-  -- buffer completition
-  -- "steelsojka/completion-buffers",
   -- completition support
   -- {
   --   "nvim-lua/completion-nvim",
-  --   config = require('plugins.completion')
+  --   -- config = require('plugins.completion')
   -- },
   -- format files
   {
@@ -141,7 +159,7 @@ local other = {
   -- viewing nvim startup event timing information.
   "dstein64/vim-startuptime",
   -- autocorrect words
-  {"sedm0784/vim-you-autocorrect", config = require("plugins.vim-you-autocorrect")}
+  -- {"sedm0784/vim-you-autocorrect", config = require("plugins.vim-you-autocorrect")}
 }
 
 return require('packer').startup {
@@ -152,6 +170,7 @@ return require('packer').startup {
     use(filetree)
     use(coding)
     use(treesitter)
+    use(git)
     use(ui)
     use(lsp)
     use(other)

@@ -1,17 +1,20 @@
 return function()
-  local ts_config = require('nvim-treesitter.configs')
-  ts_config.setup {
-    ensure_installed = "maintained",
+  require "nvim-treesitter.configs".setup {
+    ensure_installed = {
+      "javascript",
+      "html",
+      "css",
+      "ruby",
+      "json",
+      "clojure",
+      "bash"
+    },
     highlight = {
       enable = true,
-      use_languagetree = true,
       indent = {
         enable = true
-      }
+      },
+      use_languagetree = true
     }
   }
-
-  require('nvim-treesitter.highlight')
-  vim.treesitter.highlighter.hl_map["punctuation.delimiter"] = "Delimiter"
-  vim.treesitter.highlighter.hl_map["punctuation.bracket"] = nil
 end

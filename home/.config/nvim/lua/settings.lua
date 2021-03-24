@@ -1,5 +1,5 @@
 -- Configuration folder
-local configuration_folder               = vim.fn.expand('~') .. '/.config/nvim/'
+local configuration_folder               = vim.fn.expand("~") .. "/.config/nvim"
 local set_global                         = vim.o
 local set_buffer                         = vim.bo
 local set_window                         = vim.wo
@@ -140,7 +140,7 @@ set_global.shortmess                     = vim.o.shortmess .. 'c'
 
 -- Never show the signcolumn, otherwise it would shift the text each time
 -- diagnostics appear/become resolved
-do local signcolumn                      = 'no'
+do local signcolumn                      = 'yes'
   set_global.signcolumn                  = signcolumn
   set_window.signcolumn                  = signcolumn
 end
