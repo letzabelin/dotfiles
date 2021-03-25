@@ -19,7 +19,10 @@ local packer = {
 
 local textObjects = {
   -- more useful word motions <leader>w|b|e
-  "chaoren/vim-wordmotion"
+  {
+    "chaoren/vim-wordmotion",
+    config = require("plugins.wordmotion")
+  }
 }
 
 local core = {
@@ -34,7 +37,10 @@ local core = {
   -- split or join lines, gS, gJ
   "AndrewRadev/splitjoin.vim",
   -- add switch toggles, -
-  "AndrewRadev/switch.vim",
+  {
+    "AndrewRadev/switch.vim",
+    config = require("plugins.switch")
+  },
   -- default additional configs
   "tpope/vim-sensible",
   -- auto close parentheses and repeat by .
@@ -42,26 +48,45 @@ local core = {
   -- multiple Cursors like in IDE
   "mg979/vim-visual-multi",
   -- testing with hotkeys
-  "janko-m/vim-test",
+  {
+    "janko-m/vim-test",
+    config = require("plugins.vim-test")
+  },
   -- additional functional for %
-  "andymass/vim-matchup",
+  {
+    "andymass/vim-matchup",
+    config = require("plugins.matchup")
+  },
   -- snippets
-  "hrsh7th/vim-vsnip",
-  -- snippets integration "hrsh7th/vim-vsnip-integ",
+  {
+    "hrsh7th/vim-vsnip",
+    config = require("plugins.vim-vsnip")
+  },
   -- fast navigation with <leader>s +letter
-  "easymotion/vim-easymotion",
+  {
+    "easymotion/vim-easymotion",
+    config = require("plugins.easymotion")
+  },
   -- jump to definitions & etc
-  "pechorin/any-jump.vim",
+  {
+    "pechorin/any-jump.vim",
+    config = require("plugins.any-jump")
+  },
   -- searching in file
-  "dyng/ctrlsf.vim",
+  {
+    "dyng/ctrlsf.vim",
+    config = require("plugins.ctrlsf")
+  },
   -- rename tags
   "AndrewRadev/tagalong.vim",
+  -- timeout
   "alex-popov-tech/timer.nvim",
 }
 
 local git = {
   -- :Git diff | :Git commit | :Git add | :GStatus
   "tpope/vim-fugitive",
+  -- signs on the left side
   {
     'lewis6991/gitsigns.nvim',
     requires = {
@@ -78,20 +103,27 @@ local session = {
 
 local term = {
   -- terminal in NVIM
-  "numtostr/FTerm.nvim"
+  "numtostr/FTerm.nvim",
+  config = require("plugins.fterm")
 }
 
 local filetree = {
   -- explorer tree
   "kyazdani42/nvim-tree.lua",
-  requires={"kyazdani42/nvim-web-devicons"},
-  config = require('plugins.tree')
+  requires = {
+    "kyazdani42/nvim-web-devicons",
+  },
+  config = require('plugins.nvim-tree')
 }
 
 local fuzzy_finder = {
   {
     "junegunn/fzf.vim",
-    requires = {{"junegunn/fzf", run = "./install --all"}}
+    requires = {{
+      "junegunn/fzf",
+      run = "./install --all",
+    }},
+    config = require("plugins.fzf")
   },
   "gfanto/fzf-lsp.nvim",
 }
@@ -100,11 +132,17 @@ local coding = {
   -- fast comment/uncomment lines, gcc
   "tpope/vim-commentary",
   -- database for vim
-  "tpope/vim-dadbod",
+  {
+    "tpope/vim-dadbod",
+    config = require("plugins.dadbod")
+  },
   -- interactive db in buffer
   "kristijanhusak/vim-dadbod-ui",
   -- HTML shortcuts
-  "mattn/emmet-vim",
+  {
+    "mattn/emmet-vim",
+    config = require("plugins.emmet")
+  },
   -- preview markdown files
   "shime/vim-livedown",
   -- support differnt tags like <%= %>
@@ -120,9 +158,15 @@ local ui = {
   -- color switcher
   "christianchiarulli/nvcode-color-schemes.vim",
   -- brackets
-  "luochen1990/rainbow",
+  {
+    "luochen1990/rainbow",
+    config = require("plugins.rainbow")
+  },
   -- color scheme
-  { 'morhetz/gruvbox', config = require('plugins.ui') }
+  {
+    'morhetz/gruvbox',
+    config = require('plugins.ui'),
+  }
 }
 
 local treesitter = {
@@ -135,27 +179,37 @@ local lsp = {
   -- base config for language servers
   "neovim/nvim-lspconfig",
   -- pretty hover and references/implementations/codeaction
-  {"glepnir/lspsaga.nvim", config = require("plugins.lspsaga-nvim")},
+  {
+    "glepnir/lspsaga.nvim",
+    config = require("plugins.lspsaga-nvim"),
+  },
   -- pretty references/codeaction
-  {"RishabhRD/nvim-lsputils", requires = {"RishabhRD/popfix"}, config = require("plugins.nvim-lsputils")},
-  -- completition support
-  -- {
-  --   "nvim-lua/completion-nvim",
-  --   -- config = require('plugins.completion')
-  -- },
+  {
+    "RishabhRD/nvim-lsputils",
+    requires = {
+      "RishabhRD/popfix",
+    },
+    config = require("plugins.nvim-lsputils"),
+  },
   -- format files
   {
     "mhartington/formatter.nvim",
     config = require('plugins.formatters')
   },
-  {"hrsh7th/nvim-compe", config = require("plugins.nvim-compe")}
+  {
+    "hrsh7th/nvim-compe",
+    config = require("plugins.nvim-compe"),
+  }
 }
 
 local other = {
   -- viewing nvim startup event timing information.
   "dstein64/vim-startuptime",
   -- autocorrect words
-  -- {"sedm0784/vim-you-autocorrect", config = require("plugins.vim-you-autocorrect")}
+  -- {
+  --   "sedm0784/vim-you-autocorrect",
+  --   config = require("plugins.vim-you-autocorrect"),
+  -- }
 }
 
 return require('packer').startup {

@@ -9,11 +9,11 @@ return function()
       "clojure",
       "bash"
     },
+    indent = {
+      enable = true
+    },
     highlight = {
       enable = true,
-      indent = {
-        enable = true
-      },
       use_languagetree = true
     }
   }

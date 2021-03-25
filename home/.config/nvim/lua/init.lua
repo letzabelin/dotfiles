@@ -6,7 +6,5 @@ require("settings")
 require("mappings")
 -- Plugins
 require("plugins")
--- Plugins configuration
-require("plugins.configuration")
 -- LSP
 require("lsp")
