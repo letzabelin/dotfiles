@@ -105,6 +105,13 @@ function langs() {
   asdf install kotlin 1.4.0
   asdf global kotlin 1.4.0
 
+  echo "+------------------------------+"
+  echo "|       Installing Golang      |"
+  echo "+------------------------------+"
+  asdf plugin-add golang
+  asdf install golang 1.16
+  asdf global golang 1.16
+
   asdf reshim
 }
 
