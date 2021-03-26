@@ -1,5 +1,6 @@
 return function(config, on_attach)
   local util = require("lspconfig/util")
+
   config.tsserver.setup {
     cmd = {"typescript-language-server", "--stdio"},
     filetypes = {"typescript", "javascript", "javascriptreact", "typescriptreact"},

@@ -103,14 +103,14 @@ local session = {
 
 local term = {
   -- terminal in NVIM
-  "numtostr/FTerm.nvim",
-  config = require("plugins.fterm")
+  "voldikss/vim-floaterm",
+  config = require("plugins.vim-floaterm")
 }
 
 local filetree = {
   -- explorer tree
   "kyazdani42/nvim-tree.lua",
-  requires = {
+  requires={
     "kyazdani42/nvim-web-devicons",
   },
   config = require('plugins.nvim-tree')
@@ -192,10 +192,10 @@ local lsp = {
     config = require("plugins.nvim-lsputils"),
   },
   -- format files
-  {
-    "mhartington/formatter.nvim",
-    config = require('plugins.formatters')
-  },
+  -- {
+  --   "mhartington/formatter.nvim",
+  --   config = require('plugins.formatters')
+  -- },
   {
     "hrsh7th/nvim-compe",
     config = require("plugins.nvim-compe"),
@@ -225,6 +225,7 @@ return require('packer').startup {
     use(lsp)
     use(other)
     use(fuzzy_finder)
+    use(session)
   end,
   config = {
     display = {

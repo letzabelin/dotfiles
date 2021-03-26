@@ -25,6 +25,7 @@ map('', '<C-h>', '<C-w><Left>')
 
 -- Format the entire file
 map('n', 'ff', ':normal! gg=G``<CR>')
+-- map("n", "ff", "<cmd>lua vim.lsp.buf.formatting()<cr>", { noremap = true, silent = true })
 
 -- Nohlsearch
 map('n', '//', ':nohl<CR>', { silent = true })
