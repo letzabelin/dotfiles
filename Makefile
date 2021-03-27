@@ -14,7 +14,7 @@ kitty-conf:
 	cp -r $(PWD)/home/.config/kitty ~/.config
 
 deps-npm:
-	# npm i -g neovim
+	npm i -g neovim
 	npm i -g npm-check-updates
 	npm i -g prettier eslint eslint_d babel-eslint eslint-plugin-import eslint-plugin-node
 	npm i -g eslint-config-airbnb
