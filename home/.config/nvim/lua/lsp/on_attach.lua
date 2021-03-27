@@ -25,11 +25,10 @@ return function(client, bufnr)
     if vim.fn.mode() == "i" then
       if not require("lspsaga.signaturehelp").has_saga_signature() then
         require("lspsaga.signaturehelp").signature_help()
-      end
+      end end
+      return 2000
     end
-    return 2000
-  end
-  )
+    )
 
   require "timer".add(
   function()
@@ -44,5 +43,5 @@ return function(client, bufnr)
   map("n", "[d", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", options)
   map("n", "]d", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>", options)
 
-  au("bufwritepost", "*", "lua vim.lsp.buf.formatting_sync(nil, 500)")
+  au("bufwritepost", "*", ":lua vim.lsp.buf.formatting()")
 end

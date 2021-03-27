@@ -19,10 +19,8 @@ local packer = {
 
 local textObjects = {
   -- more useful word motions <leader>w|b|e
-  {
-    "chaoren/vim-wordmotion",
-    config = require("plugins.wordmotion")
-  }
+  "chaoren/vim-wordmotion",
+  config = require("plugins.wordmotion")
 }
 
 local core = {
@@ -226,6 +224,7 @@ return require('packer').startup {
     use(other)
     use(fuzzy_finder)
     use(session)
+    use(textObjects)
   end,
   config = {
     display = {

@@ -15,8 +15,11 @@ kitty-conf:
 
 deps-npm:
 	npm i -g neovim
-	npm i -g prettier eslint babel-eslint eslint-plugin-import eslint-plugin-node
-	npx install-peerdeps -g eslint-config-airbnb
+	npm i -g npm-check-updates
+	npm i -g prettier eslint eslint_d babel-eslint eslint-plugin-import eslint-plugin-node
+	npm i -g eslint-config-airbnb
+	npm i -g eslint-config-recommended
+	npm i -g eslint-config-airbnb-bundle
 	npm i -g stylelint stylelint-config-recommended stylelint-config-standard
 	npm i -g livedown
 	npm i -g lua-fmt
