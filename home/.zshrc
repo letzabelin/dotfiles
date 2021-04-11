@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -5,7 +12,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export ZSH="/home/locke/.oh-my-zsh"
 export TERM="screen-256color"
 
-ZSH_THEME="theunraveler"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(git zsh-autosuggestions asdf)
 
@@ -48,4 +55,14 @@ bindkey '^ ' autosuggest-accept
 export EDITOR=nvim
 export BAT_THEME="OneHalfDark"
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+# LANG=""
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH=/home/locke/.yarn/bin:/home/locke/.config/yarn/global/node_modules/.bin:/home/locke/.asdf/shims:/home/locke/.asdf/bin:/home/locke/bin:/usr/local/bin:/home/locke/.asdf/installs/tmux/3.1/bin:/home/locke/.local/kitty.app/bin:/home/locke/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/locke/.rvm/bin:/home/locke/.fzf/bin:/home/locke/.asdf/installs/nodejs/15.5.0/.npm/bin
+
+export PATH=$PATH:/home/locke/bin/Sencha/Cmd
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
