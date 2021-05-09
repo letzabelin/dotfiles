@@ -132,7 +132,7 @@
   },
 
   "consoleLog": {
-    "prefix": "clg",
+    "prefix": "log",
     "body": "console.log(${1:object});",
     "description": "Displays a message in the console"
   },
