@@ -1,6 +1,5 @@
 return function()
   vim.g.db_ui_auto_execute_table_helpers = 1
-  vim.g.dbs = {
-    dev = 'postgres://andrew:1234@localhost:5432/learning_ruby_development'
-  }
+  vim.g.db_ui_show_database_icon = 1
+  vim.g.db_ui_use_nerd_fonts = 1
 end

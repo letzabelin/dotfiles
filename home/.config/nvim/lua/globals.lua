@@ -9,3 +9,7 @@ function _G.map(mode, shortcut, action, opts)
   opts = opts or {}
   api.nvim_set_keymap(mode, shortcut, action, opts)
 end
+
+function _G.ft()
+  return vim.api.nvim_buf_get_option(0, "filetype")
+end

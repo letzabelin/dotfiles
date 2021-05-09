@@ -5,6 +5,4 @@ return function()
       enable = false,
     }
   })
-
-  -- map("n", "<A-i>", "<cmd>lua require('lspsaga.floaterm').open_float_terminal('lazygit')<CR>")
 end

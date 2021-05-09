@@ -153,6 +153,14 @@ local ui = {
     "glepnir/galaxyline.nvim",
     config = require('plugins.galaxy-line')
   },
+  -- show colors
+  {
+    "rrethy/vim-hexokinase",
+    run = "make hexokinase",
+    config = function()
+      vim.g.Hexokinase_highlighters = {"sign_column"}
+    end
+  },
   -- color switcher
   "christianchiarulli/nvcode-color-schemes.vim",
   -- brackets
@@ -176,6 +184,12 @@ local treesitter = {
 local lsp = {
   -- base config for language servers
   "neovim/nvim-lspconfig",
+  {
+    "kabouzeid/nvim-lspinstall",
+    config = require("plugins.nvim-lspinstall")
+  },
+  -- more ts support
+  "jose-elias-alvarez/nvim-lsp-ts-utils",
   -- pretty hover and references/implementations/codeaction
   {
     "glepnir/lspsaga.nvim",
@@ -189,11 +203,6 @@ local lsp = {
     },
     config = require("plugins.nvim-lsputils"),
   },
-  -- format files
-  -- {
-  --   "mhartington/formatter.nvim",
-  --   config = require('plugins.formatters')
-  -- },
   {
     "hrsh7th/nvim-compe",
     config = require("plugins.nvim-compe"),

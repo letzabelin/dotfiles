@@ -20,6 +20,7 @@ return function()
       nvim_lsp = {menu = "  "},
       nvim_lua = {menu = " "},
       spell = true,
+      vim_dadbod_completion = true,
       calc = true,
       tags = true,
       treesitter = true

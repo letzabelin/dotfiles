@@ -1,10 +1,6 @@
 return function(config)
-  local util = require "lspconfig/util"
-
-  config.cssls.setup {
-    cmd = { "css-languageserver", "--stdio" },
+  config.css.setup {
     filetypes = { "css", "scss", "sass" },
-    root_dir = util.root_pattern(".git", vim.fn.getcwd()),
     settings = {
       css = {
         validate = true
