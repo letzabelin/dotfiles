@@ -27,6 +27,13 @@ function main() {
   then
     kitty
   fi
+
+
+  read -p "Install gh? Y/N" -n 1 -r
+  if [[ $REPLY =~ ^[Yy]$ ]]
+  then
+    gh
+  fi
 }
 
 function managers() {
@@ -135,6 +142,13 @@ function software() {
   pip install neovim pynvim
   pip3 install neovim python-language-server pylint pynvim
   yarn global add neovim write-good markdownlint-cli eslint prettier lua-fmt
+}
+
+function gh() {
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+  sudo apt-add-repository https://cli.github.com/packages
+  sudo apt update
+  sudo apt install gh
 }
 
 
