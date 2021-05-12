@@ -8,6 +8,7 @@
 * bat for preview highlighting
 * ag
 * rlwrap (for clojure)
+* p10k
 
 ## ASDF
 * Nodejs
