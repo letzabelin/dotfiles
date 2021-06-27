@@ -1,6 +1,6 @@
 ## Requirements
 * neovim nightly
-* zsh(oh-my-zsh)
+* zsh
 * asdf
 * kitty
 * tmux
@@ -17,3 +17,4 @@
 * Kotlin
 * Elixir
 * Clojure
+* Golang
