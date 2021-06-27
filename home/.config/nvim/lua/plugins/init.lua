@@ -3,13 +3,12 @@ local ensurePackerInstalled = function()
   if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
     execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
     execute "packadd packer.nvim"
-  end
-  vim.cmd("packadd packer.nvim")
+  end vim.cmd("packadd packer.nvim")
 end
 ensurePackerInstalled()
 
-vim.cmd [[packadd packer.nvim]]
-vim.cmd [[ autocmd BufWritePost **/nvim/lua/plugins/*.lua PackerCompile ]]
+-- au("BufWritePost", "**/nvim/lua/plugins/*.lua", "lua reload()")
+-- au("BufWritePost", "**/nvim/lua/plugins/*.lua", "PackerCompile")
 
 local packer = {
   -- installer
@@ -24,6 +23,10 @@ local textObjects = {
 }
 
 local core = {
+  -- editorconfig
+  "editorconfig/editorconfig-vim",
+  -- show registers
+  "tversteeg/registers.nvim",
   -- surrounding parentheses, brackets, quotes, XML tags, and more.
   "tpope/vim-surround",
   -- repeat.vim remaps . in a way that plugins can tap into it.
@@ -42,14 +45,17 @@ local core = {
   -- default additional configs
   "tpope/vim-sensible",
   -- auto close parentheses and repeat by .
-  "cohama/lexima.vim",
+  {
+    "windwp/nvim-autopairs",
+    config = require("plugins.nvim-autopairs"),
+  },
   -- multiple Cursors like in IDE
   "mg979/vim-visual-multi",
   -- testing with hotkeys
-  {
-    "janko-m/vim-test",
-    config = require("plugins.vim-test")
-  },
+  -- {
+  --   "janko-m/vim-test",
+  --   config = require("plugins.vim-test")
+  -- },
   -- additional functional for %
   {
     "andymass/vim-matchup",
@@ -61,22 +67,22 @@ local core = {
     config = require("plugins.vim-vsnip")
   },
   -- fast navigation with <leader>s +letter
-  {
-    "easymotion/vim-easymotion",
-    config = require("plugins.easymotion")
-  },
+  -- {
+  --   "easymotion/vim-easymotion",
+  --   config = require("plugins.easymotion")
+  -- },
   -- jump to definitions & etc
-  {
-    "pechorin/any-jump.vim",
-    config = require("plugins.any-jump")
-  },
+  -- {
+  --   "pechorin/any-jump.vim",
+  --   config = require("plugins.any-jump")
+  -- },
   -- searching in file
-  {
-    "dyng/ctrlsf.vim",
-    config = require("plugins.ctrlsf")
-  },
+  -- {
+  --   "dyng/ctrlsf.vim",
+  --   config = require("plugins.ctrlsf")
+  -- },
   -- rename tags
-  "AndrewRadev/tagalong.vim",
+  -- "AndrewRadev/tagalong.vim",
   -- timeout
   "alex-popov-tech/timer.nvim",
 }
@@ -84,14 +90,11 @@ local core = {
 local git = {
   -- :Git diff | :Git commit | :Git add | :GStatus
   "tpope/vim-fugitive",
-  -- signs on the left side
-  {
-    'lewis6991/gitsigns.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim'
-    },
-    config = require("plugins.gitsigns")
-  }
+  -- git blame
+  { 
+    "f-person/git-blame.nvim",
+    config = require("plugins.git-blame"),
+  },
 }
 
 local session = {
@@ -124,27 +127,34 @@ local fuzzy_finder = {
     config = require("plugins.fzf")
   },
   "gfanto/fzf-lsp.nvim",
+  {
+    "windwp/nvim-spectre",
+    config = require('plugins.spectre'),
+    requires = {"nvim-lua/plenary.nvim", "nvim-lua/popup.nvim"}
+  }
 }
 
 local coding = {
   -- fast comment/uncomment lines, gcc
   "tpope/vim-commentary",
+  -- commenting for jsx/tsx
+  "JoosepAlviste/nvim-ts-context-commentstring",
   -- database for vim
-  {
-    "tpope/vim-dadbod",
-    config = require("plugins.dadbod")
-  },
+  -- {
+  --   "tpope/vim-dadbod",
+  --   config = require("plugins.dadbod")
+  -- },
   -- interactive db in buffer
-  "kristijanhusak/vim-dadbod-ui",
+  -- "kristijanhusak/vim-dadbod-ui",
   -- HTML shortcuts
-  {
-    "mattn/emmet-vim",
-    config = require("plugins.emmet")
-  },
+  -- {
+  --   "mattn/emmet-vim",
+  --   config = require("plugins.emmet")
+  -- },
   -- preview markdown files
-  "shime/vim-livedown",
+  -- "shime/vim-livedown",
   -- support differnt tags like <%= %>
-  "tpope/vim-ragtag"
+  -- "tpope/vim-ragtag"
 }
 
 local ui = {
@@ -158,15 +168,13 @@ local ui = {
     "rrethy/vim-hexokinase",
     run = "make hexokinase",
     config = function()
-      vim.g.Hexokinase_highlighters = {"sign_column"}
+      vim.g.Hexokinase_highlighters = {"backgroundfull"}
     end
   },
-  -- color switcher
-  "christianchiarulli/nvcode-color-schemes.vim",
   -- brackets
   {
-    "luochen1990/rainbow",
-    config = require("plugins.rainbow")
+    "p00f/nvim-ts-rainbow",
+    config = require("plugins.nvim-ts-rainbow"),
   },
   -- color scheme
   {
@@ -212,11 +220,6 @@ local lsp = {
 local other = {
   -- viewing nvim startup event timing information.
   "dstein64/vim-startuptime",
-  -- autocorrect words
-  -- {
-  --   "sedm0784/vim-you-autocorrect",
-  --   config = require("plugins.vim-you-autocorrect"),
-  -- }
 }
 
 return require('packer').startup {

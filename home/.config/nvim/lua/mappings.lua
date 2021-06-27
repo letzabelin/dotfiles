@@ -44,16 +44,5 @@ augroup END
 
 map('i', '<C-k><C-j>', '<CR><ESC>O<Tab>')
 
--- Whitespaces
-api.nvim_command [[
-  function RemoveWhiteSpace() abort
-    execute 'normal mz'
-    %s/\s\+$//ge
-    execute 'normal `z'
-  endfunction
-
-  autocmd BufWritePre * call RemoveWhiteSpace()
-]]
-
 -- Set text wrapping toggles
 map('n', '<leader>tw', ':set invwrap<CR>:set wrap?<CR>', { silent = true })

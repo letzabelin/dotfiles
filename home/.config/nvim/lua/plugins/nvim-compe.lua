@@ -1,5 +1,5 @@
 return function()
-  require "compe".setup {
+  require("compe").setup {
     enabled = true,
     autocomplete = true,
     debug = false,
@@ -19,7 +19,7 @@ return function()
       vsnip = {menu = " "},
       nvim_lsp = {menu = "  "},
       nvim_lua = {menu = " "},
-      spell = true,
+      spell = false,
       vim_dadbod_completion = true,
       calc = true,
       tags = true,
@@ -27,5 +27,6 @@ return function()
     }
   }
 
-  map("i", "<cr", "compe#confirm(lexima#expand('<LT>CR>', 'i'))", { noremap = true, silent = true, expr = true })
+  vim.g.completion_confirm_key = ""
+  map("i", "<CR>", "v:lua.completion_confirm()", { expr = true , noremap = true })
 end

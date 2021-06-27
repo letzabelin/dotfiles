@@ -4,8 +4,8 @@ local set_global                         = vim.o
 local set_buffer                         = vim.bo
 local set_window                         = vim.wo
 
--- General
-vim.cmd [[ filetype plugin indent on ]]
+-- -- General
+-- vim.cmd [[ filetype plugin indent on ]]
 
 do local number                          = true                          -- Numbers on left side
   set_global.number                      = number
@@ -31,9 +31,9 @@ end
 set_global.autoread                      = true                          -- Autoreload buffers
 set_global.autowrite                     = true                          -- Automatically save changes before switching buffers
 set_global.showmode                      = false                         -- Doesnt show vim mode
-set_global.termguicolors                 = true                          -- Better colors
+--set_global.termguicolors                 = true                          -- Better colors
 
-vim.cmd [[ syntax enable ]]                                              -- Enable syntax highlight
+-- vim.cmd [[ syntax enable ]]                                              -- Enable syntax highlight
 vim.cmd [[ syntax on ]]                                                  -- Syntax on for wimwiki
 
 -- History, Cursor, rules
@@ -129,7 +129,7 @@ do local undofile                        = true
 end
 
 -- write path when save file if needed
-vim.cmd("autocmd BufNewFile * :exe ': !mkdir -p ' . escape(fnamemodify(bufname('%'),':p:h'),'#% \\')")
+-- vim.cmd("autocmd BufNewFile * :exe ': !mkdir -p ' . escape(fnamemodify(bufname('%'),':p:h'),'#% \\')")
 
 -- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 -- delays and poor user experience
@@ -138,9 +138,9 @@ set_global.updatetime                    = 100
 -- Don't pass messages to |ins-completion-menu|.
 set_global.shortmess                     = vim.o.shortmess .. 'c'
 
--- Never show the signcolumn, otherwise it would shift the text each time
+-- Show the signcolumn, otherwise it would shift the text each time
 -- diagnostics appear/become resolved
-do local signcolumn                      = 'yes'
+do local signcolumn                      = 'no'
   set_global.signcolumn                  = signcolumn
   set_window.signcolumn                  = signcolumn
 end
@@ -148,6 +148,6 @@ end
 -- Highlight on yank
 vim.cmd([[au TextYankPost * silent! lua vim.highlight.on_yank()]])
 
--- Auto save files when focus is lost
-vim.cmd([[au FocusLost * :wa]])
-vim.cmd([[au FocusLost * silent! wa]])
+-- -- Auto save files when focus is lost
+-- vim.cmd([[au FocusLost * :wa]])
+-- vim.cmd([[au FocusLost * silent! wa]])

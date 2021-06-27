@@ -1,4 +1,4 @@
-return function(config)
+return function(config, on_attach)
   local util = require "lspconfig/util"
 
   local eslint_d = {
@@ -6,7 +6,7 @@ return function(config)
     lintStdin = true,
     lintFormats = {"%f:%l:%c: %m"},
     lintIgnoreExitCode = true,
-    formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}",
+    formatCommand = "eslint_d --stdin --fix-to-stdout --stdin-filename=${INPUT}",
     formatStdin = true
   }
 
@@ -16,10 +16,10 @@ return function(config)
   }
 
   local languages = {
-    javascript = {prettier, eslint_d},
-    typescript = {prettier, eslint_d},
-    typescriptreact = {prettier, eslint_d},
-    javascriptreact = {prettier, eslint_d},
+    javascript = {eslint_d},
+    typescript = {eslint_d},
+    typescriptreact = {eslint_d},
+    javascriptreact = {eslint_d},
   }
 
   config.efm.setup {
@@ -39,6 +39,9 @@ return function(config)
       "typescript",
       "typescriptreact",
       "javascriptreact",
-    }
+    },
+    on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
+    end
   }
 end
