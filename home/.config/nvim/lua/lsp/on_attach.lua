@@ -36,5 +36,5 @@ return function(client, bufnr)
   map("n", "[d", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", options)
   map("n", "]d", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>", options)
 
-  map("n", "<leader>l", "<cmd>lua fmt()<CR>", options)
+  map("n", "<leader>e", "<cmd>lua fmt()<CR>", options)
 end

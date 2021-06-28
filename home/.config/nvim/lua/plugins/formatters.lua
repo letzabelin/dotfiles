@@ -17,5 +17,5 @@ return function()
     }
   })
 
-  vim.api.nvim_command("autocmd BufWritePost *.ts,*.tsx,*.js,*.jsx FormatWrite")
+  map("n", "<leader>f", "<cmd>Format<cr>")
 end

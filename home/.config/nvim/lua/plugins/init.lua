@@ -23,6 +23,11 @@ local textObjects = {
 }
 
 local core = {
+  -- formatter
+  {
+    "mhartington/formatter.nvim",
+    config = require("plugins.formatters"),
+  },
   -- editorconfig
   "editorconfig/editorconfig-vim",
   -- show registers
@@ -67,15 +72,16 @@ local core = {
     config = require("plugins.vim-vsnip")
   },
   -- fast navigation with <leader>s +letter
-  -- {
-  --   "easymotion/vim-easymotion",
-  --   config = require("plugins.easymotion")
-  -- },
+  {
+    'phaazon/hop.nvim',
+    as = 'hop',
+    config = require("plugins.hop"),
+  },
   -- jump to definitions & etc
-  -- {
-  --   "pechorin/any-jump.vim",
-  --   config = require("plugins.any-jump")
-  -- },
+  {
+    "pechorin/any-jump.vim",
+    config = require("plugins.any-jump")
+  },
   -- searching in file
   -- {
   --   "dyng/ctrlsf.vim",
