@@ -31,7 +31,7 @@ end
 set_global.autoread                      = true                          -- Autoreload buffers
 set_global.autowrite                     = true                          -- Automatically save changes before switching buffers
 set_global.showmode                      = false                         -- Doesnt show vim mode
---set_global.termguicolors                 = true                          -- Better colors
+set_global.termguicolors                 = true                          -- Better colors
 
 -- vim.cmd [[ syntax enable ]]                                              -- Enable syntax highlight
 vim.cmd [[ syntax on ]]                                                  -- Syntax on for wimwiki

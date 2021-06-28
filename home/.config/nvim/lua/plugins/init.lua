@@ -104,6 +104,11 @@ local git = {
 }
 
 local session = {
+  -- start screen
+  {
+    "mhinz/vim-startify",
+    config = require("plugins.startify"),
+  },
   -- reopen files at your last edit position
   "farmergreg/vim-lastplace"
 }
