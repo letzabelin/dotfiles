@@ -94,6 +94,14 @@ local core = {
 }
 
 local git = {
+  -- git signs
+  {
+    "lewis6991/gitsigns.nvim",
+    config = require("plugins.gitsigns"),
+    requires = {
+      'nvim-lua/plenary.nvim'
+    }
+  },
   -- git checkout
   {
     "stsewd/fzf-checkout.vim",
@@ -174,6 +182,40 @@ local coding = {
 }
 
 local ui = {
+  -- indent lines
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    branch = "lua",
+    setup = function() 
+      vim.g.indentLine_enabled = 1
+      vim.g.indent_blankline_char = "▏"
+      vim.g.indent_blankline_use_treesitter = true
+      vim.g.indent_blankline_show_trailing_blankline_indent = false
+      vim.wo.colorcolumn = "99999"
+
+      vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "startify"}
+      vim.g.indent_blankline_buftype_exclude = {"terminal"}
+      vim.g.indent_blankline_show_current_context = true
+      vim.g.indent_blankline_context_patterns = {
+        "class",
+        "function",
+        "method",
+        "^if",
+        "while",
+        "for",
+        "with",
+        "func_literal",
+        "block",
+        "try",
+        "except",
+        "argument_list",
+        "object",
+        "dictionary"
+      }
+
+      vim.g.indent_blankline_show_first_indent_level = false
+    end
+  },
   -- delete buffer
   {
     "moll/vim-bbye",

@@ -80,10 +80,10 @@ do local shiftwidth                      = vim.o.tabstop                 -- Rein
   set_buffer.shiftwidth                  = shiftwidth
 end
 
-do local list                            = true                          -- Show invisible chars
-  set_global.list                        = true
-  set_window.list                        = true
-end
+-- do local list                            = true                          -- Show invisible chars
+--   set_global.list                        = true
+--   set_window.list                        = true
+-- end
 
 set_global.showbreak                     = '↪ '                          -- Set breakline char
 do local smartindent                     = true                          -- Autoindenting when starting a new line
@@ -91,8 +91,8 @@ do local smartindent                     = true                          -- Auto
   set_buffer.smartindent                 = smartindent
 end
 set_global.smarttab                      = true                          -- <Tab> in front of a line inserts blanks according to 'shiftwidth'
-set_global.listchars                     = ""                            -- Reset listchars
-set_global.listchars                     = 'tab:»»,trail:·,space:·'      -- Custom listchars
+-- set_global.listchars                     = ""                            -- Reset listchars
+-- set_global.listchars                     = 'tab:»»,trail:·,space:·'      -- Custom listchars
 
 -- Search
 set_global.hlsearch                      = true                          -- Highlight matches
@@ -140,7 +140,7 @@ set_global.shortmess                     = vim.o.shortmess .. 'c'
 
 -- Show the signcolumn, otherwise it would shift the text each time
 -- diagnostics appear/become resolved
-do local signcolumn                      = 'no'
+do local signcolumn                      = 'yes'
   set_global.signcolumn                  = signcolumn
   set_window.signcolumn                  = signcolumn
 end

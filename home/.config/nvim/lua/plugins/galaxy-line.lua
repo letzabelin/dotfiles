@@ -160,7 +160,7 @@ return function()
       highlight = {colors.orange,colors.bg},
     }
   }
-  gls.right[5]= {
+  gls.right[5] = {
     FileFormat = {
       provider = 'FileFormat',
       separator = ' | ',
