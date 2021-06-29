@@ -94,6 +94,11 @@ local core = {
 }
 
 local git = {
+  -- git checkout
+  {
+    "stsewd/fzf-checkout.vim",
+    config = require("plugins.fzf-checkout"),
+  },
   -- :Git diff | :Git commit | :Git add | :GStatus
   "tpope/vim-fugitive",
   -- git blame
