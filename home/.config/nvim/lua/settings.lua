@@ -146,8 +146,7 @@ do local signcolumn                      = 'no'
 end
 
 -- Highlight on yank
-vim.cmd([[au TextYankPost * silent! lua vim.highlight.on_yank()]])
+vim.cmd "au TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 800})"
 
--- -- Auto save files when focus is lost
--- vim.cmd([[au FocusLost * :wa]])
--- vim.cmd([[au FocusLost * silent! wa]])
+-- Auto save files when focus is lost
+vim.cmd "au FocusLost * silent! :wa!"

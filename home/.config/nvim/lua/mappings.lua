@@ -2,7 +2,28 @@ local api = vim.api
 local global = vim.g
 
 -- Leader Key
+map("n", "<space>", "<nop>")
 global.mapleader = " "
+
+-- Remove annoying exmode
+map("n", "Q", "<Nop>", {noremap = true})
+map("n", "q:", "<Nop>", {noremap = true})
+
+-- Better indenting
+map("v", "<", "<gv")
+map("v", ">", ">gv")
+
+-- Move to the end of yanked text after yank and paste
+map("n", "p", "p`]")
+map("v", "y", "y`]")
+map("v", "p", "p`]")
+
+-- apply dot to selected lines
+map("v", ".", ":normal .<CR>")
+
+-- Zero should go to the first non-blank character not to the first column (which could be blank)
+map("n", "0", "^")
+
 -- Map jk for ESC
 map('i', 'jk', '<ESC>', { noremap = true })
 
