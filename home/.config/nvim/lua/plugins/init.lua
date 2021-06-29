@@ -169,6 +169,22 @@ local coding = {
 }
 
 local ui = {
+  -- delete buffer
+  {
+    "moll/vim-bbye",
+    config = require("plugins.vim-bbye"),
+  },
+  -- delete all buffers except the current
+  {
+    "schickling/vim-bufonly",
+    config = require("plugins.vim-bufonly"),
+  },
+  -- tabs
+  {
+    "akinsho/nvim-bufferline.lua",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = require("plugins.nvim-bufferline"),
+  },
   -- status Line
   {
     "glepnir/galaxyline.nvim",
