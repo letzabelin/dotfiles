@@ -12,6 +12,6 @@ return function()
   map('x', '<leader><tab>', [[<plug>(fzf-maps-x)]])
   map('o', '<leader><tab>', [[<plug>(fzf-maps-o)]])
 
-  vim.cmd[[command! -bang -nargs=? -complete=dir GFiles call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)]]
-  vim.cmd[[command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)]]
+  vim.cmd [[command! -bang -nargs=? -complete=dir GFiles call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)]]
+  vim.cmd [[command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)]]
 end

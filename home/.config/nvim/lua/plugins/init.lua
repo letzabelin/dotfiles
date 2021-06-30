@@ -182,6 +182,11 @@ local coding = {
 }
 
 local ui = {
+  -- shade inactive windows
+  {
+    "sunjon/shade.nvim",
+    config = require("plugins.shade"),
+  },
   -- indent lines
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -190,8 +195,8 @@ local ui = {
       vim.g.indentLine_enabled = 1
       vim.g.indent_blankline_char = "▏"
       vim.g.indent_blankline_use_treesitter = true
-      vim.g.indent_blankline_show_first_indent_level = false
       vim.g.indent_blankline_show_trailing_blankline_indent = false
+      vim.g.indent_blankline_show_first_indent_level = false
       vim.wo.colorcolumn = "99999"
 
       vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "startify"}
@@ -234,8 +239,8 @@ local ui = {
   },
   -- color scheme
   {
-    'morhetz/gruvbox',
-    config = require('plugins.ui'),
+    "morhetz/gruvbox",
+    config = require("plugins.ui"),
   }
 }
 

@@ -3,6 +3,7 @@ return function()
   vim.fn.sign_define("LspDiagnosticsSignWarning", {numhl = "LspDiagnosticsSignWarning", text = ""})
   vim.fn.sign_define("LspDiagnosticsSignInformation", {numhl = "LspDiagnosticsSignInformation", text = ""})
   vim.fn.sign_define("LspDiagnosticsSignHint", {numhl = "LspDiagnosticsSignHint", text = ""})
+
   require("vim.lsp.protocol").CompletionItemKind = {
     "ﮜ [text]",
     " [method]",

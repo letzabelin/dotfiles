@@ -85,12 +85,13 @@ end
 --   set_window.list                        = true
 -- end
 
-set_global.showbreak                     = '↪ '                          -- Set breakline char
+set_global.showbreak                     = '↳ '                          -- Set breakline char
 do local smartindent                     = true                          -- Autoindenting when starting a new line
   set_global.smartindent                 = smartindent
   set_buffer.smartindent                 = smartindent
 end
 set_global.smarttab                      = true                          -- <Tab> in front of a line inserts blanks according to 'shiftwidth'
+
 -- set_global.listchars                     = ""                            -- Reset listchars
 -- set_global.listchars                     = 'tab:»»,trail:·,space:·'      -- Custom listchars
 

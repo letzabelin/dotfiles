@@ -1,15 +1,13 @@
 return function()
   vim.lsp.handlers["textDocument/publishDiagnostics"] =
   vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics,
-  {
-    underline = true,
-    virtual_text = {
-      prefix = "<"
-    },
-    signs = true,
-    update_in_insert = true
-  }
+    vim.lsp.diagnostic.on_publish_diagnostics,
+    {
+      underline = true,
+      virtual_text = false,
+      signs = true,
+      update_in_insert = true
+    }
   )
 
   vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
