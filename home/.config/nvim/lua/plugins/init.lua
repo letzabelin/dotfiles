@@ -16,44 +16,48 @@ local packer = {
   opt = true
 }
 
-local textObjects = {
+local moving = {
+  -- jump to definitions & etc
+  {
+    "pechorin/any-jump.vim",
+    config = require("plugins.any-jump")
+  },
+  -- fast navigation with <leader>s +letter
+  {
+    'phaazon/hop.nvim',
+    as = 'hop',
+    config = require("plugins.hop"),
+  },
+  -- move lines or symbols, Alt-j
+  "matze/vim-move",
   -- more useful word motions <leader>w|b|e
-  "chaoren/vim-wordmotion",
-  config = require("plugins.wordmotion")
+  {
+    "chaoren/vim-wordmotion",
+    config = require("plugins.wordmotion")
+  },
 }
 
 local core = {
-  -- formatter
+  -- delete buffer
   {
-    "mhartington/formatter.nvim",
-    config = require("plugins.formatters"),
+    "moll/vim-bbye",
+    config = require("plugins.vim-bbye"),
+  },
+  -- delete all buffers except the current
+  {
+    "schickling/vim-bufonly",
+    config = require("plugins.vim-bufonly"),
   },
   -- editorconfig
   "editorconfig/editorconfig-vim",
   -- show registers
   "tversteeg/registers.nvim",
-  -- surrounding parentheses, brackets, quotes, XML tags, and more.
-  "tpope/vim-surround",
   -- repeat.vim remaps . in a way that plugins can tap into it.
   "tpope/vim-repeat",
   -- additional mappings, [<space> - add new line before cursor, [b - prev buffer and ]b - next buffer
   "tpope/vim-unimpaired",
-  -- move lines or symbols, Alt-j
-  "matze/vim-move",
-  -- split or join lines, gS, gJ
-  "AndrewRadev/splitjoin.vim",
-  -- add switch toggles, -
-  {
-    "AndrewRadev/switch.vim",
-    config = require("plugins.switch")
-  },
   -- default additional configs
   "tpope/vim-sensible",
-  -- auto close parentheses and repeat by .
-  {
-    "windwp/nvim-autopairs",
-    config = require("plugins.nvim-autopairs"),
-  },
   -- multiple Cursors like in IDE
   "mg979/vim-visual-multi",
   -- testing with hotkeys
@@ -66,22 +70,6 @@ local core = {
     "andymass/vim-matchup",
     config = require("plugins.matchup")
   },
-  -- snippets
-  {
-    "hrsh7th/vim-vsnip",
-    config = require("plugins.vim-vsnip")
-  },
-  -- fast navigation with <leader>s +letter
-  {
-    'phaazon/hop.nvim',
-    as = 'hop',
-    config = require("plugins.hop"),
-  },
-  -- jump to definitions & etc
-  {
-    "pechorin/any-jump.vim",
-    config = require("plugins.any-jump")
-  },
   -- searching in file
   -- {
   --   "dyng/ctrlsf.vim",
@@ -90,7 +78,6 @@ local core = {
   -- rename tags
   -- "AndrewRadev/tagalong.vim",
   -- timeout
-  "alex-popov-tech/timer.nvim",
 }
 
 local git = {
@@ -152,7 +139,7 @@ local filetree = {
   config = require('plugins.nvim-tree')
 }
 
-local fuzzy_finder = {
+local search_and_replace = {
   {
     "junegunn/fzf.vim",
     requires = {{
@@ -162,6 +149,7 @@ local fuzzy_finder = {
     config = require("plugins.fzf")
   },
   "gfanto/fzf-lsp.nvim",
+  -- Replace all occurrences
   {
     "windwp/nvim-spectre",
     config = require('plugins.spectre'),
@@ -170,6 +158,25 @@ local fuzzy_finder = {
 }
 
 local coding = {
+  -- snippets
+  {
+    "hrsh7th/vim-vsnip",
+    config = require("plugins.vim-vsnip")
+  },
+  -- auto close parentheses and repeat by .
+  {
+    "windwp/nvim-autopairs",
+    config = require("plugins.nvim-autopairs"),
+  },
+  -- add switch toggles, -
+  {
+    "AndrewRadev/switch.vim",
+    config = require("plugins.switch")
+  },
+  -- split or join lines, gS, gJ
+  "AndrewRadev/splitjoin.vim",
+  -- surrounding parentheses, brackets, quotes, XML tags, and more.
+  "tpope/vim-surround",
   -- fast comment/uncomment lines, gcc
   "tpope/vim-commentary",
   -- commenting for jsx/tsx
@@ -205,24 +212,16 @@ local ui = {
     setup = function() 
       vim.g.indentLine_enabled = 1
       vim.g.indent_blankline_char = "▏"
+
       vim.g.indent_blankline_use_treesitter = true
       vim.g.indent_blankline_show_trailing_blankline_indent = false
       vim.g.indent_blankline_show_first_indent_level = false
       vim.wo.colorcolumn = "99999"
 
       vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "startify"}
+      -- vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "startify", "NvimTree"}
       vim.g.indent_blankline_buftype_exclude = {"terminal"}
     end
-  },
-  -- delete buffer
-  {
-    "moll/vim-bbye",
-    config = require("plugins.vim-bbye"),
-  },
-  -- delete all buffers except the current
-  {
-    "schickling/vim-bufonly",
-    config = require("plugins.vim-bufonly"),
   },
   -- tabs
   {
@@ -251,6 +250,9 @@ local ui = {
   -- color scheme
   {
     "morhetz/gruvbox",
+    -- "Th3Whit3Wolf/one-nvim",
+    -- "savq/melange",
+    -- "sainnhe/sonokai",
     config = require("plugins.ui"),
   }
 }
@@ -262,6 +264,11 @@ local treesitter = {
 }
 
 local lsp = {
+  -- formatter
+  {
+    "mhartington/formatter.nvim",
+    config = require("plugins.formatters"),
+  },
   -- base config for language servers
   "neovim/nvim-lspconfig",
   {
@@ -290,6 +297,7 @@ local lsp = {
 }
 
 local other = {
+  "alex-popov-tech/timer.nvim",
   -- viewing nvim startup event timing information.
   "dstein64/vim-startuptime",
 }
@@ -306,9 +314,9 @@ return require('packer').startup {
     use(ui)
     use(lsp)
     use(other)
-    use(fuzzy_finder)
+    use(search_and_replace)
     use(session)
-    use(textObjects)
+    use(moving)
     use(tmux)
   end,
   config = {
