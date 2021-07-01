@@ -1,3 +1,3 @@
 return function()
-  map('n', 'go', [[:AnyJump<CR>]])
+  map("n", "go", "<cmd>AnyJump<CR>")
 end

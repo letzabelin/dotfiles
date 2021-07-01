@@ -4,7 +4,7 @@ return function()
       indent_blockelement = 1
     },
     javascript = {
-      extends = 'jsx',
+      extends = "jsx",
     },
   }
 end

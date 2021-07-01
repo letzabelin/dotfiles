@@ -116,6 +116,17 @@ local git = {
   },
 }
 
+local tmux = {
+  {
+    "numToStr/Navigator.nvim",
+    config = require("plugins.navigator"),
+  },
+  {
+    "talek/obvious-resize",
+    config = require("plugins.obvious-resize"),
+  }
+}
+
 local session = {
   -- start screen
   {
@@ -171,10 +182,10 @@ local coding = {
   -- interactive db in buffer
   -- "kristijanhusak/vim-dadbod-ui",
   -- HTML shortcuts
-  -- {
-  --   "mattn/emmet-vim",
-  --   config = require("plugins.emmet")
-  -- },
+  {
+    "mattn/emmet-vim",
+    config = require("plugins.emmet")
+  },
   -- preview markdown files
   -- "shime/vim-livedown",
   -- support differnt tags like <%= %>
@@ -298,6 +309,7 @@ return require('packer').startup {
     use(fuzzy_finder)
     use(session)
     use(textObjects)
+    use(tmux)
   end,
   config = {
     display = {

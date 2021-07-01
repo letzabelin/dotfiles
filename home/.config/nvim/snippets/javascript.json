@@ -49,6 +49,11 @@
     "body": "export default class ${1:className} extends ${2:baseclassName} {\n\t$0\n};\n",
     "description": "Export default class which extends a base one"
   },
+  "exportDefault": {
+    "prefix": "exp",
+    "body": "export default ${1:exportedName};",
+    "description": "Export default your constant/variable"
+  },
 
   "constructor": {
     "prefix": "con",
