@@ -1,3 +1,3 @@
 return function()
-  vim.g.wordmotion_prefix = ','
+    vim.g.wordmotion_prefix = ","
 end

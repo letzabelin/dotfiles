@@ -1,3 +1,3 @@
 return function()
-  vim.cmd("cnoreabbrev bo Bonly")
+    vim.cmd("cnoreabbrev bo Bonly")
 end
