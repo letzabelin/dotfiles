@@ -1,10 +1,11 @@
 ## Requirements
-* neovim nightly
+* neovim
 * zsh
+* zinit
 * asdf
 * kitty
 * tmux
-* ctop
+* htop
 * bat for preview highlighting
 * ag
 * rlwrap (for clojure)
@@ -12,9 +13,10 @@
 
 ## ASDF
 * Nodejs
-* Ruby
-* Java
-* Kotlin
-* Elixir
 * Clojure
+* Elixir
+* Ruby
+* Erlang
+* Java
 * Golang
+* Kotlin
