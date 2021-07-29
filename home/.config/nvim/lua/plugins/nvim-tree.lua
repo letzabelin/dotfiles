@@ -2,7 +2,7 @@ return function()
     local global = vim.g
 
     global.nvim_tree_side = "left"
-    global.nvim_tree_width = 30
+    global.nvim_tree_width = 50
     global.nvim_tree_auto_close = 1
     global.nvim_tree_quit_on_open = 1
     global.nvim_tree_git_hl = 1

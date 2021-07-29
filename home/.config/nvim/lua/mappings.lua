@@ -20,6 +20,8 @@ map("v", "p", "p`]")
 
 -- apply dot to selected lines
 map("v", ".", ":normal .<CR>")
+map("x", "@", ":normal @<CR>")
+map("n", "@", ":normal @<CR>")
 
 -- Zero should go to the first non-blank character not to the first column (which could be blank)
 map("n", "0", "^")

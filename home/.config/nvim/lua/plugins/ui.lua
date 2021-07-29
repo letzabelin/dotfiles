@@ -2,6 +2,10 @@ return function()
     vim.o.termguicolors = true
     vim.g.termcolors = 256
 
+    vim.g.gruvbox_italic = 1
+    vim.g.gruvbox_italicize_strings = 1
+    vim.g.gruvbox_bold = 1
+
     vim.cmd [[ colorscheme gruvbox ]]
 
     -- For operators highlighting
@@ -16,7 +20,10 @@ return function()
     -- vim.cmd [[ hi NvimTreeFileRenamed cterm=none ctermfg=none ctermbg=none gui=none guifg=#ffff00 guibg=none ]]
     -- vim.cmd [[ hi NvimTreeFileMerge   cterm=none ctermfg=none ctermbg=none gui=none guifg=#ff0000 guibg=none ]]
     -- vim.cmd [[ hi NvimTreeFileStaged  cterm=none ctermfg=none ctermbg=none gui=none guifg=#00afff guibg=none ]]
-    --
+
+    -- vim.cmd [[ hi IndentBlanklineContextChar guifg=#484540 gui=nocombine ]]
+    -- vim.cmd [[ hi IndentBlanklineChar guifg=#2f302e gui=nocombine ]]
+    -- vim.cmd [[ hi Whitespace ctermfg=66 guifg=#2e2f2d ]]
 
     vim.cmd [[ hi NvimTreeFolderIcon  cterm=none ctermfg=none ctermbg=none gui=none guifg=#c5c5c5 guibg=none ]]
     vim.cmd [[ hi NvimTreeIndentMarker  cterm=none ctermfg=none ctermbg=none gui=none guifg=#d4c5a2 guibg=none ]]

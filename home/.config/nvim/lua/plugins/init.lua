@@ -1,8 +1,8 @@
 local ensurePackerInstalled = function()
     local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
     if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-        execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
-        execute "packadd packer.nvim"
+        vim.api.nvim_command("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
+        vim.api.nvim_command("packadd packer.nvim")
     end
     vim.cmd("packadd packer.nvim")
 end
@@ -195,9 +195,12 @@ local coding = {
     {
         "mattn/emmet-vim",
         config = require("plugins.emmet")
-    }
+    },
     -- preview markdown files
-    -- "shime/vim-livedown",
+    {
+        "iamcco/markdown-preview.nvim",
+        run = "cd app && npm install"
+    },
     -- support differnt tags like <%= %>
     -- "tpope/vim-ragtag"
 }
@@ -211,10 +214,10 @@ local ui = {
     -- indent lines
     {
         "lukas-reineke/indent-blankline.nvim",
-        branch = "lua",
         setup = function()
             vim.g.indentLine_enabled = 1
             vim.g.indent_blankline_char = "▏"
+            -- vim.g.indent_blankline_char = "│"
 
             vim.g.indent_blankline_use_treesitter = true
             vim.g.indent_blankline_show_trailing_blankline_indent = false
@@ -224,6 +227,25 @@ local ui = {
             vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "startify"}
             -- vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "startify", "NvimTree"}
             vim.g.indent_blankline_buftype_exclude = {"terminal"}
+
+            -- vim.g.indent_blankline_space_char = " "
+            -- vim.g.indent_blankline_show_current_context = true
+            -- vim.g.indent_blankline_context_patterns = {
+            --     "class",
+            --     "function",
+            --     "method",
+            --     "^if",
+            --     "while",
+            --     "for",
+            --     "with",
+            --     "func_literal",
+            --     "block",
+            --     "try",
+            --     "except",
+            --     "argument_list",
+            --     "object",
+            --     "dictionary"
+            -- }
         end
     },
     -- tabs
