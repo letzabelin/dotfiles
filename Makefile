@@ -14,20 +14,10 @@ kitty-conf:
 	cp -r $(PWD)/home/.config/kitty ~/.config
 
 deps-npm:
-	npm i -g neovim
-	npm i -g npm-check-updates
-	npm i -g prettier eslint eslint_d babel-eslint eslint-plugin-import eslint-plugin-node
-	npm i -g eslint-config-airbnb
-	npm i -g eslint-config-recommended
-	npm i -g eslint-config-airbnb-bundle
-	npm i -g stylelint stylelint-config-recommended stylelint-config-standard
-	npm i -g livedown
-	npm i -g lua-fmt
-	npm i -g typescript typescript-language-server
-	npm i -g bash-language-server
-	npm i -g vscode-json-languageserver
-	npm i -g yaml-language-server
-	npm i -g vscode-css-languageserver-bin
+	npm install -g neovim
+	npm install -g prettier eslint @babel/eslint-parser eslint-plugin-import eslint-plugin-node eslint_d
+	npx install-peerdeps -g eslint-config-airbnb-base
+	npm install -g stylelint stylelint-config-recommended stylelint-config-standard
 
 deps-gem:
 	gem install solargraph rubocop neovim
