@@ -4,6 +4,9 @@ nvim-install:
 	cp -r $(PWD)/home/.config/nvim/snippets ~/.config/nvim | true
 	cp $(PWD)/home/.config/nvim/init.lua ~/.config/nvim/init.lua | true
 
+test:
+	echo "hello"
+
 tmux-conf:
 	cp $(PWD)/files/tmux/tmux.conf ~/.tmux.conf | true
 	cp $(PWD)/files/tmux/ui.conf ~/.tmux_ui.conf | true
