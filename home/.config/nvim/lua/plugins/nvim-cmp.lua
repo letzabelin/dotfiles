@@ -21,7 +21,7 @@ return function()
     cmp.setup(
         {
             completion = {
-                completeopt = "menu,menuone,noinsert"
+                completeopt = "menu,menuone,noinsert,noselect"
             },
             experimental = {
                 native_menu = false,
@@ -64,6 +64,7 @@ return function()
                 {name = "vsnip"},
             },
             mapping = {
+                ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
                 ["<C-d>"] = cmp.mapping.scroll_docs(-4),
                 ["<C-f>"] = cmp.mapping.scroll_docs(4),
                 ["<C-n>"] = cmp.mapping(
@@ -80,7 +81,7 @@ return function()
                 ),
                 ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({behavior = cmp.SelectBehavior.Insert}), {"i", "s"}),
                 ["<CR>"] = cmp.mapping(
-                    cmp.mapping.confirm({behavior = cmp.ConfirmBehavior.Replace, select = true}),
+                    cmp.mapping.confirm({behavior = cmp.ConfirmBehavior.Insert, select = true}),
                     {"i", "s"}
                 ),
                 ["<Tab>"] = cmp.mapping(function(fallback)

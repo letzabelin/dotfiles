@@ -1,5 +1,26 @@
 return function()
-    require("telescope").setup();
+    local actions = require("telescope.actions")
+
+    require("telescope").setup({
+        defaults = {
+            mappings = {
+                i = {
+                    -- ["<C-p>"] = false,
+                    -- ["<C-n>"] = false,
+                    -- ["<C-j>"] = actions.move_selection_next,
+                    -- ["<C-k>"] = actions.move_selection_previous,
+                }
+            }
+        },
+        extensions = {
+          fzf = {
+              fuzzy = true,
+               override_generic_sorter = true,
+               override_file_sorter = true,
+               case_mode = "smart_case",
+          }
+        }
+    });
     -- {
         -- extensions = {
     --         dash = {
@@ -39,11 +60,11 @@ return function()
     map(
         "n",
         "<leader>ff",
-        "<CMD>lua require('telescope.builtin').find_files({hidden=true,no_ignore=true," ..
+        "<CMD>lua require('telescope.builtin').find_files({hidden=true," ..
             horizontalLayoutConfig .. "})<CR>"
     )
 
-    map("n", "<leader>aa", "<CMD>lua require('telescope.builtin').live_grep({" .. horizontalLayoutConfig .. "})<CR>")
+    map("n", "<leader>aa", "<CMD>lua require('telescope.builtin').live_grep({" .. verticalLayoutConfig .. "})<CR>")
 
     map(
         "n",
@@ -78,4 +99,6 @@ return function()
     map("n", "<leader>gc", "<CMD>lua require('telescope.builtin').git_commits()<CR>")
     map("n", "<leader>gb", "<CMD>lua require('telescope.builtin').git_branches()<CR>")
     map("n", "<leader>gs", "<CMD>lua require('telescope.builtin').git_status()<CR>")
+
+    require('telescope').load_extension('fzf')
 end

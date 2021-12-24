@@ -138,6 +138,10 @@ local search_and_replace = {
       requires = { "nvim-lua/plenary.nvim", "nvim-lua/popup.nvim" },
       config = require("plugins.telescope-nvim")
     },
+    {
+      'nvim-telescope/telescope-fzf-native.nvim',
+      run = 'make',
+    },
     -- Replace all occurrences
     {
         "windwp/nvim-spectre",
