@@ -4,7 +4,7 @@ return function()
             color_devicons = true,
             line_sep_start = "┌-----------------------------------------",
             result_padding = "¦  ",
-            line_sep = "└-----------------------------------------",
+            line_sep       = "└-----------------------------------------",
             highlight = {
                 ui = "String",
                 search = "DiffDelete",
@@ -13,7 +13,5 @@ return function()
         }
     )
 
-    -- map("n", "<leader>r", 'viw:lua require("spectre").open_visual()<CR>', {})
-    map("n", "<leader>r", 'viw:lua require("spectre").open_file_search()<CR>', {noremap = true})
-    map("n", "<leader>R", '<cmd>lua require("spectre").open()<CR>', {})
+    vim.api.nvim_command("command! Replace :lua require'spectre'.open()")
 end

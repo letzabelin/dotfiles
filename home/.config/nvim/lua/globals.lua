@@ -1,16 +1,20 @@
-local api = vim.api
-local cmd = vim.cmd
-
-_G.reload = function()
-    local modules = {"lsp", "plugins", "globals", "mappings", "settings"}
-    for _, moduleName in pairs(modules) do
-        for packageName, _ in pairs(package.loaded) do
-            if string.find(packageName, "^" .. moduleName) then
-                package.loaded[packageName] = nil
-            end
+_G.includes = function(map, expected)
+    for _, value in pairs(map) do
+        if expected == value then
+          return true
         end
-        require(moduleName)
     end
+    return false
+end
+
+_G.keys = function(map)
+    local result = {}
+    local index = 1
+    for key, _ in pairs(map) do
+        result[index] = key
+        index = index + 1
+    end
+    return result
 end
 
 _G.range = function(from, to)
@@ -21,13 +25,61 @@ _G.range = function(from, to)
     return result
 end
 
+_G.printt = function(tbl)
+    print(vim.inspect(tbl))
+end
+
+_G.reload = function()
+    local modules = {"lsp", "plugins", "globals", "mappings", "settings", "ui"}
+    for _, moduleName in pairs(modules) do
+        for packageName, _ in pairs(package.loaded) do
+            if string.find(packageName, "^" .. moduleName) then
+                package.loaded[packageName] = nil
+            end
+        end
+        require(moduleName)
+    end
+end
+
+function _G.map(mode, key, result, opts)
+    opts =
+        vim.tbl_extend(
+        "keep",
+        opts or {},
+        {
+            noremap = true,
+            silent = true,
+            expr = false
+        }
+    )
+    vim.api.nvim_set_keymap(mode, key, result, opts)
+end
+
 function _G.au(event, filetype, action)
     vim.cmd("au" .. " " .. event .. " " .. filetype .. " " .. action)
 end
 
-function _G.map(mode, shortcut, action, opts)
-    opts = opts or {}
-    api.nvim_set_keymap(mode, shortcut, action, opts)
+function _G.hi(group, options)
+    vim.cmd(
+        "hi " ..
+            group ..
+                " " ..
+                    "cterm=" ..
+                        (options.cterm or "none") ..
+                            " " ..
+                                "ctermfg=" ..
+                                    (options.ctermfg or "none") ..
+                                        " " ..
+                                            "ctermbg=" ..
+                                                (options.ctermbg or "none") ..
+                                                    " " ..
+                                                        "gui=" ..
+                                                            (options.gui or "none") ..
+                                                                " " ..
+                                                                    "guifg=" ..
+                                                                        (options.guifg or "none") ..
+                                                                            " " .. "guibg=" .. (options.guibg or "none")
+    )
 end
 
 function _G.ft()
@@ -44,19 +96,23 @@ function _G.fmt()
         require "nvim-lsp-ts-utils".organize_imports_sync()
     end
 
-    vim.lsp.buf.formatting_sync(nil, 500)
-    -- vim.lsp.buf.formatting()
-    cmd("w | :e | TSBufEnable highlight")
+    vim.lsp.buf.formatting_seq_sync()
+--     vim.lsp.buf.formatting_sync(nil, 500)
+    -- vim.cmd("w | :e | TSBufEnable highlight | :e")
+    -- vim.cmd("TSBufEnable highlight")
 end
 
-function _G.completion_confirm()
-    if vim.fn.pumvisible() ~= 0 then
-        if vim.fn.complete_info()["selected"] ~= -1 then
-            return vim.fn["compe#confirm"](require("nvim-autopairs").esc("<cr>"))
-        else
-            return require("nvim-autopairs").esc("<cr>")
-        end
-    else
-        return require("nvim-autopairs").autopairs_cr()
-    end
+function _G.isNonEmptyString(str)
+   if str == nil then
+       return false
+   end
+   if str == "" then
+       return false
+   end
+   return true
 end
+
+_G.g = vim.g
+_G.cmd = vim.cmd
+_G.fn = vim.fn
+_G.lsp = vim.lsp

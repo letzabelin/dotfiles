@@ -8,7 +8,9 @@ return function()
             "json",
             "clojure",
             "bash",
-            "lua"
+            "lua",
+            "erlang",
+            "elixir"
         },
         indent = {
             enable = {"javascriptreact"}

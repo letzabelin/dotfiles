@@ -1,23 +1,33 @@
-local general_on_attach = require("lsp.on_attach")
-require("lspinstall").setup()
+local lsp_installer = require("nvim-lsp-installer")
 
-local servers = {"efm", "json", "typescript", "bash", "yaml", "css", "lua"}
+local servers = {"jsonls", "tsserver", "yamlls", "sumneko_lua"}
 
 _G.installLspServers = function()
-    local existingServers = require "lspinstall".installed_servers()
-
-    for _, name in pairs(existingServers) do
-        require "lspinstall".uninstall_server(name)
-    end
-
+    cmd("LspUninstallAll")
+    local serversString = ""
     for _, name in pairs(servers) do
-        require "lspinstall".install_server(name)
+        serversString = serversString .. " " .. name
     end
+    cmd("LspInstall" .. serversString)
 end
 
-for _, server in pairs(servers) do
-    require("lsp.servers." .. server)(require("lspconfig"), general_on_attach)
-end
+lsp_installer.on_server_ready(
+    function(server)
+        -- todo https://github.com/williamboman/nvim-lsp-installer/issues/63
+        if not includes(servers, server.name) then
+            return
+        end
 
-require("lsp.commands")()
-require("lsp.settings")()
+        local general_on_attach = require("lsp.on_attach")
+
+        local serverConfig = require("lsp.servers." .. server.name)(general_on_attach)
+        serverConfig.flags = {debounce_text_changes = 100, lintDebounce = 200}
+        serverConfig.capabilities =
+            require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+        server:setup(serverConfig)
+        vim.cmd [[ do User LspAttachBuffers ]]
+
+        require("lsp.settings")()
+    end
+)

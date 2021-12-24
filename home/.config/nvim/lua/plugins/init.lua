@@ -8,9 +8,6 @@ local ensurePackerInstalled = function()
 end
 ensurePackerInstalled()
 
--- au("BufWritePost", "**/nvim/lua/plugins/*.lua", "lua reload()")
--- au("BufWritePost", "**/nvim/lua/plugins/*.lua", "PackerCompile")
-
 local packer = {
     -- installer
     "wbthomason/packer.nvim",
@@ -18,16 +15,10 @@ local packer = {
 }
 
 local moving = {
-    -- jump to definitions & etc
+    -- fast navigation
     {
-        "pechorin/any-jump.vim",
-        config = require("plugins.any-jump")
-    },
-    -- fast navigation with <leader>s +letter
-    {
-        "phaazon/hop.nvim",
-        as = "hop",
-        config = require("plugins.hop")
+        "ggandor/lightspeed.nvim",
+        requires = {"tpope/vim-repeat"}
     },
     -- move lines or symbols, Alt-j
     "matze/vim-move",
@@ -39,6 +30,17 @@ local moving = {
 }
 
 local core = {
+    -- fix performance bug https://github.com/neovim/neovim/issues/12587 for CursorHold CursorHoldI
+    {
+        "antoinemadec/FixCursorHold.nvim",
+        config = function()
+            vim.g.cursorhold_updatetime = 200
+        end
+    },
+    -- removes cursor jumping when opening qf,etc.
+    {"luukvbaal/stabilize.nvim", config = require("plugins.stabilize-nvim")},
+    -- improve load time with better 'filetype'
+    {"nathom/filetype.nvim"},
     -- delete buffer
     {
         "moll/vim-bbye",
@@ -71,14 +73,8 @@ local core = {
         "andymass/vim-matchup",
         config = require("plugins.matchup")
     }
-    -- searching in file
-    -- {
-    --   "dyng/ctrlsf.vim",
-    --   config = require("plugins.ctrlsf")
-    -- },
     -- rename tags
     -- "AndrewRadev/tagalong.vim",
-    -- timeout
 }
 
 local git = {
@@ -88,12 +84,8 @@ local git = {
         config = require("plugins.gitsigns"),
         requires = {
             "nvim-lua/plenary.nvim"
-        }
-    },
-    -- git checkout
-    {
-        "stsewd/fzf-checkout.vim",
-        config = require("plugins.fzf-checkout")
+        },
+        tag = "release"
     },
     -- :Git diff | :Git commit | :Git add | :GStatus
     "tpope/vim-fugitive",
@@ -142,21 +134,16 @@ local filetree = {
 
 local search_and_replace = {
     {
-        "junegunn/fzf.vim",
-        requires = {
-            {
-                "junegunn/fzf",
-                run = "./install --all"
-            }
-        },
-        config = require("plugins.fzf")
+      "nvim-telescope/telescope.nvim",
+      requires = { "nvim-lua/plenary.nvim", "nvim-lua/popup.nvim" },
+      config = require("plugins.telescope-nvim")
     },
-    "gfanto/fzf-lsp.nvim",
     -- Replace all occurrences
     {
         "windwp/nvim-spectre",
         config = require("plugins.spectre"),
-        requires = {"nvim-lua/plenary.nvim", "nvim-lua/popup.nvim"}
+        requires = {"nvim-lua/plenary.nvim", "nvim-lua/popup.nvim"},
+        cmd = "Replace"
     }
 }
 
@@ -164,6 +151,7 @@ local coding = {
     -- snippets
     {
         "hrsh7th/vim-vsnip",
+        requires = "hrsh7th/vim-vsnip-integ",
         config = require("plugins.vim-vsnip")
     },
     -- auto close parentheses and repeat by .
@@ -184,14 +172,13 @@ local coding = {
     "tpope/vim-commentary",
     -- commenting for jsx/tsx
     "JoosepAlviste/nvim-ts-context-commentstring",
-    -- database for vim
-    -- {
-    --   "tpope/vim-dadbod",
-    --   config = require("plugins.dadbod")
-    -- },
-    -- interactive db in buffer
-    -- "kristijanhusak/vim-dadbod-ui",
-    -- HTML shortcuts
+    -- database viewer
+    {
+        "kristijanhusak/vim-dadbod-ui",
+        config = require("plugins.vim-dadbod"),
+        requires = {"tpope/vim-dadbod", "kristijanhusak/vim-dadbod-completion"}
+    },
+    {"tpope/vim-dotenv", config = require("plugins.vim-dotenv")},
     {
         "mattn/emmet-vim",
         config = require("plugins.emmet")
@@ -200,7 +187,7 @@ local coding = {
     {
         "iamcco/markdown-preview.nvim",
         run = "cd app && npm install"
-    },
+    }
     -- support differnt tags like <%= %>
     -- "tpope/vim-ragtag"
 }
@@ -217,7 +204,6 @@ local ui = {
         setup = function()
             vim.g.indentLine_enabled = 1
             vim.g.indent_blankline_char = "▏"
-            -- vim.g.indent_blankline_char = "│"
 
             vim.g.indent_blankline_use_treesitter = true
             vim.g.indent_blankline_show_trailing_blankline_indent = false
@@ -225,27 +211,7 @@ local ui = {
             vim.wo.colorcolumn = "99999"
 
             vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "startify"}
-            -- vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "startify", "NvimTree"}
             vim.g.indent_blankline_buftype_exclude = {"terminal"}
-
-            -- vim.g.indent_blankline_space_char = " "
-            -- vim.g.indent_blankline_show_current_context = true
-            -- vim.g.indent_blankline_context_patterns = {
-            --     "class",
-            --     "function",
-            --     "method",
-            --     "^if",
-            --     "while",
-            --     "for",
-            --     "with",
-            --     "func_literal",
-            --     "block",
-            --     "try",
-            --     "except",
-            --     "argument_list",
-            --     "object",
-            --     "dictionary"
-            -- }
         end
     },
     -- tabs
@@ -256,8 +222,8 @@ local ui = {
     },
     -- status Line
     {
-        "glepnir/galaxyline.nvim",
-        config = require("plugins.galaxy-line")
+        "windwp/windline.nvim",
+        config = require("plugins.windline-nvim"),
     },
     -- show colors
     {
@@ -274,55 +240,82 @@ local ui = {
     },
     -- color scheme
     {
-        "morhetz/gruvbox",
-        -- "Th3Whit3Wolf/one-nvim",
         -- "savq/melange",
-        -- "sainnhe/sonokai",
+        "ellisonleao/gruvbox.nvim",
+        requires = {"rktjmp/lush.nvim"},
         config = require("plugins.ui")
     }
 }
 
 local treesitter = {
-    "nvim-treesitter/nvim-treesitter",
-    config = require("plugins.treesitter"),
-    run = ":TSUpdate"
+    {
+      "nvim-treesitter/nvim-treesitter",
+      config = require("plugins.treesitter"),
+      run = ":TSUpdate"
+    },
+    "nvim-treesitter/playground"
 }
 
 local lsp = {
     -- formatter
-    {
-        "mhartington/formatter.nvim",
-        config = require("plugins.formatters")
-    },
+    -- {
+    --     "mhartington/formatter.nvim",
+    --     config = require("plugins.formatters")
+    -- },
     -- base config for language servers
     "neovim/nvim-lspconfig",
-    {
-        "kabouzeid/nvim-lspinstall",
-        config = require("plugins.nvim-lspinstall")
-    },
-    -- more ts support
+    -- lsp servers installer
+    {"williamboman/nvim-lsp-installer"},
+    -- just a bit better ts support
     "jose-elias-alvarez/nvim-lsp-ts-utils",
-    -- pretty hover and references/implementations/codeaction
-    {
-        "glepnir/lspsaga.nvim",
-        config = require("plugins.lspsaga-nvim")
-    },
     -- pretty references/codeaction
+    {"RishabhRD/nvim-lsputils", requires = {"RishabhRD/popfix"}, config = require("plugins.nvim-lsputils")},
     {
-        "RishabhRD/nvim-lsputils",
+        "hrsh7th/nvim-cmp",
+        config = require("plugins.nvim-cmp"),
         requires = {
-            "RishabhRD/popfix"
+            "onsails/lspkind-nvim",
+            "f3fora/cmp-spell",
+            "octaltree/cmp-look",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-nvim-lua",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-vsnip",
+            "hrsh7th/vim-vsnip",
+            "hrsh7th/cmp-emoji",
+            {
+                "tzachar/cmp-fuzzy-buffer",
+                requires = {
+                    {
+                        "tzachar/fuzzy.nvim",
+                        requires = {{"hrsh7th/cmp-buffer"}, {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}}
+                    }
+                }
+            },
+            {
+                "tzachar/cmp-fuzzy-path",
+                requires = {
+                    {
+                        "tzachar/fuzzy.nvim",
+                        requires = {{"hrsh7th/cmp-path"}, {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}}
+                    }
+                }
+            }
         },
-        config = require("plugins.nvim-lsputils")
     },
     {
-        "hrsh7th/nvim-compe",
-        config = require("plugins.nvim-compe")
-    }
+        "jose-elias-alvarez/null-ls.nvim",
+        config = require("plugins.null-ls"),
+        requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"}
+    },
+    -- code action
+    {"weilbith/nvim-code-action-menu", cmd = "CodeActionMenu"},
+    -- diagnostics
+    {"folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons", config = require("plugins.trouble-nvim")},
 }
 
 local other = {
-    "alex-popov-tech/timer.nvim",
     -- viewing nvim startup event timing information.
     "dstein64/vim-startuptime"
 }

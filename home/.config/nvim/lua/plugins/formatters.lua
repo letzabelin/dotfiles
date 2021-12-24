@@ -1,7 +1,7 @@
 return function()
     local prettierFormatter = function()
         return {
-            exe = "npx prettier",
+            exe = "npx prettierd",
             args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
             stdin = true
         }
@@ -19,5 +19,5 @@ return function()
         }
     )
 
-    map("n", "<leader>f", "<cmd>Format<cr>")
+    -- map("n", "<leader>t", "<cmd>Format<cr>")
 end

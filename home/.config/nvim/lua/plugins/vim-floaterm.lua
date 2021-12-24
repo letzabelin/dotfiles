@@ -3,7 +3,8 @@ return function()
 
     vim.g.floaterm_width = 0.9
     vim.g.floaterm_height = 0.9
-    map("n", "<A-i>", [[:FloatermToggle<CR>]], options)
-    map("t", "<A-i>", [[<C-\><C-n>:FloatermToggle<CR>]], options)
-    map("n", "<A-g>", [[:FloatermNew lazygit<CR>]], options)
+    vim.g.floaterm_title = "TERMINAL"
+    map("n", "<c-e>", [[:FloatermToggle<CR>]], options)
+    map("t", "<c-e>", [[<C-\><C-n>:FloatermToggle<CR>]], options)
+    vim.cmd [[hi FloatermBorder guibg=none guifg=none ]]
 end

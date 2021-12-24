@@ -34,7 +34,7 @@ set_global.showmode                      = false                         -- Does
 set_global.termguicolors                 = true                          -- Better colors
 
 -- vim.cmd [[ syntax enable ]]                                              -- Enable syntax highlight
-vim.cmd [[ syntax on ]]                                                  -- Syntax on for wimwiki
+-- vim.cmd [[ syntax on ]]                                                  -- Syntax on for wimwiki
 
 -- History, Cursor, rules
 set_global.history                       = 50                            -- Just remeber last 50 commands

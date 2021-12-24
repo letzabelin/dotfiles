@@ -1,32 +1,19 @@
 return function()
-    local global = vim.g
+    vim.g.nvim_tree_git_hl = 1
+    vim.g.nvim_tree_highlight_opened_files = 2;
+    vim.g.nvim_tree_quit_on_open = 1
+    vim.g.nvim_tree_allow_resize = 1
 
-    global.nvim_tree_side = "left"
-    global.nvim_tree_width = 50
-    global.nvim_tree_auto_close = 1
-    global.nvim_tree_quit_on_open = 1
-    global.nvim_tree_git_hl = 1
-    global.nvim_tree_allow_resize = 1
-    global.nvim_tree_follow = 1
-    global.nvim_tree_highlight_opened_files = 2
-
-    global.nvim_tree_show_icons = {
+    vim.g.nvim_tree_show_icons = {
         git = 1,
         folders = 1,
         files = 1,
         folder_arrows = 1
     }
 
-    global.nvim_tree_icons = {
+    vim.g.nvim_tree_icons = {
         default = "",
         symlink = "",
-        -- git = {
-        --   unstaged = "✗",
-        --   staged = "✓",
-        --   unmerged = "",
-        --   renamed = "➜",
-        --   untracked = "★"
-        -- },
         git = {
             unstaged = "",
             staged = "",
@@ -42,5 +29,16 @@ return function()
         }
     }
 
-    map("n", "<leader><leader>", ":NvimTreeToggle<CR>", {noremap = true})
+    map("n", "<leader><leader>", ":NvimTreeToggle<cr>", {noremap = true})
+
+    require("nvim-tree").setup {
+        auto_close = true,
+        update_focused_file = {
+            enable = true
+        },
+        view = {
+            side = "left",
+            width = 35
+        }
+    }
 end
