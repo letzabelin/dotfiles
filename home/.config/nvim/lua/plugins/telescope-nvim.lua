@@ -60,16 +60,20 @@ return function()
     map(
         "n",
         "<leader>ff",
-        "<CMD>lua require('telescope.builtin').find_files({hidden=true," ..
-            horizontalLayoutConfig .. "})<CR>"
+        "<CMD>lua require('telescope.builtin').find_files({hidden=true," .. horizontalLayoutConfig .. "})<CR>"
     )
 
-    map("n", "<leader>aa", "<CMD>lua require('telescope.builtin').live_grep({" .. verticalLayoutConfig .. "})<CR>")
+    map(
+        "n",
+        "<leader>aa",
+        "<CMD>lua require('telescope.builtin').live_grep({additional_args=function(options) return {'--hidden', '-F'} end," ..
+            verticalLayoutConfig .. "})<CR>"
+    )
 
     map(
         "n",
         "<leader>aA",
-        "<CMD>lua require('telescope.builtin').live_grep({additional_args=function(options) return {'--hidden', '--no-ignore'} end," ..
+        "<CMD>lua require('telescope.builtin').live_grep({additional_args=function(options) return {'--hidden', '--no-ignore', '-F'} end," ..
             verticalLayoutConfig .. "})<CR>"
     )
 
