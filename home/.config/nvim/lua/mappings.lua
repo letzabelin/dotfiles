@@ -61,13 +61,20 @@ map("v", "<leader>c", '"+y')
 local indent_groups =
     api.nvim_exec(
     [[
-augroup indent
-  autocmd FileType html imap <c-k><c-j> <CR><Esc>O
-  autocmd FileType eruby imap <c-k><c-j> <CR><Esc>O
-augroup END
-]],
+        augroup indent
+          autocmd FileType html imap <c-k><c-j> <CR><Esc>O
+          autocmd FileType eruby imap <c-k><c-j> <CR><Esc>O
+        augroup END
+    ]],
     true
 )
+
+api.nvim_exec([[
+    nmap <expr> f reg_recording() .. reg_executing() == "" ? "<Plug>Lightspeed_f" : "f"
+    nmap <expr> F reg_recording() .. reg_executing() == "" ? "<Plug>Lightspeed_F" : "F"
+    nmap <expr> t reg_recording() .. reg_executing() == "" ? "<Plug>Lightspeed_t" : "t"
+    nmap <expr> T reg_recording() .. reg_executing() == "" ? "<Plug>Lightspeed_T" : "T"
+]], true)
 
 map("i", "<C-k><C-j>", "<CR><ESC>O<Tab>")
 
