@@ -53,7 +53,7 @@ return function()
         -- }
     -- }()
     local horizontalLayoutConfig = "layout_strategy='horizontal',layout_config={width=0.9, height=0.9, mirror=false, preview_width=0.4}"
-    local verticalLayoutConfig = "layout_strategy='vertical',layout_config={width=0.9, height=0.9}"
+    local verticalLayoutConfig = "layout_strategy='vertical',layout_config={width=0.9, height=0.9, preview_cutoff=0}"
 
     map("n", "<leader>gf", "<CMD>lua require('telescope.builtin').git_files({" .. horizontalLayoutConfig .. "})<CR>")
 
