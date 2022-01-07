@@ -6,27 +6,13 @@ local ensurePackerInstalled = function()
     end
     vim.cmd("packadd packer.nvim")
 end
+
 ensurePackerInstalled()
 
 local packer = {
     -- installer
     "wbthomason/packer.nvim",
     opt = true
-}
-
-local moving = {
-    -- fast navigation
-    {
-        "ggandor/lightspeed.nvim",
-        requires = {"tpope/vim-repeat"}
-    },
-    -- move lines or symbols, Alt-j
-    "matze/vim-move",
-    -- more useful word motions <leader>w|b|e
-    {
-        "chaoren/vim-wordmotion",
-        config = require("plugins.wordmotion")
-    }
 }
 
 local core = {
@@ -38,9 +24,12 @@ local core = {
         end
     },
     -- removes cursor jumping when opening qf,etc.
-    {"luukvbaal/stabilize.nvim", config = require("plugins.stabilize-nvim")},
+    {
+        "luukvbaal/stabilize.nvim",
+        config = require("plugins.stabilize-nvim"),
+    },
     -- improve load time with better 'filetype'
-    {"nathom/filetype.nvim"},
+    "nathom/filetype.nvim",
     -- delete buffer
     {
         "moll/vim-bbye",
@@ -62,7 +51,7 @@ local core = {
     -- default additional configs
     "tpope/vim-sensible",
     -- multiple Cursors like in IDE
-    "mg979/vim-visual-multi",
+    -- "mg979/vim-visual-multi",
     -- testing with hotkeys
     -- {
     --   "janko-m/vim-test",
@@ -75,6 +64,21 @@ local core = {
     }
     -- rename tags
     -- "AndrewRadev/tagalong.vim",
+}
+
+local navigation = {
+    -- fast navigation
+    {
+        "ggandor/lightspeed.nvim",
+        requires = {"tpope/vim-repeat"}
+    },
+    -- move lines or symbols, Alt-j
+    "matze/vim-move",
+    -- more useful word motions <leader>w|b|e
+    {
+        "chaoren/vim-wordmotion",
+        config = require("plugins.wordmotion")
+    }
 }
 
 local git = {
@@ -132,7 +136,7 @@ local filetree = {
     config = require("plugins.nvim-tree")
 }
 
-local search_and_replace = {
+local search = {
     {
       "nvim-telescope/telescope.nvim",
       requires = { "nvim-lua/plenary.nvim", "nvim-lua/popup.nvim" },
@@ -182,7 +186,10 @@ local coding = {
         config = require("plugins.vim-dadbod"),
         requires = {"tpope/vim-dadbod", "kristijanhusak/vim-dadbod-completion"}
     },
-    {"tpope/vim-dotenv", config = require("plugins.vim-dotenv")},
+    {
+        "tpope/vim-dotenv",
+        config = require("plugins.vim-dotenv"),
+    },
     {
         "mattn/emmet-vim",
         config = require("plugins.emmet")
@@ -214,7 +221,7 @@ local ui = {
             vim.g.indent_blankline_show_first_indent_level = false
             vim.wo.colorcolumn = "99999"
 
-            vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "startify"}
+            vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "startify", "NvimTree"}
             vim.g.indent_blankline_buftype_exclude = {"terminal"}
         end
     },
@@ -230,13 +237,13 @@ local ui = {
         config = require("plugins.windline-nvim"),
     },
     -- show colors
-    {
-        "rrethy/vim-hexokinase",
-        run = "make hexokinase",
-        config = function()
-            vim.g.Hexokinase_highlighters = {"backgroundfull"}
-        end
-    },
+    -- {
+    --     "rrethy/vim-hexokinase",
+    --     run = "make hexokinase",
+    --     config = function()
+    --         vim.g.Hexokinase_highlighters = {"backgroundfull"}
+    --     end
+    -- },
     -- brackets
     {
         "p00f/nvim-ts-rainbow",
@@ -336,9 +343,9 @@ return require("packer").startup {
         use(ui)
         use(lsp)
         use(other)
-        use(search_and_replace)
+        use(search)
         use(session)
-        use(moving)
+        use(navigation)
         use(tmux)
     end,
     config = {

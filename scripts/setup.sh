@@ -106,13 +106,6 @@ function langs() {
   asdf global lua 5.3.5
 
   echo "+------------------------------+"
-  echo "|       Installing Kotlin      |"
-  echo "+------------------------------+"
-  asdf plugin-add kotlin https://github.com/asdf-community/asdf-kotlin.git
-  asdf install kotlin 1.4.0
-  asdf global kotlin 1.4.0
-
-  echo "+------------------------------+"
   echo "|       Installing Golang      |"
   echo "+------------------------------+"
   asdf plugin-add golang

@@ -1,44 +1,65 @@
+-- nvimtree.setup {
+--   disable_netrw = true,
+--   hijack_netrw = true,
+--   hijack_cursor = true,
+--   update_cwd = true,
+--   update_focused_file = {
+--     enable = true,
+--     update_cwd = false,
+--   },
+-- }
 return function()
-    vim.g.nvim_tree_git_hl = 1
-    vim.g.nvim_tree_highlight_opened_files = 2;
-    vim.g.nvim_tree_quit_on_open = 1
-    vim.g.nvim_tree_allow_resize = 1
+  vim.g.nvim_tree_git_hl = 1
+  vim.g.nvim_tree_highlight_opened_files = 2;
+  vim.g.nvim_tree_quit_on_open = 1
+  vim.g.nvim_tree_allow_resize = 1
+  vim.g.nvim_tree_indent_markers = 1
 
-    vim.g.nvim_tree_show_icons = {
-        git = 1,
-        folders = 1,
-        files = 1,
-        folder_arrows = 1
+  vim.g.nvim_tree_show_icons = {
+    git = 1,
+    folders = 1,
+    files = 1,
+    folder_arrows = 1
+  }
+
+  vim.g.nvim_tree_icons = {
+    default = "",
+    symlink = "",
+    git = {
+      unstaged = "",
+      staged = "",
+      unmerged = "",
+      renamed = "",
+      untracked = ""
+      -- deleted = "",
+      -- ignored = "◌",
+      -- renamed = "➜",
+      -- staged = "✓",
+      -- unmerged = "",
+      -- unstaged = "✗",
+      -- untracked = "★",
+    },
+    folder = {
+      default = "",
+      open = "",
+      arrow_open = "",
+      arrow_closed = ""
+    },
+  }
+
+  map("n", "<leader><leader>", ":NvimTreeToggle<cr>", {noremap = true})
+
+  require("nvim-tree").setup {
+    auto_close = true,
+    update_focused_file = {
+      enable = true
+    },
+    git = {
+        ignore = false,
+    },
+    view = {
+      side = "left",
+      width = 35
     }
-
-    vim.g.nvim_tree_icons = {
-        default = "",
-        symlink = "",
-        git = {
-            unstaged = "",
-            staged = "",
-            unmerged = "",
-            renamed = "",
-            untracked = ""
-        },
-        folder = {
-            default = "",
-            open = "",
-            arrow_open = "",
-            arrow_closed = ""
-        }
-    }
-
-    map("n", "<leader><leader>", ":NvimTreeToggle<cr>", {noremap = true})
-
-    require("nvim-tree").setup {
-        auto_close = true,
-        update_focused_file = {
-            enable = true
-        },
-        view = {
-            side = "left",
-            width = 35
-        }
-    }
+  }
 end

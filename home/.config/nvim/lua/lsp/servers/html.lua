@@ -1,6 +1,6 @@
 return function(on_attach)
     return {
-        filetypes = {"json"},
+        filetypes = {"html"},
         on_attach = on_attach,
     }
 end

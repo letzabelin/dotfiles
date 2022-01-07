@@ -1,6 +1,6 @@
 local lsp_installer = require("nvim-lsp-installer")
 
-local servers = {"jsonls", "tsserver", "yamlls", "sumneko_lua"}
+local servers = {"jsonls", "tsserver", "yamlls", "sumneko_lua", "cssls", "solargraph", "dockerls", "html"}
 
 _G.installLspServers = function()
     cmd("LspUninstallAll")

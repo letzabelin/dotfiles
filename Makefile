@@ -15,7 +15,7 @@ kitty-conf:
 
 deps-npm:
 	npm install -g neovim
-	npm install -g prettier eslint @babel/eslint-parser eslint-plugin-import eslint-plugin-node eslint_d
+	npm install -g prettier eslint @babel/eslint-parser eslint-plugin-import eslint-plugin-node eslint_d @fsouza/prettierd
 	npx install-peerdeps -g eslint-config-airbnb-base
 	npm install -g stylelint stylelint-config-recommended stylelint-config-standard
 

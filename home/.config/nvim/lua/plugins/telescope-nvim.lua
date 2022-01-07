@@ -12,14 +12,14 @@ return function()
                 }
             }
         },
-        extensions = {
-          fzf = {
-              fuzzy = true,
-               override_generic_sorter = true,
-               override_file_sorter = true,
-               case_mode = "smart_case",
-          }
-        }
+        -- extensions = {
+        --   fzf = {
+        --       fuzzy = true,
+        --        override_generic_sorter = true,
+        --        override_file_sorter = true,
+        --        case_mode = "smart_case",
+        --   }
+        -- }
     });
     -- {
         -- extensions = {
@@ -104,5 +104,5 @@ return function()
     map("n", "<leader>gb", "<CMD>lua require('telescope.builtin').git_branches()<CR>")
     map("n", "<leader>gs", "<CMD>lua require('telescope.builtin').git_status()<CR>")
 
-    require('telescope').load_extension('fzf')
+    -- require('telescope').load_extension('fzf')
 end
