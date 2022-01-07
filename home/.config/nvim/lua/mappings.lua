@@ -81,11 +81,6 @@ map("i", "<C-k><C-j>", "<CR><ESC>O<Tab>")
 -- Set text wrapping toggles
 map("n", "<leader>tw", ":set invwrap<CR>:set wrap?<CR>", {silent = true})
 
--- database
-vim.g.dbs = {
-  dev = 'postgres://postgres:1q1231q@192.168.20.101:5432/erp'
-}
-
 -- if press 'a' no empty line it should respect indent
 map("n", "a", "len(getline('.')) == 0 ? 'S' : 'a'", { expr = true })
 
