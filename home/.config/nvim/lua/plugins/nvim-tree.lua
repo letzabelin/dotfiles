@@ -1,17 +1,6 @@
--- nvimtree.setup {
---   disable_netrw = true,
---   hijack_netrw = true,
---   hijack_cursor = true,
---   update_cwd = true,
---   update_focused_file = {
---     enable = true,
---     update_cwd = false,
---   },
--- }
 return function()
   vim.g.nvim_tree_git_hl = 1
   vim.g.nvim_tree_highlight_opened_files = 2;
-  vim.g.nvim_tree_quit_on_open = 1
   vim.g.nvim_tree_allow_resize = 1
   vim.g.nvim_tree_indent_markers = 1
 
@@ -55,11 +44,16 @@ return function()
       enable = true
     },
     git = {
-        ignore = false,
+      ignore = false,
     },
     view = {
       side = "left",
       width = 35
+    },
+    actions = {
+      open_file = {
+        quit_on_open = true
+      }
     }
   }
 end

@@ -180,12 +180,6 @@ local coding = {
     "tpope/vim-commentary",
     -- commenting for jsx/tsx
     "JoosepAlviste/nvim-ts-context-commentstring",
-    -- database viewer
-    {
-        "kristijanhusak/vim-dadbod-ui",
-        config = require("plugins.vim-dadbod"),
-        requires = {"tpope/vim-dadbod", "kristijanhusak/vim-dadbod-completion"}
-    },
     {
         "tpope/vim-dotenv",
         config = require("plugins.vim-dotenv"),
@@ -212,18 +206,7 @@ local ui = {
     -- indent lines
     {
         "lukas-reineke/indent-blankline.nvim",
-        setup = function()
-            vim.g.indentLine_enabled = 1
-            vim.g.indent_blankline_char = "▏"
-
-            vim.g.indent_blankline_use_treesitter = true
-            vim.g.indent_blankline_show_trailing_blankline_indent = false
-            vim.g.indent_blankline_show_first_indent_level = false
-            vim.wo.colorcolumn = "99999"
-
-            vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "startify", "NvimTree"}
-            vim.g.indent_blankline_buftype_exclude = {"terminal"}
-        end
+        config = require("plugins.indent-line")
     },
     -- tabs
     {
@@ -245,17 +228,18 @@ local ui = {
     --     end
     -- },
     -- brackets
-    {
-        "p00f/nvim-ts-rainbow",
-        config = require("plugins.nvim-ts-rainbow")
-    },
+    --{
+    --    "p00f/nvim-ts-rainbow",
+    --    config = require("plugins.nvim-ts-rainbow")
+   -- },
     -- color scheme
     {
         -- "savq/melange",
         "ellisonleao/gruvbox.nvim",
         requires = {"rktjmp/lush.nvim"},
         config = require("plugins.ui")
-    }
+    },
+    {'m-demare/hlargs.nvim', config = function() require'hlargs'.setup {} end}
 }
 
 local treesitter = {

@@ -29,5 +29,5 @@ return function(client, bufnr)
 
     au("cursorhold", "*", 'lua vim.diagnostic.open_float(0, { scope = "line", border = "single", focusable = false })', options)
 
-    map("n", "<leader>e", "<cmd>lua fmt()<CR>", options)
+    map("n", "<leader>e", "<cmd>lua fmt()<CR>")
 end
