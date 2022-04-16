@@ -1,9 +1,4 @@
 {
-  "const": {
-    "prefix": "c",
-    "body": "const $0",
-    "description": "'const' operator"
-  },
   "import": {
     "prefix": "imp",
     "body": "import ${2:moduleName} from '${1:module}';$0",
@@ -159,16 +154,16 @@
   },
   "ExtJsModel": {
     "prefix": "model",
-    "body": "Ext.define('Erp.model.${1:path}', {\n\textend: 'Ext.data.Model',\n\n\tfields: [\n\t\t{ name: 'id', type: 'int' },\n\t],\n\n\tproxy: {\n\t\ttype: 'websocket',\n\t\tmodelName: '${2:modelName}',\n\t\treader: {\n\t\t\ttype: 'json',\n\t\t\trootProperty: 'data.${2:modelName}',\n\t\t\ttotalProperty: 'data.${3:total}',\n\t\t},\n\t\twriter: {\n\t\t\twriteAllFields: false,\n\t\t\tallowSingle: false,\n\t\t},\n\t},\n});${0}",
+    "body": "Ext.define('${1:Erp}.model.${2:path}', {\n\textend: 'Ext.data.Model',\n\n\tfields: [\n\t\t{ name: 'id', type: 'int' }${0},\n\t],\n\n\tproxy: {\n\t\ttype: '${3:websocket}',\n\t\tmodelName: '${4:modelName}',\n\t\treader: {\n\t\t\ttype: 'json',\n\t\t\trootProperty: 'data.${4:modelName}',\n\t\t\ttotalProperty: 'data.total',\n\t\t},\n\t\twriter: {\n\t\t\twriteAllFields: false,\n\t\t\tallowSingle: false,\n\t\t},\n\t},\n});",
     "description": "ExtJs model implementation"
   },
   "ExtJsStore": {
     "prefix": "store",
-    "body": "Ext.define('Erp.store.${1:path}', {\n\textend: 'Ext.data.Store',\n\talias: 'store.${2:alias}',\n\n\tautoLoad: true,\n\tautoSync: false,\n\tremoteFilter: true,\n\tremoteSort: true,\n\n\tmodel: 'Erp.model.${1:path}',\n\n\tonCreateRecords(_records, operation) {\n\t\tErp.system.ErrorHandler.validateResponse(operation);\n\t},\n\n\tonUpdateRecords(_records, operation) {\n\t\tErp.system.ErrorHandler.validateResponse(operation);\n\t},\n\n\tonDestroyRecords(_records, operation) {\n\t\tErp.system.ErrorHandler.validateResponse(operation);\n\t},\n});${0}",
+    "body": "Ext.define('${1:Erp}.store.${2:path}', {\n\textend: '${1:Erp}.store.Store',\n\talias: 'store.${3:alias}',\n\tmodel: '${1:Erp}.model.${2:path}',\n});${0}",
     "description": "ExtJs store implementation"
   },
   "ExtJsWebsocketRequest": {
     "prefix": "wsreq",
-    "body": "Ext.Websocket.request({\n\tjsonData: {\n\t\trequest: {\n\t\t\tmodule: '${1:platform}',\n\t\t\tmodel: '${2:modelName}',\n\t\t\tmethod: '${3:method}',\n\t\t},\n\t},\n\tsuccess(response) {\n\t\tconst isSuccessResponse = Erp.system.ErrorHandler.validateResponse(response);\n\n\t\tif (!isSuccessResponse) {\n\t\t\treturn;\n\t\t}\n\t},\n\tfailure: Erp.system.ErrorHandler.validateResponse,\n});${0}"
+    "body": "Ext.Websocket.request({\n\tjsonData: {\n\t\trequest: {\n\t\t\tmodule: '${1:platform}',\n\t\t\tmodel: '${2:model}',\n\t\t\tmethod: '${3:method}',\n\t\t},\n\t},\n\tsuccess(response) {\n\t\tconst isSuccessResponse = Erp.system.ErrorHandler.validateResponse(response);\n\n\t\tif (!isSuccessResponse) {\n\t\t\treturn;\n\t\t}\n\n\t\t${0}\n\t},\n\tfailure: Erp.system.ErrorHandler.validateResponse,\n});"
   }
 }
