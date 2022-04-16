@@ -72,10 +72,8 @@ function langs() {
   echo "|        Installing Java        |"
   echo "+-------------------------------+"
   asdf plugin-add java https://github.com/halcyon/asdf-java.git
-  asdf install java adoptopenjdk-large_heap-8.0.265+1.openj9-0.21.0
-  asdf global java adoptopenjdk-large_heap-8.0.265+1.openj9-0.21.0
-  . ~/.asdf/plugins/java/set-java-home.zsh
-
+  asdf install java openjdk-17
+  asdf global java openjdk-17
 
   echo "+-------------------------------+"
   echo "|      Installing Clojure       |"
@@ -85,18 +83,18 @@ function langs() {
   asdf global clojure 1.10.2.774
 
   echo "+-------------------------------+"
+  echo "|      Installing Lrwrap       |"
+  echo "+-------------------------------+"
+  asdf plugin add rlwrap https://github.com/asdf-community/asdf-rlwrap.git
+  asdf install rlwrap 0.45
+  asdf global rlwrap 0.45
+
+  echo "+-------------------------------+"
   echo "|        Installing Ruby        |"
   echo "+-------------------------------+"
   asdf plugin-add ruby
   asdf install ruby 2.7.0
   asdf global ruby 2.7.0
-
-  echo "+-------------------------------+"
-  echo "|       Installing Python       |"
-  echo "+-------------------------------+"
-  asdf plugin-add python
-  asdf install python 3.9.0
-  asdf global python 3.9.0
 
   echo "+------------------------------+"
   echo "|        Installing Lua        |"

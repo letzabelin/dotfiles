@@ -19,4 +19,3 @@
 * Erlang
 * Java
 * Golang
-* Kotlin
