@@ -1,0 +1,8 @@
+[user]
+	name = Andrew Zabelin
+	email = letzabelin@gmail.com
+[core]
+	excludesfile = ~/.gitignore
+	editor = vim
+[init]
+	defaultBranch = main
