@@ -16,6 +16,8 @@ local packer = {
 }
 
 local core = {
+    -- cache modules to improve load time
+    "lewis6991/impatient.nvim",
     -- fix performance bug https://github.com/neovim/neovim/issues/12587 for CursorHold CursorHoldI
     {
         "antoinemadec/FixCursorHold.nvim",
@@ -114,8 +116,9 @@ local tmux = {
 local session = {
     -- start screen
     {
-        "mhinz/vim-startify",
-        config = require("plugins.startify")
+        "goolord/alpha-nvim",
+        requires = {'kyazdani42/nvim-web-devicons'},
+        config = require("plugins.alpha")
     },
     -- reopen files at your last edit position
     "farmergreg/vim-lastplace"
@@ -239,7 +242,7 @@ local ui = {
         requires = {"rktjmp/lush.nvim"},
         config = require("plugins.ui")
     },
-    {'m-demare/hlargs.nvim', config = function() require'hlargs'.setup {} end}
+    {"m-demare/hlargs.nvim", config = function() require'hlargs'.setup {} end}
 }
 
 local treesitter = {
@@ -312,7 +315,7 @@ local lsp = {
 
 local other = {
     -- viewing nvim startup event timing information.
-    "dstein64/vim-startuptime"
+    "dstein64/vim-startuptime",
 }
 
 return require("packer").startup {
