@@ -15,9 +15,9 @@ return function(client, bufnr)
     if client.resolved_capabilities.goto_definition then
         map("n", "'gd", "<cmd>lua vim.lsp.buf.definition()<CR>", options)
     end
-    if client.resolved_capabilities.rename then
-        map("n", "'rn", "<cmd>lua vim.lsp.buf.rename.float()<cr>", options)
-    end
+
+    -- vim.api.nvim_set_keymap("n", "'rn", ':Rename ', {})
+    map("n", "'rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
 
     map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev({ float = false })<CR>", options)
     map("n", "]d", "<cmd>lua vim.diagnostic.goto_next({ float = false })<CR>", options)

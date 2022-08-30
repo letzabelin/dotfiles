@@ -10,7 +10,8 @@ return function()
             "bash",
             "lua",
             "erlang",
-            "elixir"
+            "elixir",
+            "go"
         },
         indent = {
             enable = {"javascriptreact"}

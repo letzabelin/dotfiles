@@ -201,11 +201,6 @@ local coding = {
 }
 
 local ui = {
-    -- shade inactive windows
-    {
-        "sunjon/shade.nvim",
-        config = require("plugins.shade")
-    },
     -- indent lines
     {
         "lukas-reineke/indent-blankline.nvim",
@@ -237,7 +232,6 @@ local ui = {
    -- },
     -- color scheme
     {
-        -- "savq/melange",
         "ellisonleao/gruvbox.nvim",
         requires = {"rktjmp/lush.nvim"},
         config = require("plugins.ui")
@@ -262,6 +256,12 @@ local lsp = {
     -- },
     -- base config for language servers
     "neovim/nvim-lspconfig",
+    -- {
+    --     "smjonas/inc-rename.nvim",
+    --     config = function()
+    --         require('inc_rename').setup({cmd_name = 'Rename'})
+    --     end,
+    -- },
     -- lsp servers installer
     {"williamboman/nvim-lsp-installer"},
     -- just a bit better ts support
