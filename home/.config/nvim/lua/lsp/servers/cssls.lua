@@ -9,7 +9,7 @@ return function(on_attach)
         filetypes = {"css", "scss", "less"},
         capabilities = capabilities,
         on_attach = function(client)
-            client.resolved_capabilities.document_formatting = false
+            client.server_capabilities.document_formatting = false
             on_attach(client)
         end
     }

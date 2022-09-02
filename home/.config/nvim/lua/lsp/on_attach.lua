@@ -1,20 +1,14 @@
 return function(client, bufnr)
     local options = {noremap = true, silent = true}
 
-    if client.resolved_capabilities.hover then
-        map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", options)
-    end
-    if client.resolved_capabilities.find_references then
-        map(
-            "n",
-            "'gr",
-            "<cmd>lua require'telescope.builtin'.lsp_references({layout_strategy='vertical',layout_config={width=0.9, height=0.9}})<CR>",
-            options
-        )
-    end
-    if client.resolved_capabilities.goto_definition then
-        map("n", "'gd", "<cmd>lua vim.lsp.buf.definition()<CR>", options)
-    end
+    map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", options)
+    map(
+        "n",
+        "'gr",
+        "<cmd>lua require'telescope.builtin'.lsp_references({layout_strategy='vertical',layout_config={width=0.9, height=0.9}})<CR>",
+        options
+    )
+    map("n", "'gd", "<cmd>lua vim.lsp.buf.definition()<CR>", options)
 
     -- vim.api.nvim_set_keymap("n", "'rn", ':Rename ', {})
     map("n", "'rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
