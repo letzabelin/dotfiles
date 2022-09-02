@@ -8,13 +8,14 @@ return function()
             changedelete = {hl = "GitGutterDelete", text = "│", numhl = ""}
         },
         numhl = true,
-        watch_index = {
+        watch_gitdir = {
             interval = 1000
         },
         sign_priority = 6,
         status_formatter = nil,
         update_debounce = 100,
-        use_decoration_api = true,
-        use_internal_diff = true
+        diff_opts = {
+            internal = true
+        }
     }
 end
