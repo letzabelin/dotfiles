@@ -11,7 +11,8 @@ return function()
             "lua",
             "erlang",
             "elixir",
-            "go"
+            "go",
+            "vim"
         },
         indent = {
             enable = {"javascriptreact"}

@@ -1,6 +1,6 @@
 local lsp_installer = require("nvim-lsp-installer")
 
-local servers = {"jsonls", "tsserver", "yamlls", "sumneko_lua", "cssls", "solargraph", "dockerls", "html", "gopls"}
+local servers = {"jsonls", "tsserver", "yamlls", "cssls", "solargraph", "dockerls", "html", "gopls"}
 
 _G.installLspServers = function()
     cmd("LspUninstallAll")
@@ -22,8 +22,8 @@ lsp_installer.on_server_ready(
 
         local serverConfig = require("lsp.servers." .. server.name)(general_on_attach)
         serverConfig.flags = {debounce_text_changes = 100, lintDebounce = 200}
-        serverConfig.capabilities =
-            require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+        serverConfig.capabilities = serverConfig.capabilities or
+            require("cmp_nvim_lsp").default_capabilities()
 
         server:setup(serverConfig)
         vim.cmd [[ do User LspAttachBuffers ]]

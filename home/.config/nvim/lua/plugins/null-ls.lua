@@ -3,7 +3,7 @@ return function()
         {
             sources = {
                 require("null-ls").builtins.diagnostics.eslint_d.with({timeout = 10000}),
-                require("null-ls").builtins.formatting.prettierd
+                require("null-ls").builtins.formatting.prettierd,
             }
         }
     )
