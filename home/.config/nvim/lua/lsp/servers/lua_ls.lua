@@ -4,10 +4,11 @@ return function(on_attach)
     return util.t.merge('force', common, {
         on_attach = on_attach,
         settings = {
-            -- json = {
-            --     schemas = require('schemastore').json.schemas(),
-            --     validate = {enable = true}
-            -- }
+            Lua = {
+                hint = {enable = true},
+                workspace = {checkThirdParty = false},
+                completion = {callSnippet = 'Replace'}
+            }
         }
     })
 end

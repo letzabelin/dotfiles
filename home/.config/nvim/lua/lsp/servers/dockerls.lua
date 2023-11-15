@@ -3,6 +3,6 @@ return function(on_attach)
         on_attach = function(client)
             client.server_capabilities.document_formatting = false
             on_attach(client)
-        end,
+        end
     }
 end

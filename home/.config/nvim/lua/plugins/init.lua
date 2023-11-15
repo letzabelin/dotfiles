@@ -1,281 +1,340 @@
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data') ..
-  '/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({
-      'git',
-      'clone',
-      '--depth',
-      '1',
-      'https://github.com/wbthomason/packer.nvim',
-      install_path
-    })
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
-end
+return {
+    -- repeat.vim remaps . in a way that plugins can tap into it.
+    {'tpope/vim-repeat', event = 'VeryLazy'},
+    {"farmergreg/vim-lastplace", lazy = false},
+    {"editorconfig/editorconfig-vim", event = 'VeryLazy'},
+    -- surrounding parentheses, brackets, quotes, XML tags, and more.
+    {"tpope/vim-surround", event = 'VeryLazy', version = '*'},
+    -- after yank leave cursor on its place
+    {'svban/YankAssassin.vim', event = 'VeryLazy'},
+    -- additional mappings, [<leader> - add new line before cursor, [b - prev buffer and ]b - next buffer
+    {"tpope/vim-unimpaired", event = "VeryLazy"}, {
+        "ggandor/lightspeed.nvim",
+        event = "VeryLazy",
+        dependencies = {"tpope/vim-repeat"}
+    }, {
+        "windwp/nvim-autopairs",
+        event = "VeryLazy",
+        config = function()
+            require("nvim-autopairs").setup({fast_wrap = {}})
+        end
+    }, {"AndrewRadev/switch.vim", event = 'VeryLazy'}, {
+        "mattn/emmet-vim",
+        event = "VeryLazy",
+        config = function()
+            vim.g.user_emmet_settings = {
+                html = {indent_blockelement = 1},
+                javascript = {extends = "jsx"}
+            }
+        end
+    }, {
+        "m-demare/hlargs.nvim",
+        event = {'BufEnter'},
+        config = function() require('hlargs').setup({}) end
+    }, {
+        "lukas-reineke/indent-blankline.nvim",
+        lazy = false,
+        main = "ibl",
+        config = function()
+            require("ibl").setup({scope = {enabled = false}})
+        end
+    }, {
+        "akinsho/bufferline.nvim",
+        version = 'v3.*',
+        dependencies = {'nvim-tree/nvim-web-devicons'},
+        event = {'BufEnter *.*'},
+        config = function()
+            require"bufferline".setup({
+                options = {
+                    offsets = {{filetype = "NvimTree", text = "", padding = 1}},
+                    buffer_close_icon = "",
+                    modified_icon = "",
+                    show_close_icon = false,
+                    max_name_length = 35,
+                    max_prefix_length = 0,
+                    tab_size = 25,
+                    show_tab_indicators = true,
+                    enforce_regular_tabs = false,
+                    show_buffer_close_icons = true,
+                    separator_style = "thin"
+                },
+                highlights = {fill = {bg = "#1e1e1e"}}
+            })
 
-ensure_packer()
+            vim.api.nvim_set_keymap("n", "<leader>n",
+                                    ":BufferLineCycleNext<cr>", {
+                noremap = true,
+                silent = true,
+                expr = false
+            })
+            vim.api.nvim_set_keymap("n", "<leader>p",
+                                    ":BufferLineCyclePrev<cr>", {
+                noremap = true,
+                silent = true,
+                expr = false
+            })
+        end
+    }, -- fast comment/uncomment lines
+    {
+        'numToStr/Comment.nvim',
+        lazy = false,
+        dependencies = {'JoosepAlviste/nvim-ts-context-commentstring'},
+        config = function() require('Comment').setup({ignore = '^$'}) end
+    }, {
+        'nvim-treesitter/nvim-treesitter',
+        event = 'BufReadPost',
+        build = ':TSUpdate',
+        version = nil,
+        config = function()
+            local parser_configs =
+                require('nvim-treesitter.parsers').get_parser_configs()
+            parser_configs.http = {
+                install_info = {
+                    url = 'https://github.com/NTBBloodbath/tree-sitter-http',
+                    files = {'src/parser.c'},
+                    branch = 'main'
+                }
+            }
+            require('nvim-treesitter.configs').setup({
+                ensure_installed = {
+                    "javascript", "html", "css", "json", "clojure", "lua"
+                },
+                indent = {enable = true},
+                highlight = {
+                    enable = true, -- false will disable the whole extension
+                    indent = {enable = true},
+                    use_languagetree = true
+                },
+                context_commentstring = {enable = true},
+                autotag = {enable = true},
+                matchup = {
+                    enable = true -- mandatory, false will disable the whole extension
+                }
+            })
+        end
+    }, {
+        'goolord/alpha-nvim',
+        dependencies = {'nvim-tree/nvim-web-devicons'},
+        lazy = false,
+        config = function()
+            require'alpha'.setup(require'alpha.themes.startify'.config)
+            local alpha = require('alpha')
+            local dashboard = require('alpha.themes.dashboard')
 
--- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
+            dashboard.section.header.val = {
+                '                                                     ',
+                '                                                     ',
+                '                                                     ',
+                '                                                     ',
+                '                                                     ',
+                '                                                     ',
+                '                                                     ',
+                '  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ',
+                '  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ',
+                '  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ',
+                '  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ',
+                '  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ',
+                '  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ',
+                '                                                     '
+            }
 
-vim.cmd('cnoreabbrev psync PackerSync')
-vim.cmd('cnoreabbrev pcomp PackerCompile')
-vim.cmd('cnoreabbrev pinst PackerInstall')
+            dashboard.section.buttons.val = {
+                dashboard.button("e", "  > New file",
+                                 ":ene <BAR> startinsert <CR>"),
+                dashboard.button("r", "  > Recent", ":Telescope oldfiles<CR>"),
+                dashboard.button("q", "  > Quit NVIM", ":qa<CR>")
+            }
 
-local core = {
-  -- cache modules to improve load time
-  "lewis6991/impatient.nvim",
-  -- improve load time with better 'filetype'
-  "nathom/filetype.nvim",
-  -- editorconfig
-  "editorconfig/editorconfig-vim",
-  -- show registers
-  "tversteeg/registers.nvim",
-  -- repeat.vim remaps . in a way that plugins can tap into it.
-  "tpope/vim-repeat",
-  -- additional mappings, [<space> - add new line before cursor, [b - prev buffer and ]b - next buffer
-  "tpope/vim-unimpaired",
-  -- default additional configs
-  "tpope/vim-sensible",
-  -- better yank
-  "svban/YankAssassin.vim",
+            dashboard.section.footer.val = require('alpha.fortune')()
 
-  -- removes cursor jumping when opening qf,etc.
-  { "luukvbaal/stabilize.nvim", config = require("plugins.stabilize-nvim") },
-  -- delete buffer
-  { "moll/vim-bbye", config = require("plugins.vim-bbye") },
-  -- delete all buffers except the current
-  { "schickling/vim-bufonly", config = require("plugins.vim-bufonly") },
-  -- additional functional for %
-  { "andymass/vim-matchup", config = require("plugins.matchup") },
-  -- text editing in Neovim with immediate visual feedback
-  { "smjonas/live-command.nvim", config = require("plugins.live-command") },
+            alpha.setup(dashboard.opts)
+        end
+    }, -- delete buffer
+    {
+        "moll/vim-bbye",
+        event = "VeryLazy",
+        config = function() vim.cmd("cnoreabbrev bd Bdelete") end
+    }, -- delete all buffers except the current
+    {
+        "schickling/vim-bufonly",
+        event = "VeryLazy",
+        config = function() vim.cmd("cnoreabbrev bo Bonly") end
+    }, {
+        "smjonas/live-command.nvim",
+        config = function()
+            require("live-command").setup({
+                commands = {Norm = {cmd = "norm"}, G = {cmd = "g"}}
+            })
+        end
+    }, {
+        "voldikss/vim-floaterm",
+        lazy = false,
+        config = function()
+            vim.g.floaterm_width = 0.9
+            vim.g.floaterm_height = 0.9
+            vim.g.floaterm_title = "TERMINAL"
+            vim.api.nvim_set_keymap("n", "<c-e>", [[:FloatermToggle<CR>]], {
+                noremap = true,
+                silent = true,
+                expr = false
+            })
+            vim.api.nvim_set_keymap("t", "<c-e>",
+                                    [[<C-\><C-n>:FloatermToggle<CR>]], {
+                noremap = true,
+                silent = true,
+                expr = false
+            })
+            vim.cmd [[hi FloatermBorder guibg=none guifg=none ]]
+        end
+    }, {
+        'windwp/nvim-spectre',
+        dependencies = {'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim'},
+        cmd = 'Replace',
+        config = function()
+            require("spectre").setup({
+                color_devicons = true,
+                line_sep_start = "┌-----------------------------------------",
+                result_padding = "¦  ",
+                line_sep = "└-----------------------------------------",
+                highlight = {
+                    ui = "String",
+                    search = "DiffDelete",
+                    replace = "DiffChange"
+                }
+            })
 
-  -- fix performance bug https://github.com/neovim/neovim/issues/12587 for CursorHold CursorHoldI
-  {
-    "antoinemadec/FixCursorHold.nvim",
-    config = function()
-      vim.g.cursorhold_updatetime = 200
-    end
-  },
-}
+            vim.api
+                .nvim_command("command! Replace :lua require'spectre'.open()")
+        end
+    }, {
+        'windwp/nvim-ts-autotag',
+        event = 'BufReadPost',
+        dependencies = {'nvim-treesitter/nvim-treesitter'},
+        config = function() require('nvim-ts-autotag').setup() end
+    }, {'SmiteshP/nvim-navic', dependencies = {'neovim/nvim-lspconfig'}},
+    {'matze/vim-move', event = 'VeryLazy'},
+    {
+        'andymass/vim-matchup',
+        event = 'VeryLazy',
+        version = nil,
+        branch = 'master'
+    }, {
+        'Wansmer/treesj',
+        keys = {{'gS', function() require('treesj').toggle() end, mode = {'n'}}},
+        dependencies = {'nvim-treesitter/nvim-treesitter'},
+        event = "VeryLazy",
+        config = function()
+            require('treesj').setup({use_default_keymaps = false})
+        end
+    }, {
+        "f-person/git-blame.nvim",
+        event = "VeryLazy",
+        config = function()
+            vim.g.gitblame_enabled = false
+            vim.g.gitblame_message_template =
+                "<author> • <sha> • <date> • <summary>"
+            vim.api.nvim_set_keymap("n", "<leader>gm",
+                                    "<cmd>GitBlameToggle<cr>", {
+                noremap = true,
+                silent = true,
+                expr = false
+            })
+        end
+    }, {
+        "lewis6991/gitsigns.nvim",
+        dependencies = {"nvim-lua/plenary.nvim"},
+        event = 'BufEnter',
+        config = function()
+            require("gitsigns").setup({
+                signs = {
+                    add = {hl = "GitGutterAdd", text = "│", numhl = ""},
+                    change = {hl = "GitGutterChange", text = "│", numhl = ""},
+                    delete = {hl = "GitGutterDelete", text = "│", numhl = ""},
+                    topdelete = {
+                        hl = "GitGutterDelete",
+                        text = "│",
+                        numhl = ""
+                    },
+                    changedelete = {
+                        hl = "GitGutterDelete",
+                        text = "│",
+                        numhl = ""
+                    }
+                },
+                numhl = true,
+                watch_gitdir = {interval = 1000},
+                sign_priority = 6,
+                status_formatter = nil,
+                update_debounce = 100,
+                diff_opts = {internal = true}
+            })
+        end
+    }, {
+        "numToStr/Navigator.nvim",
+        config = function()
+            require("Navigator").setup {
+                auto_save = "current",
+                disable_on_zoom = false
+            }
 
-local navigation = {
-  -- move lines or symbols, Alt-j
-  "matze/vim-move",
-
-  -- fast navigation
-  { "ggandor/lightspeed.nvim", requires = {"tpope/vim-repeat"} },
-  -- more useful word motions <leader>w|b|e
-  { "chaoren/vim-wordmotion", config = require("plugins.wordmotion") },
-}
-
-local git = {
-  -- :Git diff | :Git commit | :Git add | :GStatus
-  "tpope/vim-fugitive",
-
-  -- git blame
-  { "f-person/git-blame.nvim", config = require("plugins.git-blame") },
-
-  -- git signs
-  {
-    "lewis6991/gitsigns.nvim",
-    config = require("plugins.gitsigns"),
-    requires = { "nvim-lua/plenary.nvim" },
-    tag = "release"
-  },
-}
-
-local tmux = {
-  { "numToStr/Navigator.nvim", config = require("plugins.navigator") },
-  { "talek/obvious-resize", config = require("plugins.obvious-resize") },
-}
-
-local session = {
-  -- reopen files at your last edit position
-  "farmergreg/vim-lastplace",
-
-  -- start screen
-  {
-    "goolord/alpha-nvim",
-    requires = {'kyazdani42/nvim-web-devicons'},
-    config = require("plugins.alpha")
-  },
-}
-
-local term = {
-  -- terminal in NVIM
-  "voldikss/vim-floaterm",
-  config = require("plugins.vim-floaterm")
-}
-
-local filetree = {
-  -- explorer tree
-  "kyazdani42/nvim-tree.lua",
-  requires = { "kyazdani42/nvim-web-devicons" },
-  config = require("plugins.nvim-tree")
-}
-
-local search = {
-  {
-    "nvim-telescope/telescope.nvim",
-    requires = { "nvim-lua/plenary.nvim", "nvim-lua/popup.nvim" },
-    config = require("plugins.telescope-nvim")
-  },
-  {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    run = 'make',
-  },
-  -- Replace all occurrences
-  {
-    "windwp/nvim-spectre",
-    config = require("plugins.spectre"),
-    requires = {"nvim-lua/plenary.nvim", "nvim-lua/popup.nvim"},
-    cmd = "Replace"
-  },
-}
-
-local coding = {
-  -- split or join lines, gS, gJ
-  "AndrewRadev/splitjoin.vim",
-  -- surrounding parentheses, brackets, quotes, XML tags, and more.
-  "tpope/vim-surround",
-  -- fast comment/uncomment lines, gcc
-  "tpope/vim-commentary",
-  -- commenting for jsx/tsx
-  "JoosepAlviste/nvim-ts-context-commentstring",
-
-  -- auto close parentheses and repeat by .
-  { "windwp/nvim-autopairs", config = require("plugins.nvim-autopairs") },
-  -- add switch toggles, -
-  { "AndrewRadev/switch.vim", config = require("plugins.switch") },
-  -- dotend support
-  { "tpope/vim-dotenv", config = require("plugins.vim-dotenv") },
-  -- emmet support
-  { "mattn/emmet-vim", config = require("plugins.emmet") },
-  -- preview markdown files
-  { "iamcco/markdown-preview.nvim", run = "cd app && npm install" },
-
-  -- snippets
-  {
-    "hrsh7th/vim-vsnip",
-    requires = "hrsh7th/vim-vsnip-integ",
-    config = require("plugins.vim-vsnip")
-  },
-}
-
-local ui = {
-  -- indent lines
-  { "lukas-reineke/indent-blankline.nvim", config = require("plugins.indent-line") },
-  -- tabs
-  { "akinsho/nvim-bufferline.lua", requires = "kyazdani42/nvim-web-devicons", config = require("plugins.nvim-bufferline") },
-  -- status Line
-  { "windwp/windline.nvim", config = require("plugins.windline-nvim") },
-  -- highlight params in functions
-  {"m-demare/hlargs.nvim", config = function() require'hlargs'.setup {} end},
-  -- color scheme
-  -- { "catppuccin/nvim", as = "catppuccin", config = require("plugins.catppuccin") },
-  {
-    "ellisonleao/gruvbox.nvim",
-    requires = {"rktjmp/lush.nvim"},
-    config = require("plugins.ui")
-  },
-  -- { "projekt0n/github-nvim-theme", tag = "v0.0.7", config = require("plugins.github-nvim-theme") },
-}
-
-local treesitter = {
-  "nvim-treesitter/playground",
-  {
-    "nvim-treesitter/nvim-treesitter",
-    config = require("plugins.treesitter"),
-    run = ":TSUpdate"
-  },
-}
-
-local lsp = {
-  "hrsh7th/cmp-nvim-lsp",
-  -- base config for language servers
-  "neovim/nvim-lspconfig",
-  -- lsp servers installer
-  {"williamboman/nvim-lsp-installer"},
-  -- just a bit better ts support
-  "jose-elias-alvarez/nvim-lsp-ts-utils",
-  -- pretty references/codeaction
-  {"RishabhRD/nvim-lsputils", requires = {"RishabhRD/popfix"}, config = require("plugins.nvim-lsputils")},
-  {
-    "hrsh7th/nvim-cmp",
-    config = require("plugins.nvim-cmp"),
-    requires = {
-      "onsails/lspkind-nvim",
-      "f3fora/cmp-spell",
-      "octaltree/cmp-look",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-vsnip",
-      "hrsh7th/vim-vsnip",
-      "hrsh7th/cmp-emoji",
-      {
-        "tzachar/cmp-fuzzy-buffer",
-        requires = {
-          {
-            "tzachar/fuzzy.nvim",
-            requires = {{"hrsh7th/cmp-buffer"}, {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}}
-          }
-        }
-      },
-      {
-        "tzachar/cmp-fuzzy-path",
-        requires = {
-          {
-            "tzachar/fuzzy.nvim",
-            requires = {{"hrsh7th/cmp-path"}, {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}}
-          }
-        }
-      }
-    },
-  },
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    config = require("plugins.null-ls"),
-    requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"}
-  },
-  -- code action
-  {"weilbith/nvim-code-action-menu", cmd = "CodeActionMenu"},
-  -- diagnostics
-  {"folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons", config = require("plugins.trouble-nvim")},
-}
-
-local other = {
-  -- viewing nvim startup event timing information.
-  "dstein64/vim-startuptime",
-}
-
-return require("packer").startup {
-  function(use)
-    use "wbthomason/packer.nvim"
-    use(core)
-    use(term)
-    use(filetree)
-    use(coding)
-    use(treesitter)
-    use(git)
-    use(ui)
-    use(lsp)
-    use(other)
-    use(search)
-    use(session)
-    use(navigation)
-    use(tmux)
-  end,
-  config = {
-    display = {
-      open_fn = require("packer.util").float
-    }
-  }
+            vim.api.nvim_set_keymap("", "<c-h>",
+                                    "<CMD>lua require('Navigator').left()<CR>",
+                                    {
+                noremap = true,
+                silent = true,
+                expr = false
+            })
+            vim.api.nvim_set_keymap("", "<c-j>",
+                                    "<CMD>lua require('Navigator').down()<CR>",
+                                    {
+                noremap = true,
+                silent = true,
+                expr = false
+            })
+            vim.api.nvim_set_keymap("", "<c-k>",
+                                    "<CMD>lua require('Navigator').up()<CR>", {
+                noremap = true,
+                silent = true,
+                expr = false
+            })
+            vim.api.nvim_set_keymap("", "<c-l>",
+                                    "<CMD>lua require('Navigator').right()<CR>",
+                                    {
+                noremap = true,
+                silent = true,
+                expr = false
+            })
+        end
+    }, {
+        "talek/obvious-resize",
+        config = function()
+            vim.g.obvious_resize_default = 4
+            vim.g.obvious_resize_run_tmux = 1
+            vim.api.nvim_set_keymap("", "<c-up>", ":ObviousResizeUp<cr>", {
+                noremap = true,
+                silent = true,
+                expr = false
+            })
+            vim.api.nvim_set_keymap("", "<c-down>", ":ObviousResizeDown<cr>", {
+                noremap = true,
+                silent = true,
+                expr = false
+            })
+            vim.api.nvim_set_keymap("", "<c-left>", ":ObviousResizeLeft<cr>", {
+                noremap = true,
+                silent = true,
+                expr = false
+            })
+            vim.api.nvim_set_keymap("", "<c-right>", ":ObviousResizeRight<cr>",
+                                    {
+                noremap = true,
+                silent = true,
+                expr = false
+            })
+        end
+    }, {
+        "julienvincent/nvim-paredit",
+        lazy = false,
+        config = function() require("nvim-paredit").setup({}) end
+    }, {'gpanders/nvim-parinfer', lazy = false}
 }

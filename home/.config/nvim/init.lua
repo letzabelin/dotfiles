@@ -1,6 +1,9 @@
--- =================
--- CONFIGURATION.LUA
--- =================
--- Created by: Andrew Zabelin [github.com/letzabelin]
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+vim.cmd('nmap <bs> <leader>')
 
-require("init")
+if not package.loaded.lazy then require('lazynvim') end
+require('autocommands')
+require('commands')
+require('settings')
+require('lsp.settings')

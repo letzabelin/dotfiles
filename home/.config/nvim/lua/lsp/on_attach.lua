@@ -1,27 +1,51 @@
+local navic = require('nvim-navic')
+
 return function(client, bufnr)
     local options = {noremap = true, silent = true}
 
-    map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", options)
-    map(
-        "n",
-        "'gr",
-        "<cmd>lua require'telescope.builtin'.lsp_references({layout_strategy='vertical',layout_config={width=0.9, height=0.9}})<CR>",
-        options
-    )
-    map("n", "'gd", "<cmd>lua vim.lsp.buf.definition()<CR>", options)
+    if client.server_capabilities.documentSymbolProvider then
+        navic.attach(client, bufnr)
+    end
 
-    -- vim.api.nvim_set_keymap("n", "'rn", ':Rename ', {})
-    map("n", "'rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
+    vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, options)
 
-    map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev({ float = false })<CR>", options)
-    map("n", "]d", "<cmd>lua vim.diagnostic.goto_next({ float = false })<CR>", options)
+    vim.keymap.set('n', '\'rn', function() vim.lsp.buf.rename() end, options)
 
-    map("n", "'gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", options)
-    map("n", "'a", "<cmd>CodeActionMenu<CR>", options)
-    -- map("n", "'d", '<cmd>lua vim.diagnostic.open_float(0, { scope = "line", border = "single", focusable = false })<CR>', options)
-    map("n", "'D", "<cmd>TroubleToggle<CR>", options)
+    vim.keymap.set('n', '[d',
+                   function() vim.diagnostic.goto_prev({float = false}) end,
+                   options)
 
-    au("cursorhold", "*", 'lua vim.diagnostic.open_float(0, { scope = "line", border = "single", focusable = false })', options)
+    vim.keymap.set('n', ']d',
+                   function() vim.diagnostic.goto_next({float = false}) end,
+                   options)
 
-    map("n", "<leader>e", "<cmd>lua fmt()<CR>")
+    vim.keymap.set('n', '\'gr', function()
+        require'telescope.builtin'.lsp_references({
+            layout_strategy = 'vertical',
+            layout_settings = {width = 0.9, height = 0.9}
+        })
+    end, options)
+
+    vim.keymap
+        .set('n', '\'gd', function() vim.lsp.buf.definition() end, options)
+
+    vim.keymap.set('n', '\'gi', function() vim.lsp.buf.implementation() end,
+                   options)
+
+    vim.keymap.set('n', '\'a', '<cmd>CodeActionMenu<CR>', options)
+
+    vim.cmd("au" .. " " .. "cursorhold" .. " " .. "*" .. " " ..
+                'lua vim.diagnostic.open_float(0, { scope = "line", border = "single", focusable = false })')
+
+    vim.keymap.set('i', '<c-k>', function() vim.lsp.buf.signature_help() end,
+                   options)
+
+    vim.keymap.set('n', '<leader>e', function()
+        vim.lsp.buf.format({
+            async = false,
+            filter = function(filterClient)
+                return filterClient.name == 'null-ls'
+            end
+        })
+    end, options)
 end
