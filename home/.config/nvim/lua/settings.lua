@@ -14,7 +14,7 @@ do
 end
 
 do
-    local relativenumber = true -- Show the line number relative to the line with the cursor in front of each line.
+    local relativenumber = false -- Show the line number relative to the line with the cursor in front of each line.
     set_global.relativenumber = relativenumber
     set_window.relativenumber = relativenumber
 end

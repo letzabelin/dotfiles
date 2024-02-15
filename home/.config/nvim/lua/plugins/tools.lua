@@ -15,8 +15,8 @@ return {
             require('mason-lspconfig').setup({
                 ensure_installed = {
                     'lua_ls', 'tsserver', 'cssls', 'jsonls', 'yamlls',
-                    'tailwindcss', 'emmet_ls', 'prismals', 'dockerls',
-                    'clojure_lsp'
+                    'tailwindcss', 'prismals', 'dockerls', 'clojure_lsp',
+                    'csharp_ls'
                 },
                 automatic_installation = true
             })
@@ -51,16 +51,24 @@ return {
             -- local code_actions = null_ls.builtins.code_actions
 
             null_ls.setup({
-                debounce = 150,
+                debounce = 0,
                 update_in_insert = false,
                 sources = {
                     formatting.prettierd, formatting.lua_format,
                     formatting.yamlfmt,
-                    diagnostics.eslint_d.with({timeout = 10000})
+                    diagnostics.eslint_d.with({timeout = 10000}),
+                    formatting.cljstyle
                 }
             })
+
+            -- vim.api.nvim_set_keymap("n", "<leader>q",
+            --                         ":silent !cljstyle fix " .. vim.fn.expand('%:p') .. "<CR>",
+            --                         {noremap = true})
+
             require('mason-null-ls').setup({
-                ensure_installed = {'eslint_d', 'prettierd', 'luaformatter'},
+                ensure_installed = {
+                    'eslint_d', 'prettierd', 'luaformatter', 'cljstyle'
+                },
                 automatic_installation = true,
                 automatic_setup = false
             })

@@ -54,16 +54,6 @@ vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz",
 vim.api.nvim_set_keymap("n", "Y", "y$",
                         {noremap = true, silent = true, expr = false})
 
--- Map ctrl-movement keys to window switching
-vim.api.nvim_set_keymap("", "<C-k>", "<C-w><Up>",
-                        {noremap = true, silent = true, expr = false})
-vim.api.nvim_set_keymap("", "<C-j>", "<C-w><Down>",
-                        {noremap = true, silent = true, expr = false})
-vim.api.nvim_set_keymap("", "<C-l>", "<C-w><Right>",
-                        {noremap = true, silent = true, expr = false})
-vim.api.nvim_set_keymap("", "<C-h>", "<C-w><Left>",
-                        {noremap = true, silent = true, expr = false})
-
 -- Format the entire file
 vim.api.nvim_set_keymap("n", "ff", ":normal! gg=G``<CR>",
                         {noremap = true, silent = true, expr = false})
@@ -84,6 +74,12 @@ local indent_groups = vim.api.nvim_exec([[
           autocmd FileType eruby imap <c-k><c-j> <CR><Esc>O
         augroup END
     ]], true)
+
+vim.api.nvim_exec([[
+    autocmd BufWinEnter,BufNewFile,BufRead *.clj* set iskeyword-=.
+    autocmd BufWinEnter,BufNewFile,BufRead *.clj* set iskeyword-=-
+    autocmd BufWinEnter,BufNewFile,BufRead *.clj* set iskeyword-=/
+]], true)
 
 vim.api.nvim_exec([[
     nmap <expr> f reg_recording() .. reg_executing() == "" ? "<Plug>Lightspeed_f" : "f"

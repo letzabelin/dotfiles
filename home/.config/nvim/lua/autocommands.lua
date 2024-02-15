@@ -2,9 +2,26 @@
 vim.api.nvim_create_autocmd('TextYankPost', {
     pattern = {'*'},
     callback = function()
-        vim.highlight.on_yank({higroup = 'Visual', timeout = 300})
+        vim.highlight.on_yank({higroup = 'IncSearch', timeout = 300})
     end
 })
+
+vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
+    pattern = {'*.cljd'},
+    callback = function()
+        local buf = vim.api.nvim_get_current_buf()
+        vim.api.nvim_buf_set_option(buf, 'filetype', 'clojure')
+    end
+})
+
+-- vim.api.nvim_create_autocmd({'BufWinEnter', 'BufRead', 'BufNewFile'}, {
+--     pattern = {'*.clj*'},
+--     callback = function()
+--         vim.opt.iskeyword:append("-")
+--         vim.opt.iskeyword:append(".")
+--         vim.opt.iskeyword:append("/")
+--     end
+-- })
 
 -- vim.api.nvim_create_autocmd({'FocusLost'}, {command = 'silent! wa'})
 

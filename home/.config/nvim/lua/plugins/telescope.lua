@@ -115,10 +115,17 @@ return {
             end
         }, {'<leader>oo', function()
             require('telescope.builtin').resume()
-        end},
-        {
-            '<leader>gc',
-            function() require('telescope.builtin').git_commits() end
+        end}, {
+            '<leader>gc', function()
+                require('telescope.builtin').git_commits({
+                    layout_strategy = 'vertical',
+                    layout_config = {
+                        width = 0.9,
+                        height = 0.9,
+                        preview_cutoff = 0
+                    }
+                })
+            end
         },
         {
             '<leader>gb',

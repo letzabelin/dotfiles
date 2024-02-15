@@ -8,15 +8,35 @@ return {
     -- after yank leave cursor on its place
     {'svban/YankAssassin.vim', event = 'VeryLazy'},
     -- additional mappings, [<leader> - add new line before cursor, [b - prev buffer and ]b - next buffer
-    {"tpope/vim-unimpaired", event = "VeryLazy"}, {
-        "ggandor/lightspeed.nvim",
+    {"tpope/vim-unimpaired", event = "VeryLazy"},
+    {"sindrets/diffview.nvim", event = "VeryLazy"}, {
+        "folke/flash.nvim",
         event = "VeryLazy",
-        dependencies = {"tpope/vim-repeat"}
+        opts = {},
+        keys = {
+            {
+                "s",
+                mode = {"n", "x", "o"},
+                function() require("flash").jump() end,
+                desc = "Flash"
+            }
+        },
+        config = function()
+            require("flash").setup({modes = {search = {enabled = false}}})
+        end
     }, {
         "windwp/nvim-autopairs",
         event = "VeryLazy",
         config = function()
             require("nvim-autopairs").setup({fast_wrap = {}})
+
+            -- remove add single quote on filetype scheme or lisp
+            require("nvim-autopairs").get_rules("'")[1].not_filetypes = {
+                'clojure'
+            }
+            require("nvim-autopairs").get_rules("`")[1].not_filetypes = {
+                'clojure'
+            }
         end
     }, {"AndrewRadev/switch.vim", event = 'VeryLazy'}, {
         "mattn/emmet-vim",
@@ -79,12 +99,17 @@ return {
         'numToStr/Comment.nvim',
         lazy = false,
         dependencies = {'JoosepAlviste/nvim-ts-context-commentstring'},
-        config = function() require('Comment').setup({ignore = '^$'}) end
+        config = function()
+            local ft = require('Comment.ft')
+
+            require('Comment').setup({ignore = '^$'})
+
+            ft.set('clojure', ';;%s')
+        end
     }, {
         'nvim-treesitter/nvim-treesitter',
         event = 'BufReadPost',
         build = ':TSUpdate',
-        version = nil,
         config = function()
             local parser_configs =
                 require('nvim-treesitter.parsers').get_parser_configs()
@@ -97,7 +122,8 @@ return {
             }
             require('nvim-treesitter.configs').setup({
                 ensure_installed = {
-                    "javascript", "html", "css", "json", "clojure", "lua"
+                    "javascript", "html", "css", "json", "clojure", "lua",
+                    "comment", "python", "c_sharp"
                 },
                 indent = {enable = true},
                 highlight = {
@@ -105,8 +131,9 @@ return {
                     indent = {enable = true},
                     use_languagetree = true
                 },
-                context_commentstring = {enable = true},
+                ts_context_commentstring = {enable = true},
                 autotag = {enable = true},
+                auto_install = false,
                 matchup = {
                     enable = true -- mandatory, false will disable the whole extension
                 }
@@ -271,33 +298,34 @@ return {
         end
     }, {
         "numToStr/Navigator.nvim",
+        lazy = false,
         config = function()
             require("Navigator").setup {
                 auto_save = "current",
                 disable_on_zoom = false
             }
 
-            vim.api.nvim_set_keymap("", "<c-h>",
+            vim.api.nvim_set_keymap("n", "<c-h>",
                                     "<CMD>lua require('Navigator').left()<CR>",
                                     {
                 noremap = true,
                 silent = true,
                 expr = false
             })
-            vim.api.nvim_set_keymap("", "<c-j>",
+            vim.api.nvim_set_keymap("n", "<c-j>",
                                     "<CMD>lua require('Navigator').down()<CR>",
                                     {
                 noremap = true,
                 silent = true,
                 expr = false
             })
-            vim.api.nvim_set_keymap("", "<c-k>",
+            vim.api.nvim_set_keymap("n", "<c-k>",
                                     "<CMD>lua require('Navigator').up()<CR>", {
                 noremap = true,
                 silent = true,
                 expr = false
             })
-            vim.api.nvim_set_keymap("", "<c-l>",
+            vim.api.nvim_set_keymap("n", "<c-l>",
                                     "<CMD>lua require('Navigator').right()<CR>",
                                     {
                 noremap = true,
@@ -336,5 +364,5 @@ return {
         "julienvincent/nvim-paredit",
         lazy = false,
         config = function() require("nvim-paredit").setup({}) end
-    }, {'gpanders/nvim-parinfer', lazy = false}
+    }
 }
