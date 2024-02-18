@@ -75,11 +75,11 @@ local indent_groups = vim.api.nvim_exec([[
         augroup END
     ]], true)
 
-vim.api.nvim_exec([[
-    autocmd BufWinEnter,BufNewFile,BufRead *.clj* set iskeyword-=.
-    autocmd BufWinEnter,BufNewFile,BufRead *.clj* set iskeyword-=-
-    autocmd BufWinEnter,BufNewFile,BufRead *.clj* set iskeyword-=/
-]], true)
+-- vim.api.nvim_exec([[
+--     autocmd BufWinEnter,BufNewFile,BufRead *.clj* set iskeyword-=.
+--     autocmd BufWinEnter,BufNewFile,BufRead *.clj* set iskeyword-=-
+--     autocmd BufWinEnter,BufNewFile,BufRead *.clj* set iskeyword-=/
+-- ]], true)
 
 vim.api.nvim_exec([[
     nmap <expr> f reg_recording() .. reg_executing() == "" ? "<Plug>Lightspeed_f" : "f"

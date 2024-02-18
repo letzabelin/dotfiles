@@ -109,7 +109,6 @@ set_global.mouse = 'a' -- Mouse support
 -- Don't redraw while executing macros (good performance config)
 set_global.lazyredraw = true -- The screen will not be redrawn while executing macros, registers and other commands that have not been typed
 set_global.hidden = true -- TextEdit might fail if hidden is not set
-set_global.foldenable = false -- All folds are open
 set_global.wb = false -- Don't make a backup before overwriting a file
 set_global.splitbelow = true -- Splitting a window will put the new window below the current one
 set_global.scrolloff = 3 -- Minimal number of screen lines to keep above and below the cursor

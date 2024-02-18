@@ -1,6 +1,14 @@
 local util = require('util')
 
 return {
+    -- {
+    --     "p00f/alabaster.nvim",
+    --     lazy = false,
+    --     config = function()
+    --         vim.cmd('colorscheme alabaster')
+    --         vim.o.background = 'light'
+    --     end
+    -- },
     {
         'catppuccin/nvim',
         name = 'catppuccin',
