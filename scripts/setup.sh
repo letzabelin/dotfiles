@@ -89,13 +89,6 @@ function langs() {
   asdf install rlwrap 0.45
   asdf global rlwrap 0.45
 
-  echo "+-------------------------------+"
-  echo "|        Installing Ruby        |"
-  echo "+-------------------------------+"
-  asdf plugin-add ruby
-  asdf install ruby 2.7.0
-  asdf global ruby 2.7.0
-
   echo "+------------------------------+"
   echo "|        Installing Lua        |"
   echo "+------------------------------+"
@@ -114,7 +107,8 @@ function langs() {
 }
 
 function software() {
-  echo "+-----------------------------------+" echo "|        Installing Software        |"
+  echo "+-----------------------------------+" 
+  echo "|        Installing Software        |"
   echo "+-----------------------------------+"
   cp -f $DPATH/home/Library/Fonts/*.ttf $HOME/Library/Fonts
 

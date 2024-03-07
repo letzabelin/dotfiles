@@ -1,0 +1,57 @@
+---
+
+root: true
+
+extends:
+  - "airbnb-base"
+
+parser: "@babel/eslint-parser"
+
+env:
+  node: true
+  es6: true
+  browser: true
+
+parserOptions:
+  requireConfigFile: false
+
+rules:
+  eol-last: 0
+  max-len:
+    - error
+    - 160
+    - ignoreComments: true
+  indent:
+    - error
+    - 4
+    - SwitchCase: 1
+  curly:
+    - error
+    - "all"
+  quotes:
+    - error
+    - single
+    - avoidEscape: true
+  semi:
+    - error
+    - always
+  comma-dangle:
+    - error
+    - arrays: always-multiline
+      objects: always-multiline
+      imports: always-multiline
+      exports: always-multiline
+      functions: only-multiline
+  camelcase: "off"
+  no-underscore-dangle: "off"
+  operator-linebreak:
+    - error
+    - after
+    - overrides:
+        "?": before
+        ":": before
+  no-param-reassign:
+    - error
+    - props: true
+      ignorePropertyModificationsForRegex:
+      - "^meta"

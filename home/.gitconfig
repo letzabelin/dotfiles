@@ -1,10 +1,16 @@
 [user]
-	name = Andrew Zabelin
-	email = letzabelin@gmail.com
+  name = Andrew Zabelin
+  email = letzabelin@gmail.com
 [core]
-	excludesfile = ~/.gitignore
-	editor = vim
+  excludesfile = ~/.gitignore
+  editor = vim
+  pager = git-split-diffs --color | less -RFX
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [pull]
-	rebase = false
+  rebase = false
+[push]
+  autoSetupRemote = true
+[split-diffs]
+  theme-name = github-dark-dim
+  min-line-width = 0
